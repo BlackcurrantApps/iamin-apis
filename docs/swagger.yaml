@@ -1,0 +1,317 @@
+swagger: '2.0'
+info:
+  description: API Backend for the IAMIN App
+  version: 1.0.0
+  title: IAMIN API
+  contact:
+    email: sanket@blackcurrantapps.com
+host: iamin-events.appspot.com
+basePath: /_ah/api
+tags:
+  - name: AppUser
+    description: Everything done by AppUsers
+  - name: PR
+    description: Everything done by PR
+  - name: Manager
+    description: Everything done by Manager
+  - name: SuperAdmin
+    description: Everything done by SuperAdmin
+schemes:
+  - https
+security:
+  - GoogleAuth: []
+securityDefinitions:
+  GoogleAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+produces:
+  - application/json
+paths:
+  /getSortedMainListings:
+    get:
+      summary: Get a list of Main Event Listings
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: city
+          in: query
+          type: string
+          required: true
+          description: City
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SortedMainEvents'
+definitions:
+  id:
+    type: integer
+    format: int64
+  MainEvent:
+    title: MainEvent
+    type: object
+    description: Root level Main Event
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      positionInList:
+        type: integer
+        format: int32
+      name:
+        type: string
+      description:
+        type: string
+      eventStart:
+        type: integer
+        format: int64
+      eventEnd:
+        type: integer
+        format: int64
+      ManagerEmail:
+        type: string
+      hasSingleCategory:
+        type: boolean
+        description: True if this Main Event has only one Category.
+      hasSingleEvent:
+        type: boolean
+        description: True if this Main Event has only one Leaf Level Event.
+      singleEventId:
+        $ref: '#/definitions/id'
+      singleCategoryId:
+        $ref: '#/definitions/id'
+      isPublished:
+        type: boolean
+      lat:
+        type: number
+        format: double
+      lon:
+        type: number
+        format: double
+      hashtag:
+        type: string
+      isTrending:
+        type: boolean
+      city:
+        type: string
+      isPaytmEnabled:
+        type: boolean
+      mainEventType:
+        type: string
+        enum:
+          - COLLEGE
+          - CONCERT
+          - CLUB
+      backdropUrl:
+        type: string
+  MainEventArray:
+    type: array
+    items:
+      $ref: '#/definitions/MainEvent'
+  MainEventCR:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+  SortedMainEvents:
+    type: object
+    properties:
+      trendingEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      collegeEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      clubEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      concertEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+  Category:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      name:
+        type: string
+      parentMainEventId:
+        $ref: '#/definitions/id'
+      isdefault:
+        type: boolean
+      isHidden:
+        type: boolean
+      backdropUrl:
+        type: string
+  CategoryCR:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Category'
+  CategoryArray:
+    type: array
+    items:
+      $ref: '#/definitions/Category'
+  Event:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      name:
+        type: string
+      description:
+        type: string
+      entryFee:
+        type: integer
+        format: int32
+      parentMainEventId:
+        $ref: '#/definitions/id'
+      parentCategoryId:
+        $ref: '#/definitions/id'
+      multipleTicketsPerUser:
+        type: boolean
+      groupSize:
+        type: integer
+        format: int32
+      registrable:
+        type: boolean
+      startTime:
+        type: integer
+        format: int64
+      isVotingEnabled:
+        type: boolean
+      intrestType:
+        type: string
+      isEventTicketTransferable:
+        type: boolean
+      backdropUrl:
+        type: string
+      currentInvolvement:
+        type: integer
+        format: int32
+      isCurrentUserIAMINED:
+        type: boolean
+      isCurrentUserHavingTicket:
+        type: boolean
+  EventCR:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+  EventArray:
+    type: array
+    items:
+      $ref: '#/definitions/Event'
+  Manager:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      email:
+        type: string
+      MainEventListingId:
+        $ref: '#/definitions/id'
+  PRRepresentative:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      email:
+        type: string
+      MainEventListingId:
+        $ref: '#/definitions/id'
+      AmountCollected:
+        type: integer
+        format: int32
+      lat:
+        type: number
+        format: double
+      lon:
+        type: number
+        format: double
+      locationUpdateTimestamp:
+        type: number
+        format: int64
+  EventHead:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      email:
+        type: string
+      MainEventListingId:
+        $ref: '#/definitions/id'
+      EventId:
+        $ref: '#/definitions/id'
+  Ticket:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      appUserEmail:
+        type: string
+      eventId:
+        $ref: '#/definitions/id'
+      timeStamp:
+        type: integer
+        format: int64
+      PREmail:
+        type: string
+      activeQuantity:
+        type: integer
+        format: int32
+      checkedInQuantity:
+        type: integer
+        format: int32
+      parentMainEventId:
+        $ref: '#/definitions/id'
+      event:
+        $ref: '#/definitions/Event'
+  EventLog:
+    type: object
+    properties:
+      id:
+        $ref: '#/definitions/id'
+      appUserEmail:
+        type: string
+      staffEmail:
+        type: string
+      MainEventListingId:
+        $ref: '#/definitions/id'
+      EventId:
+        $ref: '#/definitions/id'
+      timeStamp:
+        type: integer
+        format: int64
+      paytmOrderId:
+        type: string
+      quantity:
+        type: integer
+        format: int32
+      Amount:
+        type: integer
+        format: int32
+      MainEventListingName:
+        type: string
+      EventName:
+        type: string
+      action:
+        type: string
+        enum:
+          - CHECK_IN
+          - BUY_TICKET
+          - FREE_TICKET
+          - TRANSFER_TICKET
+          - BUY_TICKET_ONLINE
