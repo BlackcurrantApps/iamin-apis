@@ -5,7 +5,7 @@ info:
   title: IAMIN API
   contact:
     email: sanket@blackcurrantapps.com
-host: iamin-events.appspot.com
+host: 2-dot-iamin-events.appspot.com
 basePath: /_ah/api
 tags:
   - name: AppUser
@@ -27,36 +27,671 @@ securityDefinitions:
     name: Authorization
 produces:
   - application/json
+  
+  
 paths:
-  /getSortedMainListings:
+  /appUserApi/v1/getAppVersion:
     get:
-      summary: Get a list of Main Event Listings
+      summary: Register a new app user
+      operationId: getAppVersion
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            title: AppVersion
+            properties:
+              latestAppVersion:
+                type: integer
+                format: int32
+              lastSupportedAppVersion:
+                type: integer
+                format: int32
+    
+  /appUserApi/v1/getAppPopup:
+    get:
+      summary: Get the current application popup
+      operationId: getAppPopup
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            title: AppPopup
+            properties:
+              picture_url:
+                type: string
+              updateTimestamp:
+                type: integer
+                format: int64
+
+  /appUserApi/v1/register:
+    post:
+      summary: Register a new App User
+      operationId: register
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      consumes: 
+        - application/json
+      parameters:
+        - name: AppUser
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: email id of the user
+              contactNo:
+                type: string
+              name:
+                type: string
+              gender:
+                type: boolean
+                description: 1 for male 0 for female
+              Institution:
+                type: string
+              city:
+                type: string
+              intrests:
+                type: array
+                items:
+                  type: string
+              profilePic:
+                type: string
+                description: url to the profile picture
+              regId:
+                type: string
+                description: Google Cloud Messaging Registration ID
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AppUser'
+            
+  /appUserApi/v1/getUser:
+    get:
+      summary: Get registered app user
+      operationId: getUser
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AppUser'
+            
+  /appUserApi/v1/getOffers:
+    get:
+      summary: Get offers displayed on the app
+      operationId: getOffers
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Offer'
+                  
+  /appUserApi/v1/getSortedMainListings:
+    get:
+      summary: get sorted Main Events
+      operationId: getMainEvents
       security:
         - GoogleAuth: []
       tags:
         - AppUser
       parameters:
         - name: city
-          in: query
           type: string
           required: true
-          description: City
+          in: query
       responses:
         '200':
           description: OK
           schema:
             $ref: '#/definitions/SortedMainEvents'
+            
+  /appUserApi/v1/getEvents:
+    get:
+      summary: get events inside a category
+      operationId: getEvents
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: categoryId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+                  
+  /appUserApi/v1/getEvent:
+    get:
+      summary: get events inside a category
+      operationId: getEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+            
+  /appUserApi/v1/getIAMINS:
+    get:
+      summary: get iamins of a user
+      operationId: getIAMINS
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/IAMIN'
+                  
+  /appUserApi/v1/iamin:
+    post:
+      summary: IAMIN in an event
+      operationId: iamin
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/getIAMIN:
+    get:
+      summary: get by IAMIN ID
+      operationId: getIAMIN
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: iaminID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/deleteIAMIN:
+    delete:
+      summary: Delete IAMIN
+      operationId: deleteIAMIN
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /appUserApi/v1/getTickets:
+    get:
+      summary: get Tickets of a user
+      operationId: getTickets
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Ticket'
+                  
+  /appUserApi/v1/getTicket:
+    get:
+      summary: get Tickets of a user
+      operationId: getTicket
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: ticketID
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Ticket'
+                  
+  /appUserApi/v1/getUserRoles:
+    get:
+      summary: get priviledges for a user
+      operationId: getUserRoles
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UserRoles'
+            
+  /appUserApi/v1/updateContactPreference:
+    put:
+      summary: update contact preferences on an iamin
+      description: set whether or not the user wants to share contact details.
+      operationId: updateContactPreference
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: iaminId
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: canContact
+          type: string
+          in: query
+          required: true
+          enum:
+            - "true"
+            - "false"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/setIaminQuantity:
+    put:
+      summary: Set quantity of tickets wanted
+      operationId: setIaminQuantity
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: iaminId
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: canContact
+          type: boolean
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/getHistory:
+    get:
+      summary: get history of transactions for a user
+      operationId: getHistory
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+                  
+  /appUserApi/v1/getPRLocations:
+    get:
+      summary: get prs for a event along with their locations
+      operationId: getPRLocations
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: mainEventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            title: LocationContainer
+            properties:
+              mainEventLat:
+                type: number
+                format: double
+              mainEventLon:
+                type: number
+                format: double
+              prLocations:
+                type: array
+                items:
+                  type: object
+                  title: PRLocation
+                  properties:
+                    lat:
+                      type: number
+                      format: double
+                    lon:
+                      type: number
+                      format: double
+                    appUser:
+                      $ref: '#/definitions/AppUser'
+                  
+  /appUserApi/v1/PostEventFeedback:
+    post:
+      summary: post feedback on a event
+      operationId: PostEventFeedback
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: eventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: Message
+          type: string
+          in: query
+          required: true
+        - name: Rating
+          type: integer
+          format: int32
+          in: query
+          minimum: 1
+          maximum: 5
+      responses:
+        '200':
+          description: OK
+                  
+  /appUserApi/v1/postComment:
+    post:
+      summary: Post comment on a event
+      operationId: postComment
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: eventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: Message
+          type: string
+          in: query
+          required: true
+        - name: Rating
+          type: integer
+          format: int32
+          in: query
+          minimum: 1
+          maximum: 5
+      responses:
+        '200':
+          description: OK
+        
+  /appUserApi/v1/getCommentsForEvent:
+    get:
+      summary: get Comments on a Event
+      operationId: getCommentsForEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Comment'
+                  
+  /appUserApi/v1/getVotingCandidates:
+    get:
+      summary: get Voting candidates on a event if enabled
+      operationId: getVotingCandidates
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Candidate'
+                  
+  /appUserApi/v1/castVote:
+    post:
+      summary: Cast a vote
+      operationId: castVote
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: candidateID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /appUserApi/v1/transferTicket:
+    post:
+      summary: Transfer your ticket
+      description: Transfering ticket can be enabled/disabled in the manager console
+      operationId: transferTicket
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: ticketId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: transferToEmail
+          type: string
+          required: true
+          in: query
+        - name: transferToCell
+          type: string
+          required: true
+          in: query
+        - name: transferQuantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /appUserApi/v1/initializePaytmTransaction:
+    post:
+      summary: Initialize a paytm transaction
+      description: Call this before making any payment
+      operationId: initializePaytmTransaction
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: transferToEmail
+          type: string
+          required: true
+          in: query
+        - name: cellNo
+          type: string
+          required: true
+          in: query
+        - name: quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PaytmTransaction'
+          
+  /appUserApi/v1/PaytmTransactionSuccess:
+    post:
+      summary: Initialize a paytm transaction
+      description: Call this before making any payment
+      operationId: PaytmTransactionSuccess
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: OrderID
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Ticket'
+  
+  
+  
 definitions:
-  id:
-    type: integer
-    format: int64
+  
   MainEvent:
     title: MainEvent
     type: object
     description: Root level Main Event
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       positionInList:
         type: integer
         format: int32
@@ -79,9 +714,11 @@ definitions:
         type: boolean
         description: True if this Main Event has only one Leaf Level Event.
       singleEventId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       singleCategoryId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       isPublished:
         type: boolean
       lat:
@@ -106,17 +743,7 @@ definitions:
           - CLUB
       backdropUrl:
         type: string
-  MainEventArray:
-    type: array
-    items:
-      $ref: '#/definitions/MainEvent'
-  MainEventCR:
-    type: object
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/MainEvent'
+ 
   SortedMainEvents:
     type: object
     properties:
@@ -136,37 +763,31 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/MainEvent'
+          
   Category:
     type: object
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       name:
         type: string
       parentMainEventId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       isdefault:
         type: boolean
       isHidden:
         type: boolean
       backdropUrl:
         type: string
-  CategoryCR:
-    type: object
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Category'
-  CategoryArray:
-    type: array
-    items:
-      $ref: '#/definitions/Category'
+
   Event:
     type: object
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       name:
         type: string
       description:
@@ -175,9 +796,11 @@ definitions:
         type: integer
         format: int32
       parentMainEventId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       parentCategoryId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       multipleTicketsPerUser:
         type: boolean
       groupSize:
@@ -203,35 +826,76 @@ definitions:
         type: boolean
       isCurrentUserHavingTicket:
         type: boolean
-  EventCR:
+        
+  UserRoles:
     type: object
     properties:
-      items:
+      isManagerForMainEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      isPrForEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      isEventHeadForEvents:
         type: array
         items:
           $ref: '#/definitions/Event'
-  EventArray:
-    type: array
-    items:
-      $ref: '#/definitions/Event'
+      
+    
+        
+  AppUser:
+    type: object
+    properties:
+      id:
+        type: string
+        description: email id of the user
+      contactNo:
+        type: string
+      name:
+        type: string
+      gender:
+        type: boolean
+        description: 1 for male 0 for female
+      Institution:
+        type: string
+      city:
+        type: string
+      intrests:
+        type: array
+        items:
+          type: string
+      profilePic:
+        type: string
+        description: url to the profile picture
+      regId:
+        type: string
+        description: Google Cloud Messaging Registration ID
+        
   Manager:
     type: object
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       email:
         type: string
       MainEventListingId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
+        
   PRRepresentative:
     type: object
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       email:
         type: string
       MainEventListingId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       AmountCollected:
         type: integer
         format: int32
@@ -244,26 +908,60 @@ definitions:
       locationUpdateTimestamp:
         type: number
         format: int64
+        
   EventHead:
     type: object
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       email:
         type: string
       MainEventListingId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       EventId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
+        
+  IAMIN:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      appUserEmail:
+        type: string
+      eventId:
+        type: integer
+        format: int64
+      timeStamp:
+        type: integer
+        format: int64
+      parentMainEventId:
+        type: integer
+        format: int64
+      contactPreference:
+        type: boolean
+      requestQuantity:
+        type: integer
+        format: int32
+      event:
+        $ref: '#/definitions/Event'
+      bearer:
+        $ref: '#/definitions/AppUser'
+        
   Ticket:
     type: object
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       appUserEmail:
         type: string
       eventId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       timeStamp:
         type: integer
         format: int64
@@ -276,22 +974,27 @@ definitions:
         type: integer
         format: int32
       parentMainEventId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       event:
         $ref: '#/definitions/Event'
+        
   EventLog:
     type: object
     properties:
       id:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       appUserEmail:
         type: string
       staffEmail:
         type: string
       MainEventListingId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       EventId:
-        $ref: '#/definitions/id'
+        type: integer
+        format: int64
       timeStamp:
         type: integer
         format: int64
@@ -315,3 +1018,115 @@ definitions:
           - FREE_TICKET
           - TRANSFER_TICKET
           - BUY_TICKET_ONLINE
+          
+  Offer:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      offerType:
+        type: string
+        enum:
+          - DIRECT_URL_OPEN
+          - CALL_NUMBER
+          - SHOW_CODE
+          - SMS_NUMBER
+      name:
+        type: string
+      positionInList:
+        type: integer
+      creativeUrl:
+        type: string
+      callToActionText:
+        type: string
+      redeemInstructions:
+        type: string
+      coupounCode:
+        type: string
+      callNumber:
+        type: string
+      smsText:
+        type: string
+      url:
+        type: string
+        
+  Comment:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      timeStamp:
+        type: integer
+        format: int64
+      eventID:
+        type: integer
+        format: int64
+      senderEmail:
+        type: string
+      message:
+        type: string
+      senderProfilePic:
+        type: string
+      senderName:
+        type: string
+      isSenderManager:
+        type: boolean
+      isSenderEventHead:
+        type: boolean
+        
+  Candidate:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      eventID:
+        type: integer
+        format: int64
+      votesAcquired:
+        type: integer
+        format: int64
+        
+  PaytmTransaction:
+    type: object
+    properties:
+      ORDER_ID:
+        type: string
+      GENERATE_TIMESTAMP:
+        type: integer
+        format: int64
+      TXN_AMOUNT:
+        type: integer
+        format: int32
+      MOBILE_NO:
+        type: string
+      EMAIL:
+        type: string
+      ticketQuantity:
+        type: integer
+        format: int32
+      eventId:
+        type: integer
+        format: int32
+      isTicketIssued:
+        type: boolean
+      status:
+        type: string
+        enum:
+          - INITIATED
+          - SUCCESS
+          - FAILED
+      MID:
+        type: string
+      CHANNEL_ID:
+        type: string
+      INDUSTRY_TYPE_ID:
+        type: string
+      WEBSITE:
+        type: string
+      CUST_ID:
+        type: string
