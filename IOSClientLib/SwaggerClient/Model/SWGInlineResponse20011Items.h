@@ -16,16 +16,22 @@
 
 
 
-@protocol SWGAppPopup
+@protocol SWGInlineResponse20011Items
 @end
 
-@interface SWGAppPopup : SWGObject
+@interface SWGInlineResponse20011Items : SWGObject
 
 
-@property(nonatomic) NSString* pictureUrl;
+@property(nonatomic) NSNumber* _id;
 
-@property(nonatomic) NSNumber* updateTimestamp;
+@property(nonatomic) NSString* name;
 
-@property(nonatomic) NSNumber* enabled;
+@property(nonatomic) NSNumber* parentMainEventId;
+
+@property(nonatomic) NSNumber* isdefault;
+
+@property(nonatomic) NSNumber* isHidden;
+
+@property(nonatomic) NSString* backdropUrl;
 
 @end

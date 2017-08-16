@@ -1,36 +1,34 @@
-#import "SWGAppUserApi.h"
+#import "SWGManagerApi.h"
 #import "SWGQueryParamCollection.h"
 #import "SWGApiClient.h"
-#import "SWGAppPopup.h"
-#import "SWGAppUser1.h"
-#import "SWGAppVersion.h"
-#import "SWGInlineResponse200.h"
-#import "SWGInlineResponse2001.h"
-#import "SWGInlineResponse20010.h"
-#import "SWGInlineResponse2002.h"
+#import "SWGCategory1.h"
+#import "SWGEvent1.h"
+#import "SWGInlineResponse20011.h"
+#import "SWGInlineResponse20011Items.h"
+#import "SWGInlineResponse20012.h"
+#import "SWGInlineResponse20012Items.h"
+#import "SWGInlineResponse20013.h"
+#import "SWGInlineResponse20013Items.h"
+#import "SWGInlineResponse20014.h"
+#import "SWGInlineResponse20014Items.h"
+#import "SWGInlineResponse20015.h"
 #import "SWGInlineResponse2003.h"
 #import "SWGInlineResponse2003Items.h"
-#import "SWGInlineResponse2004.h"
-#import "SWGInlineResponse2004Items.h"
-#import "SWGInlineResponse2005.h"
-#import "SWGInlineResponse2005Items.h"
-#import "SWGInlineResponse2006.h"
 #import "SWGInlineResponse2007.h"
-#import "SWGInlineResponse2008.h"
-#import "SWGInlineResponse2009.h"
-#import "SWGLocationContainer.h"
+#import "SWGMainEvent1.h"
+#import "SWGMainEvent2.h"
 
 
-@interface SWGAppUserApi ()
+@interface SWGManagerApi ()
 
 @property (nonatomic, strong, readwrite) NSMutableDictionary *mutableDefaultHeaders;
 
 @end
 
-@implementation SWGAppUserApi
+@implementation SWGManagerApi
 
-NSString* kSWGAppUserApiErrorDomain = @"SWGAppUserApiErrorDomain";
-NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
+NSString* kSWGManagerApiErrorDomain = @"SWGManagerApiErrorDomain";
+NSInteger kSWGManagerApiMissingParamErrorCode = 234513;
 
 @synthesize apiClient = _apiClient;
 
@@ -67,30 +65,50 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 #pragma mark - Api Methods
 
 ///
-/// Register a new App User
+/// Add Event Head to Event
 /// 
-///  @param appUser  
+///  @param ehEmail  
 ///
-///  @returns SWGInlineResponse200*
+///  @param eventID  
 ///
--(NSURLSessionTask*) callRegisterWithAppUser: (SWGAppUser1*) appUser
-    completionHandler: (void (^)(SWGInlineResponse200* output, NSError* error)) handler {
-    // verify the required parameter 'appUser' is set
-    if (appUser == nil) {
-        NSParameterAssert(appUser);
+///  @returns SWGInlineResponse20014Items*
+///
+-(NSURLSessionTask*) managerAddEventHeadWithEhEmail: (NSString*) ehEmail
+    eventID: (NSNumber*) eventID
+    completionHandler: (void (^)(SWGInlineResponse20014Items* output, NSError* error)) handler {
+    // verify the required parameter 'ehEmail' is set
+    if (ehEmail == nil) {
+        NSParameterAssert(ehEmail);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"appUser"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"ehEmail"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/register"];
+    // verify the required parameter 'eventID' is set
+    if (eventID == nil) {
+        NSParameterAssert(eventID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/addEventHead"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (ehEmail != nil) {
+        queryParams[@"ehEmail"] = ehEmail;
+    }
+    if (eventID != nil) {
+        queryParams[@"eventID"] = eventID;
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -103,7 +121,7 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
     NSArray *authSettings = @[@"GoogleAuth"];
@@ -111,7 +129,6 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-    bodyParam = appUser;
 
     return [self.apiClient requestWithPath: resourcePath
                                     method: @"POST"
@@ -124,58 +141,228 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse200*"
+                              responseType: @"SWGInlineResponse20014Items*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse200*)data, error);
+                                    handler((SWGInlineResponse20014Items*)data, error);
                                 }
                             }];
 }
 
 ///
-/// Cast a vote
+/// Add Manager to Main Event
 /// 
-///  @param eventID  
+///  @param manageremail  
 ///
-///  @param candidateID  
+///  @param mainEventId  
 ///
-///  @returns void
+///  @returns SWGInlineResponse20013Items*
 ///
--(NSURLSessionTask*) castVoteWithEventID: (NSNumber*) eventID
-    candidateID: (NSNumber*) candidateID
-    completionHandler: (void (^)(NSError* error)) handler {
-    // verify the required parameter 'eventID' is set
-    if (eventID == nil) {
-        NSParameterAssert(eventID);
+-(NSURLSessionTask*) managerAddManagerWithManageremail: (NSString*) manageremail
+    mainEventId: (NSNumber*) mainEventId
+    completionHandler: (void (^)(SWGInlineResponse20013Items* output, NSError* error)) handler {
+    // verify the required parameter 'manageremail' is set
+    if (manageremail == nil) {
+        NSParameterAssert(manageremail);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"manageremail"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
         }
         return nil;
     }
 
-    // verify the required parameter 'candidateID' is set
-    if (candidateID == nil) {
-        NSParameterAssert(candidateID);
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"candidateID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/castVote"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/addManager"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventID != nil) {
-        queryParams[@"eventID"] = eventID;
+    if (manageremail != nil) {
+        queryParams[@"Manageremail"] = manageremail;
     }
-    if (candidateID != nil) {
-        queryParams[@"candidateID"] = candidateID;
+    if (mainEventId != nil) {
+        queryParams[@"MainEventId"] = mainEventId;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGInlineResponse20013Items*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGInlineResponse20013Items*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Add PR Representative to Main Event
+/// 
+///  @param pRemail  
+///
+///  @param mainEventId  
+///
+///  @returns SWGInlineResponse20012Items*
+///
+-(NSURLSessionTask*) managerAddPRWithPRemail: (NSString*) pRemail
+    mainEventId: (NSNumber*) mainEventId
+    completionHandler: (void (^)(SWGInlineResponse20012Items* output, NSError* error)) handler {
+    // verify the required parameter 'pRemail' is set
+    if (pRemail == nil) {
+        NSParameterAssert(pRemail);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"pRemail"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/addPR"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (pRemail != nil) {
+        queryParams[@"PRemail"] = pRemail;
+    }
+    if (mainEventId != nil) {
+        queryParams[@"MainEventId"] = mainEventId;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGInlineResponse20012Items*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGInlineResponse20012Items*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Send Announcements to everyone
+/// 
+///  @param mainEventID  
+///
+///  @param message  
+///
+///  @returns void
+///
+-(NSURLSessionTask*) managerAnnounceAllWithMainEventID: (NSNumber*) mainEventID
+    message: (NSString*) message
+    completionHandler: (void (^)(NSError* error)) handler {
+    // verify the required parameter 'mainEventID' is set
+    if (mainEventID == nil) {
+        NSParameterAssert(mainEventID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'message' is set
+    if (message == nil) {
+        NSParameterAssert(message);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"message"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/announceAll"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (mainEventID != nil) {
+        queryParams[@"mainEventID"] = mainEventID;
+    }
+    if (message != nil) {
+        queryParams[@"message"] = message;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -218,26 +405,264 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Delete IAMIN
+/// Send Announcements to iaminer's only
+/// 
+///  @param mainEventId  
+///
+///  @param message  
+///
+///  @returns void
+///
+-(NSURLSessionTask*) managerAnnounceIAMINersWithMainEventId: (NSNumber*) mainEventId
+    message: (NSString*) message
+    completionHandler: (void (^)(NSError* error)) handler {
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'message' is set
+    if (message == nil) {
+        NSParameterAssert(message);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"message"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/announceIAMINers"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (mainEventId != nil) {
+        queryParams[@"mainEventId"] = mainEventId;
+    }
+    if (message != nil) {
+        queryParams[@"message"] = message;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: nil
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler(error);
+                                }
+                            }];
+}
+
+///
+/// Send Announcements to ticket holders only
+/// 
+///  @param mainEventId  
+///
+///  @param message  
+///
+///  @returns void
+///
+-(NSURLSessionTask*) managerAnnounceTicketHoldersWithMainEventId: (NSNumber*) mainEventId
+    message: (NSString*) message
+    completionHandler: (void (^)(NSError* error)) handler {
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'message' is set
+    if (message == nil) {
+        NSParameterAssert(message);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"message"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/announceTicketHolders"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (mainEventId != nil) {
+        queryParams[@"mainEventId"] = mainEventId;
+    }
+    if (message != nil) {
+        queryParams[@"message"] = message;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: nil
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler(error);
+                                }
+                            }];
+}
+
+///
+/// Delete Category only if empty
+/// 
+///  @param categoryID  
+///
+///  @returns void
+///
+-(NSURLSessionTask*) managerDeleteCategoryWithCategoryID: (NSNumber*) categoryID
+    completionHandler: (void (^)(NSError* error)) handler {
+    // verify the required parameter 'categoryID' is set
+    if (categoryID == nil) {
+        NSParameterAssert(categoryID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"categoryID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/deleteCategory"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (categoryID != nil) {
+        queryParams[@"categoryID"] = categoryID;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"DELETE"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: nil
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler(error);
+                                }
+                            }];
+}
+
+///
+/// Edit & Add Event
 /// 
 ///  @param eventId  
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) deleteIAMINWithEventId: (NSNumber*) eventId
+-(NSURLSessionTask*) managerDeleteEventWithEventId: (NSNumber*) eventId
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
         if(handler) {
             NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/deleteIAMIN"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/deleteEvent"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -286,130 +711,40 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// Get the current application popup
-/// 
-///  @returns SWGAppPopup*
-///
--(NSURLSessionTask*) getAppPopupWithCompletionHandler: 
-    (void (^)(SWGAppPopup* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getAppPopup"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGAppPopup*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGAppPopup*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Register a new app user
-/// 
-///  @returns SWGAppVersion*
-///
--(NSURLSessionTask*) getAppVersionWithCompletionHandler: 
-    (void (^)(SWGAppVersion* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getAppVersion"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGAppVersion*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGAppVersion*)data, error);
-                                }
-                            }];
-}
-
-///
-/// get Comments on a Event
+/// Delete Event Head
 /// 
 ///  @param eventID  
 ///
-///  @returns SWGInlineResponse2008*
+///  @param ehEmail  
 ///
--(NSURLSessionTask*) getCommentsForEventWithEventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler {
+///  @returns void
+///
+-(NSURLSessionTask*) managerDeleteEventHeadWithEventID: (NSNumber*) eventID
+    ehEmail: (NSString*) ehEmail
+    completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'eventID' is set
     if (eventID == nil) {
         NSParameterAssert(eventID);
         if(handler) {
             NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getCommentsForEvent"];
+    // verify the required parameter 'ehEmail' is set
+    if (ehEmail == nil) {
+        NSParameterAssert(ehEmail);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"ehEmail"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/deleteEventHead"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
@@ -417,6 +752,9 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     if (eventID != nil) {
         queryParams[@"eventID"] = eventID;
     }
+    if (ehEmail != nil) {
+        queryParams[@"ehEmail"] = ehEmail;
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -439,7 +777,7 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
 
     return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
+                                    method: @"DELETE"
                                 pathParams: pathParams
                                queryParams: queryParams
                                 formParams: formParams
@@ -449,41 +787,409 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2008*"
+                              responseType: nil
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2008*)data, error);
+                                    handler(error);
                                 }
                             }];
 }
 
 ///
-/// get events inside a category
+/// Delete Manager
 /// 
-///  @param eventID  
+///  @param mainEventId  
+///
+///  @param managerEmail  
+///
+///  @returns void
+///
+-(NSURLSessionTask*) managerDeleteManagerWithMainEventId: (NSNumber*) mainEventId
+    managerEmail: (NSString*) managerEmail
+    completionHandler: (void (^)(NSError* error)) handler {
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'managerEmail' is set
+    if (managerEmail == nil) {
+        NSParameterAssert(managerEmail);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"managerEmail"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/deleteManager"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (mainEventId != nil) {
+        queryParams[@"MainEventId"] = mainEventId;
+    }
+    if (managerEmail != nil) {
+        queryParams[@"ManagerEmail"] = managerEmail;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"DELETE"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: nil
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler(error);
+                                }
+                            }];
+}
+
+///
+/// Delete PR if Amount collected = 0
+/// 
+///  @param mainEventID  
+///
+///  @param prEmail  
+///
+///  @returns void
+///
+-(NSURLSessionTask*) managerDeletePRWithMainEventID: (NSNumber*) mainEventID
+    prEmail: (NSString*) prEmail
+    completionHandler: (void (^)(NSError* error)) handler {
+    // verify the required parameter 'mainEventID' is set
+    if (mainEventID == nil) {
+        NSParameterAssert(mainEventID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    // verify the required parameter 'prEmail' is set
+    if (prEmail == nil) {
+        NSParameterAssert(prEmail);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"prEmail"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/deletePR"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (mainEventID != nil) {
+        queryParams[@"mainEventID"] = mainEventID;
+    }
+    if (prEmail != nil) {
+        queryParams[@"prEmail"] = prEmail;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"DELETE"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: nil
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler(error);
+                                }
+                            }];
+}
+
+///
+/// Edit & Add Event
+/// 
+///  @param category  
+///
+///  @returns SWGInlineResponse20011Items*
+///
+-(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory1*) category
+    completionHandler: (void (^)(SWGInlineResponse20011Items* output, NSError* error)) handler {
+    // verify the required parameter 'category' is set
+    if (category == nil) {
+        NSParameterAssert(category);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"category"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/editCategory"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = category;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGInlineResponse20011Items*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGInlineResponse20011Items*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Edit & Add Event
+/// 
+///  @param event  
 ///
 ///  @returns SWGInlineResponse2003Items*
 ///
--(NSURLSessionTask*) getEventWithEventID: (NSNumber*) eventID
+-(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent1*) event
     completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler {
-    // verify the required parameter 'eventID' is set
-    if (eventID == nil) {
-        NSParameterAssert(eventID);
+    // verify the required parameter 'event' is set
+    if (event == nil) {
+        NSParameterAssert(event);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"event"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getEvent"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/editEvent"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventID != nil) {
-        queryParams[@"eventID"] = eventID;
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = event;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"POST"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGInlineResponse2003Items*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGInlineResponse2003Items*)data, error);
+                                }
+                            }];
+}
+
+///
+/// Edit Main Event
+/// 
+///  @param mainEvent  
+///
+///  @returns void
+///
+-(NSURLSessionTask*) managerEditMainListingWithMainEvent: (SWGMainEvent2*) mainEvent
+    completionHandler: (void (^)(NSError* error)) handler {
+    // verify the required parameter 'mainEvent' is set
+    if (mainEvent == nil) {
+        NSParameterAssert(mainEvent);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEvent"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/editMainListing"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+    bodyParam = mainEvent;
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"PUT"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: nil
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler(error);
+                                }
+                            }];
+}
+
+///
+/// get a event by event id
+/// 
+///  @param eventId  
+///
+///  @returns SWGInlineResponse2003Items*
+///
+-(NSURLSessionTask*) managerGetEventWithEventId: (NSNumber*) eventId
+    completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler {
+    // verify the required parameter 'eventId' is set
+    if (eventId == nil) {
+        NSParameterAssert(eventId);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getEvent"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (eventId != nil) {
+        queryParams[@"eventId"] = eventId;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -526,32 +1232,236 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// get events inside a category
+/// get a categories under a main event
 /// 
-///  @param categoryId  
+///  @param mainEventID  
 ///
-///  @returns SWGInlineResponse2003*
+///  @returns SWGInlineResponse20011*
 ///
--(NSURLSessionTask*) getEventsWithCategoryId: (NSNumber*) categoryId
-    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler {
-    // verify the required parameter 'categoryId' is set
-    if (categoryId == nil) {
-        NSParameterAssert(categoryId);
+-(NSURLSessionTask*) managerGetEventCategoriesWithMainEventID: (NSNumber*) mainEventID
+    completionHandler: (void (^)(SWGInlineResponse20011* output, NSError* error)) handler {
+    // verify the required parameter 'mainEventID' is set
+    if (mainEventID == nil) {
+        NSParameterAssert(mainEventID);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"categoryId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getEvents"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getEventCategories"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (categoryId != nil) {
-        queryParams[@"categoryId"] = categoryId;
+    if (mainEventID != nil) {
+        queryParams[@"mainEventID"] = mainEventID;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGInlineResponse20011*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGInlineResponse20011*)data, error);
+                                }
+                            }];
+}
+
+///
+/// get a category by id
+/// 
+///  @param categoryID  
+///
+///  @returns SWGInlineResponse20011Items*
+///
+-(NSURLSessionTask*) managerGetEventCategoryWithCategoryID: (NSNumber*) categoryID
+    completionHandler: (void (^)(SWGInlineResponse20011Items* output, NSError* error)) handler {
+    // verify the required parameter 'categoryID' is set
+    if (categoryID == nil) {
+        NSParameterAssert(categoryID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"categoryID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getEventCategory"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (categoryID != nil) {
+        queryParams[@"categoryID"] = categoryID;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGInlineResponse20011Items*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGInlineResponse20011Items*)data, error);
+                                }
+                            }];
+}
+
+///
+/// get Event Heads for Event
+/// 
+///  @param eventID  
+///
+///  @returns SWGInlineResponse20014*
+///
+-(NSURLSessionTask*) managerGetEventHeadsWithEventID: (NSNumber*) eventID
+    completionHandler: (void (^)(SWGInlineResponse20014* output, NSError* error)) handler {
+    // verify the required parameter 'eventID' is set
+    if (eventID == nil) {
+        NSParameterAssert(eventID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getEventHeads"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (eventID != nil) {
+        queryParams[@"eventID"] = eventID;
+    }
+    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
+    [headerParams addEntriesFromDictionary:self.defaultHeaders];
+    // HTTP header `Accept`
+    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
+    if(acceptHeader.length > 0) {
+        headerParams[@"Accept"] = acceptHeader;
+    }
+
+    // response content type
+    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
+
+    // request content type
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
+
+    // Authentication setting
+    NSArray *authSettings = @[@"GoogleAuth"];
+
+    id bodyParam = nil;
+    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
+
+    return [self.apiClient requestWithPath: resourcePath
+                                    method: @"GET"
+                                pathParams: pathParams
+                               queryParams: queryParams
+                                formParams: formParams
+                                     files: localVarFiles
+                                      body: bodyParam
+                              headerParams: headerParams
+                              authSettings: authSettings
+                        requestContentType: requestContentType
+                       responseContentType: responseContentType
+                              responseType: @"SWGInlineResponse20014*"
+                           completionBlock: ^(id data, NSError *error) {
+                                if(handler) {
+                                    handler((SWGInlineResponse20014*)data, error);
+                                }
+                            }];
+}
+
+///
+/// get a events under a category
+/// 
+///  @param categoryID  
+///
+///  @returns SWGInlineResponse2003*
+///
+-(NSURLSessionTask*) managerGetEventsWithCategoryID: (NSNumber*) categoryID
+    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler {
+    // verify the required parameter 'categoryID' is set
+    if (categoryID == nil) {
+        NSParameterAssert(categoryID);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"categoryID"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getEvents"];
+
+    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (categoryID != nil) {
+        queryParams[@"categoryID"] = categoryID;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -594,17 +1504,33 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// get history of transactions for a user
+/// Get Main Event History
 /// 
+///  @param maineventId  
+///
 ///  @returns SWGInlineResponse2007*
 ///
--(NSURLSessionTask*) getHistoryWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2007* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getHistory"];
+-(NSURLSessionTask*) managerGetHistoryWithMaineventId: (NSNumber*) maineventId
+    completionHandler: (void (^)(SWGInlineResponse2007* output, NSError* error)) handler {
+    // verify the required parameter 'maineventId' is set
+    if (maineventId == nil) {
+        NSParameterAssert(maineventId);
+        if(handler) {
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"maineventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
+            handler(nil, error);
+        }
+        return nil;
+    }
+
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getHistory"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
+    if (maineventId != nil) {
+        queryParams[@"maineventId"] = maineventId;
+    }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
     // HTTP header `Accept`
@@ -646,32 +1572,32 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 }
 
 ///
-/// get by IAMIN ID
+/// get a single Main Event
 /// 
-///  @param iaminID  
+///  @param mainEventId  
 ///
-///  @returns SWGInlineResponse2004Items*
+///  @returns SWGMainEvent1*
 ///
--(NSURLSessionTask*) getIAMINWithIaminID: (NSNumber*) iaminID
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler {
-    // verify the required parameter 'iaminID' is set
-    if (iaminID == nil) {
-        NSParameterAssert(iaminID);
+-(NSURLSessionTask*) managerGetMainListingWithMainEventId: (NSNumber*) mainEventId
+    completionHandler: (void (^)(SWGMainEvent1* output, NSError* error)) handler {
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"iaminID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getIAMIN"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getMainListing"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (iaminID != nil) {
-        queryParams[@"iaminID"] = iaminID;
+    if (mainEventId != nil) {
+        queryParams[@"mainEventId"] = mainEventId;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -705,197 +1631,41 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2004Items*"
+                              responseType: @"SWGMainEvent1*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2004Items*)data, error);
+                                    handler((SWGMainEvent1*)data, error);
                                 }
                             }];
 }
 
 ///
-/// get iamins of a user
+/// get Managers for main event
 /// 
-///  @returns SWGInlineResponse2004*
+///  @param mainEventId  
 ///
--(NSURLSessionTask*) getIAMINSWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2004* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getIAMINS"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2004*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2004*)data, error);
-                                }
-                            }];
-}
-
+///  @returns SWGInlineResponse20013*
 ///
-/// get all published Main Events
-/// 
-///  @returns SWGInlineResponse2002*
-///
--(NSURLSessionTask*) getMainListingsWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2002* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getMainListings"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2002*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2002*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Get offers displayed on the app
-/// 
-///  @returns SWGInlineResponse2001*
-///
--(NSURLSessionTask*) getOffersWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2001* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getOffers"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2001*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2001*)data, error);
-                                }
-                            }];
-}
-
-///
-/// get prs for a event along with their locations
-/// 
-///  @param mainEventID  
-///
-///  @returns SWGLocationContainer*
-///
--(NSURLSessionTask*) getPRLocationsWithMainEventID: (NSNumber*) mainEventID
-    completionHandler: (void (^)(SWGLocationContainer* output, NSError* error)) handler {
-    // verify the required parameter 'mainEventID' is set
-    if (mainEventID == nil) {
-        NSParameterAssert(mainEventID);
+-(NSURLSessionTask*) managerGetManagersWithMainEventId: (NSNumber*) mainEventId
+    completionHandler: (void (^)(SWGInlineResponse20013* output, NSError* error)) handler {
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getPRLocations"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getManagers"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (mainEventID != nil) {
-        queryParams[@"mainEventID"] = mainEventID;
+    if (mainEventId != nil) {
+        queryParams[@"mainEventId"] = mainEventId;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -929,41 +1699,41 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGLocationContainer*"
+                              responseType: @"SWGInlineResponse20013*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGLocationContainer*)data, error);
+                                    handler((SWGInlineResponse20013*)data, error);
                                 }
                             }];
 }
 
 ///
-/// get sorted Main Events
+/// get PRs for main event
 /// 
-///  @param city  
+///  @param mainEventId  
 ///
-///  @returns SWGInlineResponse2002*
+///  @returns SWGInlineResponse20012*
 ///
--(NSURLSessionTask*) getSortedMainListingsWithCity: (NSString*) city
-    completionHandler: (void (^)(SWGInlineResponse2002* output, NSError* error)) handler {
-    // verify the required parameter 'city' is set
-    if (city == nil) {
-        NSParameterAssert(city);
+-(NSURLSessionTask*) managerGetPRSWithMainEventId: (NSNumber*) mainEventId
+    completionHandler: (void (^)(SWGInlineResponse20012* output, NSError* error)) handler {
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"city"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getSortedMainListings"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getPRS"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (city != nil) {
-        queryParams[@"city"] = city;
+    if (mainEventId != nil) {
+        queryParams[@"mainEventId"] = mainEventId;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -997,41 +1767,41 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2002*"
+                              responseType: @"SWGInlineResponse20012*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2002*)data, error);
+                                    handler((SWGInlineResponse20012*)data, error);
                                 }
                             }];
 }
 
 ///
-/// get Tickets of a user
+/// Delete Main Event Stats
 /// 
-///  @param ticketID  
+///  @param mainEventId  
 ///
-///  @returns SWGInlineResponse2005*
+///  @returns SWGInlineResponse20015*
 ///
--(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler {
-    // verify the required parameter 'ticketID' is set
-    if (ticketID == nil) {
-        NSParameterAssert(ticketID);
+-(NSURLSessionTask*) managerGetStatsWithMainEventId: (NSNumber*) mainEventId
+    completionHandler: (void (^)(SWGInlineResponse20015* output, NSError* error)) handler {
+    // verify the required parameter 'mainEventId' is set
+    if (mainEventId == nil) {
+        NSParameterAssert(mainEventId);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"ticketID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"mainEventId"] };
+            NSError* error = [NSError errorWithDomain:kSWGManagerApiErrorDomain code:kSWGManagerApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
         return nil;
     }
 
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getTicket"];
+    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/managerApi/v1/getStats"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (ticketID != nil) {
-        queryParams[@"ticketID"] = ticketID;
+    if (mainEventId != nil) {
+        queryParams[@"mainEventId"] = mainEventId;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -1065,960 +1835,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2005*"
+                              responseType: @"SWGInlineResponse20015*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2005*)data, error);
-                                }
-                            }];
-}
-
-///
-/// get Tickets of a user
-/// 
-///  @returns SWGInlineResponse2005*
-///
--(NSURLSessionTask*) getTicketsWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2005* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getTickets"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2005*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2005*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Get registered app user
-/// 
-///  @returns SWGInlineResponse200*
-///
--(NSURLSessionTask*) getUserWithCompletionHandler: 
-    (void (^)(SWGInlineResponse200* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getUser"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse200*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse200*)data, error);
-                                }
-                            }];
-}
-
-///
-/// get priviledges for a user
-/// 
-///  @returns SWGInlineResponse2006*
-///
--(NSURLSessionTask*) getUserRolesWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2006* output, NSError* error)) handler {
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getUserRoles"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2006*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2006*)data, error);
-                                }
-                            }];
-}
-
-///
-/// get Voting candidates on a event if enabled
-/// 
-///  @param eventID  
-///
-///  @returns SWGInlineResponse2009*
-///
--(NSURLSessionTask*) getVotingCandidatesWithEventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGInlineResponse2009* output, NSError* error)) handler {
-    // verify the required parameter 'eventID' is set
-    if (eventID == nil) {
-        NSParameterAssert(eventID);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getVotingCandidates"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventID != nil) {
-        queryParams[@"eventID"] = eventID;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"GET"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2009*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2009*)data, error);
-                                }
-                            }];
-}
-
-///
-/// IAMIN in an event
-/// 
-///  @param eventId  
-///
-///  @returns SWGInlineResponse2004Items*
-///
--(NSURLSessionTask*) iaminWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler {
-    // verify the required parameter 'eventId' is set
-    if (eventId == nil) {
-        NSParameterAssert(eventId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/iamin"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventId != nil) {
-        queryParams[@"eventId"] = eventId;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2004Items*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2004Items*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Initialize a paytm transaction
-/// Call this before making any payment
-///  @param eventId  
-///
-///  @param transferToEmail  
-///
-///  @param cellNo  
-///
-///  @param quantity  
-///
-///  @returns SWGInlineResponse20010*
-///
--(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
-    transferToEmail: (NSString*) transferToEmail
-    cellNo: (NSString*) cellNo
-    quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler {
-    // verify the required parameter 'eventId' is set
-    if (eventId == nil) {
-        NSParameterAssert(eventId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'transferToEmail' is set
-    if (transferToEmail == nil) {
-        NSParameterAssert(transferToEmail);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"transferToEmail"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'cellNo' is set
-    if (cellNo == nil) {
-        NSParameterAssert(cellNo);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"cellNo"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'quantity' is set
-    if (quantity == nil) {
-        NSParameterAssert(quantity);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"quantity"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/initializePaytmTransaction"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventId != nil) {
-        queryParams[@"eventId"] = eventId;
-    }
-    if (transferToEmail != nil) {
-        queryParams[@"transferToEmail"] = transferToEmail;
-    }
-    if (cellNo != nil) {
-        queryParams[@"cellNo"] = cellNo;
-    }
-    if (quantity != nil) {
-        queryParams[@"quantity"] = quantity;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse20010*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse20010*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Initialize a paytm transaction
-/// Call this before making any payment
-///  @param orderID  
-///
-///  @returns SWGInlineResponse2005Items*
-///
--(NSURLSessionTask*) paytmTransactionSuccessWithOrderID: (NSString*) orderID
-    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler {
-    // verify the required parameter 'orderID' is set
-    if (orderID == nil) {
-        NSParameterAssert(orderID);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"orderID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/PaytmTransactionSuccess"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (orderID != nil) {
-        queryParams[@"OrderID"] = orderID;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2005Items*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2005Items*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Post comment on a event
-/// 
-///  @param eventID  
-///
-///  @param message  
-///
-///  @param rating  (optional)
-///
-///  @returns void
-///
--(NSURLSessionTask*) postCommentWithEventID: (NSNumber*) eventID
-    message: (NSString*) message
-    rating: (NSNumber*) rating
-    completionHandler: (void (^)(NSError* error)) handler {
-    // verify the required parameter 'eventID' is set
-    if (eventID == nil) {
-        NSParameterAssert(eventID);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'message' is set
-    if (message == nil) {
-        NSParameterAssert(message);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"message"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/postComment"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventID != nil) {
-        queryParams[@"eventID"] = eventID;
-    }
-    if (message != nil) {
-        queryParams[@"Message"] = message;
-    }
-    if (rating != nil) {
-        queryParams[@"Rating"] = rating;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: nil
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler(error);
-                                }
-                            }];
-}
-
-///
-/// post feedback on a event
-/// 
-///  @param eventID  
-///
-///  @param message  
-///
-///  @param rating  (optional)
-///
-///  @returns void
-///
--(NSURLSessionTask*) postEventFeedbackWithEventID: (NSNumber*) eventID
-    message: (NSString*) message
-    rating: (NSNumber*) rating
-    completionHandler: (void (^)(NSError* error)) handler {
-    // verify the required parameter 'eventID' is set
-    if (eventID == nil) {
-        NSParameterAssert(eventID);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'message' is set
-    if (message == nil) {
-        NSParameterAssert(message);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"message"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/PostEventFeedback"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventID != nil) {
-        queryParams[@"eventID"] = eventID;
-    }
-    if (message != nil) {
-        queryParams[@"Message"] = message;
-    }
-    if (rating != nil) {
-        queryParams[@"Rating"] = rating;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: nil
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler(error);
-                                }
-                            }];
-}
-
-///
-/// Set quantity of tickets wanted
-/// 
-///  @param iaminId  
-///
-///  @param canContact  
-///
-///  @returns SWGInlineResponse2004Items*
-///
--(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
-    canContact: (NSNumber*) canContact
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler {
-    // verify the required parameter 'iaminId' is set
-    if (iaminId == nil) {
-        NSParameterAssert(iaminId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"iaminId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'canContact' is set
-    if (canContact == nil) {
-        NSParameterAssert(canContact);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"canContact"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/setIaminQuantity"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (iaminId != nil) {
-        queryParams[@"iaminId"] = iaminId;
-    }
-    if (canContact != nil) {
-        queryParams[@"canContact"] = canContact;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"PUT"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2004Items*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2004Items*)data, error);
-                                }
-                            }];
-}
-
-///
-/// Transfer your ticket
-/// Transfering ticket can be enabled/disabled in the manager console
-///  @param ticketId  
-///
-///  @param transferToEmail  
-///
-///  @param transferToCell  
-///
-///  @param transferQuantity  
-///
-///  @returns void
-///
--(NSURLSessionTask*) transferTicketWithTicketId: (NSNumber*) ticketId
-    transferToEmail: (NSString*) transferToEmail
-    transferToCell: (NSString*) transferToCell
-    transferQuantity: (NSNumber*) transferQuantity
-    completionHandler: (void (^)(NSError* error)) handler {
-    // verify the required parameter 'ticketId' is set
-    if (ticketId == nil) {
-        NSParameterAssert(ticketId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"ticketId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'transferToEmail' is set
-    if (transferToEmail == nil) {
-        NSParameterAssert(transferToEmail);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"transferToEmail"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'transferToCell' is set
-    if (transferToCell == nil) {
-        NSParameterAssert(transferToCell);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"transferToCell"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'transferQuantity' is set
-    if (transferQuantity == nil) {
-        NSParameterAssert(transferQuantity);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"transferQuantity"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/transferTicket"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (ticketId != nil) {
-        queryParams[@"ticketId"] = ticketId;
-    }
-    if (transferToEmail != nil) {
-        queryParams[@"transferToEmail"] = transferToEmail;
-    }
-    if (transferToCell != nil) {
-        queryParams[@"transferToCell"] = transferToCell;
-    }
-    if (transferQuantity != nil) {
-        queryParams[@"transferQuantity"] = transferQuantity;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"POST"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: nil
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler(error);
-                                }
-                            }];
-}
-
-///
-/// update contact preferences on an iamin
-/// set whether or not the user wants to share contact details.
-///  @param iaminId  
-///
-///  @param canContact  
-///
-///  @returns SWGInlineResponse2004Items*
-///
--(NSURLSessionTask*) updateContactPreferenceWithIaminId: (NSNumber*) iaminId
-    canContact: (NSString*) canContact
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler {
-    // verify the required parameter 'iaminId' is set
-    if (iaminId == nil) {
-        NSParameterAssert(iaminId);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"iaminId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'canContact' is set
-    if (canContact == nil) {
-        NSParameterAssert(canContact);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"canContact"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/updateContactPreference"];
-
-    NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
-
-    NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (iaminId != nil) {
-        queryParams[@"iaminId"] = iaminId;
-    }
-    if (canContact != nil) {
-        queryParams[@"canContact"] = canContact;
-    }
-    NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
-    [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    // HTTP header `Accept`
-    NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[@"application/json"]];
-    if(acceptHeader.length > 0) {
-        headerParams[@"Accept"] = acceptHeader;
-    }
-
-    // response content type
-    NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
-
-    // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
-
-    // Authentication setting
-    NSArray *authSettings = @[@"GoogleAuth"];
-
-    id bodyParam = nil;
-    NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *localVarFiles = [[NSMutableDictionary alloc] init];
-
-    return [self.apiClient requestWithPath: resourcePath
-                                    method: @"PUT"
-                                pathParams: pathParams
-                               queryParams: queryParams
-                                formParams: formParams
-                                     files: localVarFiles
-                                      body: bodyParam
-                              headerParams: headerParams
-                              authSettings: authSettings
-                        requestContentType: requestContentType
-                       responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2004Items*"
-                           completionBlock: ^(id data, NSError *error) {
-                                if(handler) {
-                                    handler((SWGInlineResponse2004Items*)data, error);
+                                    handler((SWGInlineResponse20015*)data, error);
                                 }
                             }];
 }

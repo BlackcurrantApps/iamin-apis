@@ -16,16 +16,18 @@
 
 
 
-@protocol SWGAppPopup
+@protocol SWGInlineResponse20014Items
 @end
 
-@interface SWGAppPopup : SWGObject
+@interface SWGInlineResponse20014Items : SWGObject
 
 
-@property(nonatomic) NSString* pictureUrl;
+@property(nonatomic) NSNumber* _id;
 
-@property(nonatomic) NSNumber* updateTimestamp;
+@property(nonatomic) NSString* email;
 
-@property(nonatomic) NSNumber* enabled;
+@property(nonatomic) NSNumber* mainEventListingId;
+
+@property(nonatomic) NSNumber* eventId;
 
 @end

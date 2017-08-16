@@ -30,6 +30,7 @@ produces:
   
   
 paths:
+# App User API
   /appUserApi/v1/getAppVersion:
     get:
       summary: Register a new app user
@@ -72,6 +73,8 @@ paths:
               updateTimestamp:
                 type: integer
                 format: int64
+              enabled:
+                type: boolean
 
   /appUserApi/v1/register:
     post:
@@ -156,7 +159,7 @@ paths:
   /appUserApi/v1/getSortedMainListings:
     get:
       summary: get sorted Main Events
-      operationId: getMainEvents
+      operationId: getSortedMainListings
       security:
         - GoogleAuth: []
       tags:
@@ -166,6 +169,20 @@ paths:
           type: string
           required: true
           in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SortedMainEvents'
+            
+  /appUserApi/v1/getMainListings:
+    get:
+      summary: get all published Main Events
+      operationId: getMainListings
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
       responses:
         '200':
           description: OK
@@ -679,9 +696,561 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Ticket'
+
+# Manager Api
+
+  /managerApi/v1/getMainListing:
+    get:
+      summary: get a single Main Event
+      operationId: managerGetMainListing
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MainEvent'
+            
+  /managerApi/v1/editMainListing:
+    put:
+      summary: Edit Main Event
+      operationId: managerEditMainListing
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - $ref: '#parameters/MainEvent'
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/getEvents:
+    get:
+      summary: get a events under a category
+      operationId: managerGetEvents
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: categoryID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+            
+  /managerApi/v1/getEvent:
+    get:
+      summary: get a event by event id
+      operationId: managerGetEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+            
+  /managerApi/v1/editEvent:
+    post:
+      summary: Edit & Add Event
+      operationId: managerEditEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - $ref: '#parameters/Event'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+            
+  /managerApi/v1/deleteEvent:
+    delete:
+      summary: Edit & Add Event
+      operationId: managerDeleteEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/getEventCategories:
+    get:
+      summary: get a categories under a main event
+      operationId: managerGetEventCategories
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Category'
+            
+  /managerApi/v1/getEventCategory:
+    get:
+      summary: get a category by id
+      operationId: managerGetEventCategory
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: categoryID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Category'
+            
+  /managerApi/v1/editCategory:
+    post:
+      summary: Edit & Add Event
+      operationId: managerEditCategory
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - $ref: '#parameters/Category'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Category'
+            
+  /managerApi/v1/deleteCategory:
+    delete:
+      summary: Delete Category only if empty
+      operationId: managerDeleteCategory
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: categoryID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/getPRS:
+    get:
+      summary: get PRs for main event
+      operationId: managerGetPRS
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/PRRepresentative'
   
+  /managerApi/v1/addPR:
+    post:
+      summary: Add PR Representative to Main Event
+      operationId: managerAddPR
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: PRemail
+          type: string
+          in: query
+          required: true
+        - name: MainEventId
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PRRepresentative'
+            
+  /managerApi/v1/deletePR:
+    delete:
+      summary: Delete PR if Amount collected = 0
+      operationId: managerDeletePR
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: prEmail
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/getManagers:
+    get:
+      summary: get Managers for main event
+      operationId: managerGetManagers
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Manager'
   
+  /managerApi/v1/addManager:
+    post:
+      summary: Add Manager to Main Event
+      operationId: managerAddManager
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: Manageremail
+          type: string
+          in: query
+          required: true
+        - name: MainEventId
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Manager'
+            
+  /managerApi/v1/deleteManager:
+    delete:
+      summary: Delete Manager
+      operationId: managerDeleteManager
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: MainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: ManagerEmail
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/getEventHeads:
+    get:
+      summary: get Event Heads for Event
+      operationId: managerGetEventHeads
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventHead'
   
+  /managerApi/v1/addEventHead:
+    post:
+      summary: Add Event Head to Event
+      operationId: managerAddEventHead
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: ehEmail
+          type: string
+          in: query
+          required: true
+        - name: eventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventHead'
+            
+  /managerApi/v1/deleteEventHead:
+    delete:
+      summary: Delete Event Head
+      operationId: managerDeleteEventHead
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: ehEmail
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+            
+  /managerApi/v1/getStats:
+    get:
+      summary: Delete Main Event Stats
+      operationId: managerGetStats
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MainEventStats'
+  
+  /managerApi/v1/getHistory:
+    get:
+      summary: Get Main Event History
+      operationId: managerGetHistory
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: maineventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+                  
+  /managerApi/v1/announceAll:
+    post:
+      summary: Send Announcements to everyone
+      operationId: managerAnnounceAll
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/announceIAMINers:
+    post:
+      summary: Send Announcements to iaminer's only
+      operationId: managerAnnounceIAMINers
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/announceTicketHolders:
+    post:
+      summary: Send Announcements to ticket holders only
+      operationId: managerAnnounceTicketHolders
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+          
+            
+    
+  
+parameters:
+
+  MainEvent:
+    name: MainEvent
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/MainEvent'
+      
+  Category:
+    name: Category
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Category'
+    
+  Event:
+    name: Event
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Event'
+      
+  PR:
+    name: PR
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/PRRepresentative'
+      
+  
+            
 definitions:
   
   MainEvent:
@@ -1130,3 +1699,17 @@ definitions:
         type: string
       CUST_ID:
         type: string
+        
+  MainEventStats:
+    type: object
+    properties:
+      totalIamins:
+        type: integer
+        format: int32
+      totalIminersSharingContact:
+        type: integer
+        format: int32
+      totalTickets:
+        type: integer
+        format: int32
+        

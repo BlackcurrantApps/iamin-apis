@@ -1,6 +1,6 @@
-#import "SWGAppPopup.h"
+#import "SWGCategory1.h"
 
-@implementation SWGAppPopup
+@implementation SWGCategory1
 
 - (instancetype)init {
   self = [super init];
@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"pictureUrl": @"picture_url", @"updateTimestamp": @"updateTimestamp", @"enabled": @"enabled" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"name": @"name", @"parentMainEventId": @"parentMainEventId", @"isdefault": @"isdefault", @"isHidden": @"isHidden", @"backdropUrl": @"backdropUrl" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"pictureUrl", @"updateTimestamp", @"enabled"];
+  NSArray *optionalProperties = @[@"_id", @"name", @"parentMainEventId", @"isdefault", @"isHidden", @"backdropUrl"];
   return [optionalProperties containsObject:propertyName];
 }
 

@@ -15,9 +15,10 @@ Method | HTTP request | Description
 [**getHistory**](SWGAppUserApi.md#gethistory) | **GET** /appUserApi/v1/getHistory | get history of transactions for a user
 [**getIAMIN**](SWGAppUserApi.md#getiamin) | **GET** /appUserApi/v1/getIAMIN | get by IAMIN ID
 [**getIAMINS**](SWGAppUserApi.md#getiamins) | **GET** /appUserApi/v1/getIAMINS | get iamins of a user
-[**getMainEvents**](SWGAppUserApi.md#getmainevents) | **GET** /appUserApi/v1/getSortedMainListings | get sorted Main Events
+[**getMainListings**](SWGAppUserApi.md#getmainlistings) | **GET** /appUserApi/v1/getMainListings | get all published Main Events
 [**getOffers**](SWGAppUserApi.md#getoffers) | **GET** /appUserApi/v1/getOffers | Get offers displayed on the app
 [**getPRLocations**](SWGAppUserApi.md#getprlocations) | **GET** /appUserApi/v1/getPRLocations | get prs for a event along with their locations
+[**getSortedMainListings**](SWGAppUserApi.md#getsortedmainlistings) | **GET** /appUserApi/v1/getSortedMainListings | get sorted Main Events
 [**getTicket**](SWGAppUserApi.md#getticket) | **GET** /appUserApi/v1/getTicket | get Tickets of a user
 [**getTickets**](SWGAppUserApi.md#gettickets) | **GET** /appUserApi/v1/getTickets | get Tickets of a user
 [**getUser**](SWGAppUserApi.md#getuser) | **GET** /appUserApi/v1/getUser | Get registered app user
@@ -620,13 +621,13 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getMainEvents**
+# **getMainListings**
 ```objc
--(NSURLSessionTask*) getMainEventsWithCity: (NSString*) city
-        completionHandler: (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
+-(NSURLSessionTask*) getMainListingsWithCompletionHandler: 
+        (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
 ```
 
-get sorted Main Events
+get all published Main Events
 
 ### Example 
 ```objc
@@ -638,27 +639,23 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-NSString* city = @"city_example"; // 
 
 SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
-// get sorted Main Events
-[apiInstance getMainEventsWithCity:city
-          completionHandler: ^(SWGInlineResponse2002* output, NSError* error) {
+// get all published Main Events
+[apiInstance getMainListingsWithCompletionHandler: 
+          ^(SWGInlineResponse2002* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling SWGAppUserApi->getMainEvents: %@", error);
+                            NSLog(@"Error calling SWGAppUserApi->getMainListings: %@", error);
                         }
                     }];
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **city** | **NSString***|  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -769,6 +766,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SWGLocationContainer***](SWGLocationContainer.md)
+
+### Authorization
+
+[GoogleAuth](../README.md#GoogleAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getSortedMainListings**
+```objc
+-(NSURLSessionTask*) getSortedMainListingsWithCity: (NSString*) city
+        completionHandler: (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
+```
+
+get sorted Main Events
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: GoogleAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
+
+
+NSString* city = @"city_example"; // 
+
+SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
+
+// get sorted Main Events
+[apiInstance getSortedMainListingsWithCity:city
+          completionHandler: ^(SWGInlineResponse2002* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGAppUserApi->getSortedMainListings: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **city** | **NSString***|  | 
+
+### Return type
+
+[**SWGInlineResponse2002***](SWGInlineResponse2002.md)
 
 ### Authorization
 

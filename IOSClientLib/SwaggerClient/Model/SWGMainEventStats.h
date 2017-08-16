@@ -16,16 +16,16 @@
 
 
 
-@protocol SWGAppPopup
+@protocol SWGMainEventStats
 @end
 
-@interface SWGAppPopup : SWGObject
+@interface SWGMainEventStats : SWGObject
 
 
-@property(nonatomic) NSString* pictureUrl;
+@property(nonatomic) NSNumber* totalIamins;
 
-@property(nonatomic) NSNumber* updateTimestamp;
+@property(nonatomic) NSNumber* totalIminersSharingContact;
 
-@property(nonatomic) NSNumber* enabled;
+@property(nonatomic) NSNumber* totalTickets;
 
 @end

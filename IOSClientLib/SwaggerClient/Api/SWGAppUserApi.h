@@ -170,16 +170,15 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
     (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
 
 
-/// get sorted Main Events
+/// get all published Main Events
 /// 
 ///
-/// @param city 
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return SWGInlineResponse2002*
--(NSURLSessionTask*) getMainEventsWithCity: (NSString*) city
-    completionHandler: (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
+-(NSURLSessionTask*) getMainListingsWithCompletionHandler: 
+    (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
 
 
 /// Get offers displayed on the app
@@ -203,6 +202,18 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// @return SWGLocationContainer*
 -(NSURLSessionTask*) getPRLocationsWithMainEventID: (NSNumber*) mainEventID
     completionHandler: (void (^)(SWGLocationContainer* output, NSError* error)) handler;
+
+
+/// get sorted Main Events
+/// 
+///
+/// @param city 
+/// 
+///  code:200 message:"OK"
+///
+/// @return SWGInlineResponse2002*
+-(NSURLSessionTask*) getSortedMainListingsWithCity: (NSString*) city
+    completionHandler: (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
 
 
 /// get Tickets of a user

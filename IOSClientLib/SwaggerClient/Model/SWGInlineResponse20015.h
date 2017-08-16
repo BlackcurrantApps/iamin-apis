@@ -16,16 +16,16 @@
 
 
 
-@protocol SWGAppPopup
+@protocol SWGInlineResponse20015
 @end
 
-@interface SWGAppPopup : SWGObject
+@interface SWGInlineResponse20015 : SWGObject
 
 
-@property(nonatomic) NSString* pictureUrl;
+@property(nonatomic) NSNumber* totalIamins;
 
-@property(nonatomic) NSNumber* updateTimestamp;
+@property(nonatomic) NSNumber* totalIminersSharingContact;
 
-@property(nonatomic) NSNumber* enabled;
+@property(nonatomic) NSNumber* totalTickets;
 
 @end

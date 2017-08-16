@@ -47,14 +47,25 @@ Import the following:
 #import <SwaggerClient/SWGAppVersion.h>
 #import <SwaggerClient/SWGCandidate.h>
 #import <SwaggerClient/SWGCategory.h>
+#import <SwaggerClient/SWGCategory1.h>
 #import <SwaggerClient/SWGComment.h>
 #import <SwaggerClient/SWGEvent.h>
+#import <SwaggerClient/SWGEvent1.h>
 #import <SwaggerClient/SWGEventHead.h>
 #import <SwaggerClient/SWGEventLog.h>
 #import <SwaggerClient/SWGIAMIN.h>
 #import <SwaggerClient/SWGInlineResponse200.h>
 #import <SwaggerClient/SWGInlineResponse2001.h>
 #import <SwaggerClient/SWGInlineResponse20010.h>
+#import <SwaggerClient/SWGInlineResponse20011.h>
+#import <SwaggerClient/SWGInlineResponse20011Items.h>
+#import <SwaggerClient/SWGInlineResponse20012.h>
+#import <SwaggerClient/SWGInlineResponse20012Items.h>
+#import <SwaggerClient/SWGInlineResponse20013.h>
+#import <SwaggerClient/SWGInlineResponse20013Items.h>
+#import <SwaggerClient/SWGInlineResponse20014.h>
+#import <SwaggerClient/SWGInlineResponse20014Items.h>
+#import <SwaggerClient/SWGInlineResponse20015.h>
 #import <SwaggerClient/SWGInlineResponse2001Items.h>
 #import <SwaggerClient/SWGInlineResponse2002.h>
 #import <SwaggerClient/SWGInlineResponse2003.h>
@@ -73,6 +84,8 @@ Import the following:
 #import <SwaggerClient/SWGLocationContainer.h>
 #import <SwaggerClient/SWGMainEvent.h>
 #import <SwaggerClient/SWGMainEvent1.h>
+#import <SwaggerClient/SWGMainEvent2.h>
+#import <SwaggerClient/SWGMainEventStats.h>
 #import <SwaggerClient/SWGManager.h>
 #import <SwaggerClient/SWGOffer.h>
 #import <SwaggerClient/SWGPRLocation.h>
@@ -83,6 +96,7 @@ Import the following:
 #import <SwaggerClient/SWGUserRoles.h>
 // load API classes for accessing endpoints
 #import <SwaggerClient/SWGAppUserApi.h>
+#import <SwaggerClient/SWGManagerApi.h>
 
 ```
 
@@ -138,9 +152,10 @@ Class | Method | HTTP request | Description
 *SWGAppUserApi* | [**getHistory**](docs/SWGAppUserApi.md#gethistory) | **GET** /appUserApi/v1/getHistory | get history of transactions for a user
 *SWGAppUserApi* | [**getIAMIN**](docs/SWGAppUserApi.md#getiamin) | **GET** /appUserApi/v1/getIAMIN | get by IAMIN ID
 *SWGAppUserApi* | [**getIAMINS**](docs/SWGAppUserApi.md#getiamins) | **GET** /appUserApi/v1/getIAMINS | get iamins of a user
-*SWGAppUserApi* | [**getMainEvents**](docs/SWGAppUserApi.md#getmainevents) | **GET** /appUserApi/v1/getSortedMainListings | get sorted Main Events
+*SWGAppUserApi* | [**getMainListings**](docs/SWGAppUserApi.md#getmainlistings) | **GET** /appUserApi/v1/getMainListings | get all published Main Events
 *SWGAppUserApi* | [**getOffers**](docs/SWGAppUserApi.md#getoffers) | **GET** /appUserApi/v1/getOffers | Get offers displayed on the app
 *SWGAppUserApi* | [**getPRLocations**](docs/SWGAppUserApi.md#getprlocations) | **GET** /appUserApi/v1/getPRLocations | get prs for a event along with their locations
+*SWGAppUserApi* | [**getSortedMainListings**](docs/SWGAppUserApi.md#getsortedmainlistings) | **GET** /appUserApi/v1/getSortedMainListings | get sorted Main Events
 *SWGAppUserApi* | [**getTicket**](docs/SWGAppUserApi.md#getticket) | **GET** /appUserApi/v1/getTicket | get Tickets of a user
 *SWGAppUserApi* | [**getTickets**](docs/SWGAppUserApi.md#gettickets) | **GET** /appUserApi/v1/getTickets | get Tickets of a user
 *SWGAppUserApi* | [**getUser**](docs/SWGAppUserApi.md#getuser) | **GET** /appUserApi/v1/getUser | Get registered app user
@@ -154,6 +169,30 @@ Class | Method | HTTP request | Description
 *SWGAppUserApi* | [**setIaminQuantity**](docs/SWGAppUserApi.md#setiaminquantity) | **PUT** /appUserApi/v1/setIaminQuantity | Set quantity of tickets wanted
 *SWGAppUserApi* | [**transferTicket**](docs/SWGAppUserApi.md#transferticket) | **POST** /appUserApi/v1/transferTicket | Transfer your ticket
 *SWGAppUserApi* | [**updateContactPreference**](docs/SWGAppUserApi.md#updatecontactpreference) | **PUT** /appUserApi/v1/updateContactPreference | update contact preferences on an iamin
+*SWGManagerApi* | [**managerAddEventHead**](docs/SWGManagerApi.md#manageraddeventhead) | **POST** /managerApi/v1/addEventHead | Add Event Head to Event
+*SWGManagerApi* | [**managerAddManager**](docs/SWGManagerApi.md#manageraddmanager) | **POST** /managerApi/v1/addManager | Add Manager to Main Event
+*SWGManagerApi* | [**managerAddPR**](docs/SWGManagerApi.md#manageraddpr) | **POST** /managerApi/v1/addPR | Add PR Representative to Main Event
+*SWGManagerApi* | [**managerAnnounceAll**](docs/SWGManagerApi.md#managerannounceall) | **POST** /managerApi/v1/announceAll | Send Announcements to everyone
+*SWGManagerApi* | [**managerAnnounceIAMINers**](docs/SWGManagerApi.md#managerannounceiaminers) | **POST** /managerApi/v1/announceIAMINers | Send Announcements to iaminer&#39;s only
+*SWGManagerApi* | [**managerAnnounceTicketHolders**](docs/SWGManagerApi.md#managerannounceticketholders) | **POST** /managerApi/v1/announceTicketHolders | Send Announcements to ticket holders only
+*SWGManagerApi* | [**managerDeleteCategory**](docs/SWGManagerApi.md#managerdeletecategory) | **DELETE** /managerApi/v1/deleteCategory | Delete Category only if empty
+*SWGManagerApi* | [**managerDeleteEvent**](docs/SWGManagerApi.md#managerdeleteevent) | **DELETE** /managerApi/v1/deleteEvent | Edit &amp; Add Event
+*SWGManagerApi* | [**managerDeleteEventHead**](docs/SWGManagerApi.md#managerdeleteeventhead) | **DELETE** /managerApi/v1/deleteEventHead | Delete Event Head
+*SWGManagerApi* | [**managerDeleteManager**](docs/SWGManagerApi.md#managerdeletemanager) | **DELETE** /managerApi/v1/deleteManager | Delete Manager
+*SWGManagerApi* | [**managerDeletePR**](docs/SWGManagerApi.md#managerdeletepr) | **DELETE** /managerApi/v1/deletePR | Delete PR if Amount collected &#x3D; 0
+*SWGManagerApi* | [**managerEditCategory**](docs/SWGManagerApi.md#managereditcategory) | **POST** /managerApi/v1/editCategory | Edit &amp; Add Event
+*SWGManagerApi* | [**managerEditEvent**](docs/SWGManagerApi.md#managereditevent) | **POST** /managerApi/v1/editEvent | Edit &amp; Add Event
+*SWGManagerApi* | [**managerEditMainListing**](docs/SWGManagerApi.md#managereditmainlisting) | **PUT** /managerApi/v1/editMainListing | Edit Main Event
+*SWGManagerApi* | [**managerGetEvent**](docs/SWGManagerApi.md#managergetevent) | **GET** /managerApi/v1/getEvent | get a event by event id
+*SWGManagerApi* | [**managerGetEventCategories**](docs/SWGManagerApi.md#managergeteventcategories) | **GET** /managerApi/v1/getEventCategories | get a categories under a main event
+*SWGManagerApi* | [**managerGetEventCategory**](docs/SWGManagerApi.md#managergeteventcategory) | **GET** /managerApi/v1/getEventCategory | get a category by id
+*SWGManagerApi* | [**managerGetEventHeads**](docs/SWGManagerApi.md#managergeteventheads) | **GET** /managerApi/v1/getEventHeads | get Event Heads for Event
+*SWGManagerApi* | [**managerGetEvents**](docs/SWGManagerApi.md#managergetevents) | **GET** /managerApi/v1/getEvents | get a events under a category
+*SWGManagerApi* | [**managerGetHistory**](docs/SWGManagerApi.md#managergethistory) | **GET** /managerApi/v1/getHistory | Get Main Event History
+*SWGManagerApi* | [**managerGetMainListing**](docs/SWGManagerApi.md#managergetmainlisting) | **GET** /managerApi/v1/getMainListing | get a single Main Event
+*SWGManagerApi* | [**managerGetManagers**](docs/SWGManagerApi.md#managergetmanagers) | **GET** /managerApi/v1/getManagers | get Managers for main event
+*SWGManagerApi* | [**managerGetPRS**](docs/SWGManagerApi.md#managergetprs) | **GET** /managerApi/v1/getPRS | get PRs for main event
+*SWGManagerApi* | [**managerGetStats**](docs/SWGManagerApi.md#managergetstats) | **GET** /managerApi/v1/getStats | Delete Main Event Stats
 
 
 ## Documentation For Models
@@ -164,14 +203,25 @@ Class | Method | HTTP request | Description
  - [SWGAppVersion](docs/SWGAppVersion.md)
  - [SWGCandidate](docs/SWGCandidate.md)
  - [SWGCategory](docs/SWGCategory.md)
+ - [SWGCategory1](docs/SWGCategory1.md)
  - [SWGComment](docs/SWGComment.md)
  - [SWGEvent](docs/SWGEvent.md)
+ - [SWGEvent1](docs/SWGEvent1.md)
  - [SWGEventHead](docs/SWGEventHead.md)
  - [SWGEventLog](docs/SWGEventLog.md)
  - [SWGIAMIN](docs/SWGIAMIN.md)
  - [SWGInlineResponse200](docs/SWGInlineResponse200.md)
  - [SWGInlineResponse2001](docs/SWGInlineResponse2001.md)
  - [SWGInlineResponse20010](docs/SWGInlineResponse20010.md)
+ - [SWGInlineResponse20011](docs/SWGInlineResponse20011.md)
+ - [SWGInlineResponse20011Items](docs/SWGInlineResponse20011Items.md)
+ - [SWGInlineResponse20012](docs/SWGInlineResponse20012.md)
+ - [SWGInlineResponse20012Items](docs/SWGInlineResponse20012Items.md)
+ - [SWGInlineResponse20013](docs/SWGInlineResponse20013.md)
+ - [SWGInlineResponse20013Items](docs/SWGInlineResponse20013Items.md)
+ - [SWGInlineResponse20014](docs/SWGInlineResponse20014.md)
+ - [SWGInlineResponse20014Items](docs/SWGInlineResponse20014Items.md)
+ - [SWGInlineResponse20015](docs/SWGInlineResponse20015.md)
  - [SWGInlineResponse2001Items](docs/SWGInlineResponse2001Items.md)
  - [SWGInlineResponse2002](docs/SWGInlineResponse2002.md)
  - [SWGInlineResponse2003](docs/SWGInlineResponse2003.md)
@@ -190,6 +240,8 @@ Class | Method | HTTP request | Description
  - [SWGLocationContainer](docs/SWGLocationContainer.md)
  - [SWGMainEvent](docs/SWGMainEvent.md)
  - [SWGMainEvent1](docs/SWGMainEvent1.md)
+ - [SWGMainEvent2](docs/SWGMainEvent2.md)
+ - [SWGMainEventStats](docs/SWGMainEventStats.md)
  - [SWGManager](docs/SWGManager.md)
  - [SWGOffer](docs/SWGOffer.md)
  - [SWGPRLocation](docs/SWGPRLocation.md)

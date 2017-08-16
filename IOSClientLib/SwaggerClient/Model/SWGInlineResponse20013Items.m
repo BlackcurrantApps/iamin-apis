@@ -1,6 +1,6 @@
-#import "SWGAppPopup.h"
+#import "SWGInlineResponse20013Items.h"
 
-@implementation SWGAppPopup
+@implementation SWGInlineResponse20013Items
 
 - (instancetype)init {
   self = [super init];
@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"pictureUrl": @"picture_url", @"updateTimestamp": @"updateTimestamp", @"enabled": @"enabled" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"email": @"email", @"mainEventListingId": @"MainEventListingId" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"pictureUrl", @"updateTimestamp", @"enabled"];
+  NSArray *optionalProperties = @[@"_id", @"email", @"mainEventListingId"];
   return [optionalProperties containsObject:propertyName];
 }
 

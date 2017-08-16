@@ -14,18 +14,15 @@
 */
 
 
+#import "SWGInlineResponse20014Items.h"
 
 
-@protocol SWGAppPopup
+@protocol SWGInlineResponse20014
 @end
 
-@interface SWGAppPopup : SWGObject
+@interface SWGInlineResponse20014 : SWGObject
 
 
-@property(nonatomic) NSString* pictureUrl;
-
-@property(nonatomic) NSNumber* updateTimestamp;
-
-@property(nonatomic) NSNumber* enabled;
+@property(nonatomic) NSArray<SWGInlineResponse20014Items>* items;
 
 @end
