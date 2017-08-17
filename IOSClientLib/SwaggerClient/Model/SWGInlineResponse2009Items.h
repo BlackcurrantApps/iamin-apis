@@ -24,10 +24,20 @@
 
 @property(nonatomic) NSNumber* _id;
 
-@property(nonatomic) NSString* name;
+@property(nonatomic) NSNumber* timeStamp;
 
 @property(nonatomic) NSNumber* eventID;
 
-@property(nonatomic) NSNumber* votesAcquired;
+@property(nonatomic) NSString* senderEmail;
+
+@property(nonatomic) NSString* message;
+
+@property(nonatomic) NSString* senderProfilePic;
+
+@property(nonatomic) NSString* senderName;
+
+@property(nonatomic) NSNumber* isSenderManager;
+
+@property(nonatomic) NSNumber* isSenderEventHead;
 
 @end

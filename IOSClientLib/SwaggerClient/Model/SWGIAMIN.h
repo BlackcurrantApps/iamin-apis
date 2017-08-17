@@ -15,7 +15,7 @@
 
 
 #import "SWGInlineResponse200.h"
-#import "SWGInlineResponse2003Items.h"
+#import "SWGInlineResponse2004Items.h"
 
 
 @protocol SWGIAMIN
@@ -38,7 +38,7 @@
 
 @property(nonatomic) NSNumber* requestQuantity;
 
-@property(nonatomic) SWGInlineResponse2003Items* event;
+@property(nonatomic) SWGInlineResponse2004Items* event;
 
 @property(nonatomic) SWGInlineResponse200* bearer;
 

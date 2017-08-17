@@ -14,8 +14,8 @@ tags:
     description: Everything done by PR
   - name: Manager
     description: Everything done by Manager
-  - name: SuperAdmin
-    description: Everything done by SuperAdmin
+  - name: EventHead
+    description: Everything done by EventHead
 schemes:
   - https
 security:
@@ -189,6 +189,31 @@ paths:
           schema:
             $ref: '#/definitions/SortedMainEvents'
             
+  /appUserApi/v1/getCategories:
+    get:
+      summary: get categories inside a main-event
+      operationId: getCategories
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: MainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Category'       
+            
   /appUserApi/v1/getEvents:
     get:
       summary: get events inside a category
@@ -216,7 +241,7 @@ paths:
                   
   /appUserApi/v1/getEvent:
     get:
-      summary: get events inside a category
+      summary: get a single event inside a category
       operationId: getEvent
       security:
         - GoogleAuth: []
@@ -1215,9 +1240,674 @@ paths:
         '200':
           description: OK
           
-          
+# PR API  
+  
+  /prApi/v1/giveTicketByEmailAndCell:
+    post:
+      summary: give Ticket
+      operationId: prGiveTicketByEmailAndCell
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: email
+          type: string
+          required: true
+          in: query
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+        - name: cellNo
+          type: string
+          required: true
+          in: query
+        - name: remark
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Ticket'
             
-    
+  /prApi/v1/giveTicketbyIaminId:
+    post:
+      summary: give Ticket
+      operationId: prGiveTicketbyIaminId
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: iaminId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+        - name: remark
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Ticket'
+            
+  /prApi/v1/getTicketById:
+    get:
+      summary: get Ticket
+      operationId: prGetTicketById
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: ticketID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Ticket'
+            
+  /prApi/v1/checkInByTicketId:
+    post:
+      summary: Check in User
+      operationId: prCheckInByTicketId
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: ticketID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: Quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventLog'
+            
+  /prApi/v1/checkInByEmail:
+    post:
+      summary: Check in User
+      operationId: prCheckInByEmail
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: email
+          type: string
+          required: true
+          in: query
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventLog'
+          
+  /prApi/v1/getIAMIN:
+    get:
+      summary: get IAMIN
+      operationId: prGetIAMIN
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: iaminId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+  
+  /prApi/v1/getIaminByEmail:
+    get:
+      summary: get IAMIN
+      operationId: prGetIaminByEmail
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: email
+          type: string
+          required: true
+          in: query
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: cellNo
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+  
+  /prApi/v1/getEventList:
+    get:
+      summary: get Events
+      operationId: prGetEventList
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+                  
+  /prApi/v1/getStats:
+    get:
+      summary: get Stats
+      operationId: prGetStats
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MainEventStats'
+                  
+  /prApi/v1/getHistory:
+    get:
+      summary: get History
+      operationId: prGetHistory
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: maineventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+  
+  /prApi/v1/getIAMINers:
+    get:
+      summary: get IAMINers for the main event sharing contacts
+      operationId: prGetIAMINers
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventid
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/IAMIN'
+                  
+  /prApi/v1/getPRRepresentative:
+    get:
+      summary: get Self Profile
+      operationId: prGetPRRepresentative
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventid
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PRRepresentative'
+            
+  /prApi/v1/UpdateLocation:
+    put:
+      summary: update location shown on the map to buyers
+      operationId: prUpdateLocation
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: lat
+          type: number
+          format: double
+          required: true
+          in: query
+        - name: lon
+          type: number
+          format: double
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PRRepresentative'
+                  
+# Event Head Api
+
+  /eventHeadApi/v1/announceAll:
+    post:
+      summary: send anouncement to everyone
+      operationId: ehAnnounceAll
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/announceIAMINers:
+    post:
+      summary: send anouncement to iaminers
+      operationId: ehAnnounceIAMINers
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/announceTicketHolders:
+    post:
+      summary: send anouncement to tickey holders
+      operationId: ehAnnounceTicketHolders
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/freeUpgradeIAMINER:
+    post:
+      summary: give Ticket to iaminer
+      operationId: ehFreeUpgradeIAMINER
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - $ref: '#parameters/IAMIN'
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/getIAMINers:
+    get:
+      summary: get IAMINers
+      operationId: ehGetIAMINers
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/IAMIN'
+          
+  /eventHeadApi/v1/getTicketHolders:
+    get:
+      summary: get Ticket holders for this event
+      operationId: ehGetTicketHolders
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Ticket'
+                  
+  /eventHeadApi/v1/editEvent:
+    put:
+      summary: Edit Event
+      operationId: ehEditEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - $ref: '#parameters/Event'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+                  
+  /eventHeadApi/v1/getEvent:
+    get:
+      summary: get Event
+      operationId: ehGetEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+            
+  /eventHeadApi/v1/getStats:
+    get:
+      summary: get Event
+      operationId: ehGetStats
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MainEventStats'
+            
+  /eventHeadApi/v1/getHistory:
+    get:
+      summary: get History
+      operationId: ehgetHistory
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+                  
+  /eventHeadApi/v1/enableVoting:
+    put:
+      summary: Enable Voting
+      operationId: ehEnableVoting
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/disableVoting:
+    put:
+      summary: Disable Voting
+      operationId: ehDisableVoting
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK     
+          
+  /eventHeadApi/v1/getVotingCandidates:
+    get:
+      summary: get Voting Candidates
+      operationId: ehGetVotingCandidates
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Candidate'
+                  
+  /eventHeadApi/v1/addVotingCandidate:
+    post:
+      summary: Add a voting candidate
+      operationId: ehAddVotingCandidate
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: name
+          type: string
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Candidate'
+            
+  /eventHeadApi/v1/removeVotingCandidate:
+    delete:
+      summary: Remove a voting candidate
+      operationId: ehRemoveVotingCandidate
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: candidateId
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+                  
+  /eventHeadApi/v1/removeAllCandidatesAndResetVoting:
+    delete:
+      summary: Remove a voting candidate
+      operationId: ehRemoveAllCandidatesAndResetVoting
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
   
 parameters:
 
@@ -1248,6 +1938,13 @@ parameters:
     required: true
     schema:
       $ref: '#/definitions/PRRepresentative'
+      
+  IAMIN:
+    name: IAMIN
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/IAMIN'
       
   
             
@@ -1547,6 +2244,8 @@ definitions:
         format: int64
       event:
         $ref: '#/definitions/Event'
+      bearer:
+        $ref: '#/definitions/AppUser'
         
   EventLog:
     type: object

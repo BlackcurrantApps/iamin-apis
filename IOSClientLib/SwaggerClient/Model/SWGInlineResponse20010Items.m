@@ -1,6 +1,6 @@
-#import "SWGInlineResponse2007.h"
+#import "SWGInlineResponse20010Items.h"
 
-@implementation SWGInlineResponse2007
+@implementation SWGInlineResponse20010Items
 
 - (instancetype)init {
   self = [super init];
@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"isManagerForMainEvents": @"isManagerForMainEvents", @"isPrForEvents": @"isPrForEvents", @"isEventHeadForEvents": @"isEventHeadForEvents" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"name": @"name", @"eventID": @"eventID", @"votesAcquired": @"votesAcquired" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"isManagerForMainEvents", @"isPrForEvents", @"isEventHeadForEvents"];
+  NSArray *optionalProperties = @[@"_id", @"name", @"eventID", @"votesAcquired"];
   return [optionalProperties containsObject:propertyName];
 }
 

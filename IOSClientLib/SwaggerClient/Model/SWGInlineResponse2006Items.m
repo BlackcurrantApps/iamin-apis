@@ -1,6 +1,6 @@
-#import "SWGTicket.h"
+#import "SWGInlineResponse2006Items.h"
 
-@implementation SWGTicket
+@implementation SWGInlineResponse2006Items
 
 - (instancetype)init {
   self = [super init];

@@ -14,7 +14,7 @@
 */
 
 
-#import "SWGInlineResponse2003Items.h"
+#import "SWGInlineResponse2004Items.h"
 #import "SWGMainEvent1.h"
 
 
@@ -28,6 +28,6 @@
 
 @property(nonatomic) NSArray<SWGMainEvent1>* isPrForEvents;
 
-@property(nonatomic) NSArray<SWGInlineResponse2003Items>* isEventHeadForEvents;
+@property(nonatomic) NSArray<SWGInlineResponse2004Items>* isEventHeadForEvents;
 
 @end

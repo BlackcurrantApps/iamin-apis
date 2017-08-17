@@ -9,8 +9,9 @@ Method | HTTP request | Description
 [**deleteIAMIN**](SWGAppUserApi.md#deleteiamin) | **DELETE** /appUserApi/v1/deleteIAMIN | Delete IAMIN
 [**getAppPopup**](SWGAppUserApi.md#getapppopup) | **GET** /appUserApi/v1/getAppPopup | Get the current application popup
 [**getAppVersion**](SWGAppUserApi.md#getappversion) | **GET** /appUserApi/v1/getAppVersion | Register a new app user
+[**getCategories**](SWGAppUserApi.md#getcategories) | **GET** /appUserApi/v1/getCategories | get categories inside a main-event
 [**getCommentsForEvent**](SWGAppUserApi.md#getcommentsforevent) | **GET** /appUserApi/v1/getCommentsForEvent | get Comments on a Event
-[**getEvent**](SWGAppUserApi.md#getevent) | **GET** /appUserApi/v1/getEvent | get events inside a category
+[**getEvent**](SWGAppUserApi.md#getevent) | **GET** /appUserApi/v1/getEvent | get a single event inside a category
 [**getEvents**](SWGAppUserApi.md#getevents) | **GET** /appUserApi/v1/getEvents | get events inside a category
 [**getHistory**](SWGAppUserApi.md#gethistory) | **GET** /appUserApi/v1/getHistory | get history of transactions for a user
 [**getIAMIN**](SWGAppUserApi.md#getiamin) | **GET** /appUserApi/v1/getIAMIN | get by IAMIN ID
@@ -299,10 +300,65 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getCategories**
+```objc
+-(NSURLSessionTask*) getCategoriesWithMainEventId: (NSNumber*) mainEventId
+        completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
+```
+
+get categories inside a main-event
+
+### Example 
+```objc
+SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
+
+// Configure API key authorization: (authentication scheme: GoogleAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"Authorization"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
+
+
+NSNumber* mainEventId = @789; // 
+
+SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
+
+// get categories inside a main-event
+[apiInstance getCategoriesWithMainEventId:mainEventId
+          completionHandler: ^(SWGInlineResponse2003* output, NSError* error) {
+                        if (output) {
+                            NSLog(@"%@", output);
+                        }
+                        if (error) {
+                            NSLog(@"Error calling SWGAppUserApi->getCategories: %@", error);
+                        }
+                    }];
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mainEventId** | **NSNumber***|  | 
+
+### Return type
+
+[**SWGInlineResponse2003***](SWGInlineResponse2003.md)
+
+### Authorization
+
+[GoogleAuth](../README.md#GoogleAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getCommentsForEvent**
 ```objc
 -(NSURLSessionTask*) getCommentsForEventWithEventID: (NSNumber*) eventID
-        completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2009* output, NSError* error)) handler;
 ```
 
 get Comments on a Event
@@ -323,7 +379,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get Comments on a Event
 [apiInstance getCommentsForEventWithEventID:eventID
-          completionHandler: ^(SWGInlineResponse2008* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2009* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -341,7 +397,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2008***](SWGInlineResponse2008.md)
+[**SWGInlineResponse2009***](SWGInlineResponse2009.md)
 
 ### Authorization
 
@@ -357,10 +413,10 @@ Name | Type | Description  | Notes
 # **getEvent**
 ```objc
 -(NSURLSessionTask*) getEventWithEventID: (NSNumber*) eventID
-        completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
 ```
 
-get events inside a category
+get a single event inside a category
 
 ### Example 
 ```objc
@@ -376,9 +432,9 @@ NSNumber* eventID = @789; //
 
 SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
-// get events inside a category
+// get a single event inside a category
 [apiInstance getEventWithEventID:eventID
-          completionHandler: ^(SWGInlineResponse2003Items* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2004Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -396,7 +452,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2003Items***](SWGInlineResponse2003Items.md)
+[**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md)
 
 ### Authorization
 
@@ -412,7 +468,7 @@ Name | Type | Description  | Notes
 # **getEvents**
 ```objc
 -(NSURLSessionTask*) getEventsWithCategoryId: (NSNumber*) categoryId
-        completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
 ```
 
 get events inside a category
@@ -433,7 +489,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get events inside a category
 [apiInstance getEventsWithCategoryId:categoryId
-          completionHandler: ^(SWGInlineResponse2003* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2004* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -451,7 +507,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2003***](SWGInlineResponse2003.md)
+[**SWGInlineResponse2004***](SWGInlineResponse2004.md)
 
 ### Authorization
 
@@ -467,7 +523,7 @@ Name | Type | Description  | Notes
 # **getHistory**
 ```objc
 -(NSURLSessionTask*) getHistoryWithCompletionHandler: 
-        (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
+        (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
 ```
 
 get history of transactions for a user
@@ -487,7 +543,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get history of transactions for a user
 [apiInstance getHistoryWithCompletionHandler: 
-          ^(SWGInlineResponse2007* output, NSError* error) {
+          ^(SWGInlineResponse2008* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -502,7 +558,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGInlineResponse2007***](SWGInlineResponse2007.md)
+[**SWGInlineResponse2008***](SWGInlineResponse2008.md)
 
 ### Authorization
 
@@ -518,7 +574,7 @@ This endpoint does not need any parameter.
 # **getIAMIN**
 ```objc
 -(NSURLSessionTask*) getIAMINWithIaminID: (NSNumber*) iaminID
-        completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 ```
 
 get by IAMIN ID
@@ -539,7 +595,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get by IAMIN ID
 [apiInstance getIAMINWithIaminID:iaminID
-          completionHandler: ^(SWGInlineResponse2004Items* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2005Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -557,7 +613,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md)
+[**SWGInlineResponse2005Items***](SWGInlineResponse2005Items.md)
 
 ### Authorization
 
@@ -573,7 +629,7 @@ Name | Type | Description  | Notes
 # **getIAMINS**
 ```objc
 -(NSURLSessionTask*) getIAMINSWithCompletionHandler: 
-        (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
+        (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
 ```
 
 get iamins of a user
@@ -593,7 +649,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get iamins of a user
 [apiInstance getIAMINSWithCompletionHandler: 
-          ^(SWGInlineResponse2004* output, NSError* error) {
+          ^(SWGInlineResponse2005* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -608,7 +664,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGInlineResponse2004***](SWGInlineResponse2004.md)
+[**SWGInlineResponse2005***](SWGInlineResponse2005.md)
 
 ### Authorization
 
@@ -836,7 +892,7 @@ Name | Type | Description  | Notes
 # **getTicket**
 ```objc
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-        completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
 ```
 
 get Tickets of a user
@@ -857,7 +913,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get Tickets of a user
 [apiInstance getTicketWithTicketID:ticketID
-          completionHandler: ^(SWGInlineResponse2005* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2006* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -875,7 +931,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2005***](SWGInlineResponse2005.md)
+[**SWGInlineResponse2006***](SWGInlineResponse2006.md)
 
 ### Authorization
 
@@ -891,7 +947,7 @@ Name | Type | Description  | Notes
 # **getTickets**
 ```objc
 -(NSURLSessionTask*) getTicketsWithCompletionHandler: 
-        (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
+        (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
 ```
 
 get Tickets of a user
@@ -911,7 +967,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get Tickets of a user
 [apiInstance getTicketsWithCompletionHandler: 
-          ^(SWGInlineResponse2005* output, NSError* error) {
+          ^(SWGInlineResponse2006* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -926,7 +982,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGInlineResponse2005***](SWGInlineResponse2005.md)
+[**SWGInlineResponse2006***](SWGInlineResponse2006.md)
 
 ### Authorization
 
@@ -993,7 +1049,7 @@ This endpoint does not need any parameter.
 # **getUserRoles**
 ```objc
 -(NSURLSessionTask*) getUserRolesWithCompletionHandler: 
-        (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
+        (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
 ```
 
 get priviledges for a user
@@ -1013,7 +1069,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get priviledges for a user
 [apiInstance getUserRolesWithCompletionHandler: 
-          ^(SWGInlineResponse2006* output, NSError* error) {
+          ^(SWGInlineResponse2007* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1028,7 +1084,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGInlineResponse2006***](SWGInlineResponse2006.md)
+[**SWGInlineResponse2007***](SWGInlineResponse2007.md)
 
 ### Authorization
 
@@ -1044,7 +1100,7 @@ This endpoint does not need any parameter.
 # **getVotingCandidates**
 ```objc
 -(NSURLSessionTask*) getVotingCandidatesWithEventID: (NSNumber*) eventID
-        completionHandler: (void (^)(SWGInlineResponse2009* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler;
 ```
 
 get Voting candidates on a event if enabled
@@ -1065,7 +1121,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get Voting candidates on a event if enabled
 [apiInstance getVotingCandidatesWithEventID:eventID
-          completionHandler: ^(SWGInlineResponse2009* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse20010* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1083,7 +1139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2009***](SWGInlineResponse2009.md)
+[**SWGInlineResponse20010***](SWGInlineResponse20010.md)
 
 ### Authorization
 
@@ -1099,7 +1155,7 @@ Name | Type | Description  | Notes
 # **iamin**
 ```objc
 -(NSURLSessionTask*) iaminWithEventId: (NSNumber*) eventId
-        completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 ```
 
 IAMIN in an event
@@ -1120,7 +1176,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // IAMIN in an event
 [apiInstance iaminWithEventId:eventId
-          completionHandler: ^(SWGInlineResponse2004Items* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2005Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1138,7 +1194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md)
+[**SWGInlineResponse2005Items***](SWGInlineResponse2005Items.md)
 
 ### Authorization
 
@@ -1157,7 +1213,7 @@ Name | Type | Description  | Notes
     transferToEmail: (NSString*) transferToEmail
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
-        completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse20011* output, NSError* error)) handler;
 ```
 
 Initialize a paytm transaction
@@ -1186,7 +1242,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
               transferToEmail:transferToEmail
               cellNo:cellNo
               quantity:quantity
-          completionHandler: ^(SWGInlineResponse20010* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse20011* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1207,7 +1263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20010***](SWGInlineResponse20010.md)
+[**SWGInlineResponse20011***](SWGInlineResponse20011.md)
 
 ### Authorization
 
@@ -1223,7 +1279,7 @@ Name | Type | Description  | Notes
 # **paytmTransactionSuccess**
 ```objc
 -(NSURLSessionTask*) paytmTransactionSuccessWithOrderID: (NSString*) orderID
-        completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler;
 ```
 
 Initialize a paytm transaction
@@ -1246,7 +1302,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // Initialize a paytm transaction
 [apiInstance paytmTransactionSuccessWithOrderID:orderID
-          completionHandler: ^(SWGInlineResponse2005Items* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2006Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1264,7 +1320,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2005Items***](SWGInlineResponse2005Items.md)
+[**SWGInlineResponse2006Items***](SWGInlineResponse2006Items.md)
 
 ### Authorization
 
@@ -1401,7 +1457,7 @@ void (empty response body)
 ```objc
 -(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
     canContact: (NSNumber*) canContact
-        completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 ```
 
 Set quantity of tickets wanted
@@ -1424,7 +1480,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 // Set quantity of tickets wanted
 [apiInstance setIaminQuantityWithIaminId:iaminId
               canContact:canContact
-          completionHandler: ^(SWGInlineResponse2004Items* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2005Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1443,7 +1499,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md)
+[**SWGInlineResponse2005Items***](SWGInlineResponse2005Items.md)
 
 ### Authorization
 
@@ -1526,7 +1582,7 @@ void (empty response body)
 ```objc
 -(NSURLSessionTask*) updateContactPreferenceWithIaminId: (NSNumber*) iaminId
     canContact: (NSString*) canContact
-        completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 ```
 
 update contact preferences on an iamin
@@ -1551,7 +1607,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 // update contact preferences on an iamin
 [apiInstance updateContactPreferenceWithIaminId:iaminId
               canContact:canContact
-          completionHandler: ^(SWGInlineResponse2004Items* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2005Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1570,7 +1626,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md)
+[**SWGInlineResponse2005Items***](SWGInlineResponse2005Items.md)
 
 ### Authorization
 

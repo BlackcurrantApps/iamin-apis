@@ -14,36 +14,34 @@
 */
 
 
+#import "SWGInlineResponse200.h"
+#import "SWGInlineResponse2004Items.h"
 
 
-@protocol SWGInlineResponse2007Items
+@protocol SWGInlineResponse2006Items
 @end
 
-@interface SWGInlineResponse2007Items : SWGObject
+@interface SWGInlineResponse2006Items : SWGObject
 
 
 @property(nonatomic) NSNumber* _id;
 
 @property(nonatomic) NSString* appUserEmail;
 
-@property(nonatomic) NSString* staffEmail;
-
-@property(nonatomic) NSNumber* mainEventListingId;
-
 @property(nonatomic) NSNumber* eventId;
 
 @property(nonatomic) NSNumber* timeStamp;
 
-@property(nonatomic) NSString* paytmOrderId;
+@property(nonatomic) NSString* pREmail;
 
-@property(nonatomic) NSNumber* quantity;
+@property(nonatomic) NSNumber* activeQuantity;
 
-@property(nonatomic) NSNumber* amount;
+@property(nonatomic) NSNumber* checkedInQuantity;
 
-@property(nonatomic) NSString* mainEventListingName;
+@property(nonatomic) NSNumber* parentMainEventId;
 
-@property(nonatomic) NSString* eventName;
+@property(nonatomic) SWGInlineResponse2004Items* event;
 
-@property(nonatomic) NSString* action;
+@property(nonatomic) SWGInlineResponse200* bearer;
 
 @end

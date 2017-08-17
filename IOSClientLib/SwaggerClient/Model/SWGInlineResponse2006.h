@@ -14,8 +14,7 @@
 */
 
 
-#import "SWGInlineResponse2003Items.h"
-#import "SWGMainEvent1.h"
+#import "SWGInlineResponse2006Items.h"
 
 
 @protocol SWGInlineResponse2006
@@ -24,10 +23,6 @@
 @interface SWGInlineResponse2006 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGMainEvent1>* isManagerForMainEvents;
-
-@property(nonatomic) NSArray<SWGMainEvent1>* isPrForEvents;
-
-@property(nonatomic) NSArray<SWGInlineResponse2003Items>* isEventHeadForEvents;
+@property(nonatomic) NSArray<SWGInlineResponse2006Items>* items;
 
 @end

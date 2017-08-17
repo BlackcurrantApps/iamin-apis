@@ -16,22 +16,18 @@
 
 
 
-@protocol SWGInlineResponse20011Items
+@protocol SWGInlineResponse20010Items
 @end
 
-@interface SWGInlineResponse20011Items : SWGObject
+@interface SWGInlineResponse20010Items : SWGObject
 
 
 @property(nonatomic) NSNumber* _id;
 
 @property(nonatomic) NSString* name;
 
-@property(nonatomic) NSNumber* parentMainEventId;
+@property(nonatomic) NSNumber* eventID;
 
-@property(nonatomic) NSNumber* isdefault;
-
-@property(nonatomic) NSNumber* isHidden;
-
-@property(nonatomic) NSString* backdropUrl;
+@property(nonatomic) NSNumber* votesAcquired;
 
 @end

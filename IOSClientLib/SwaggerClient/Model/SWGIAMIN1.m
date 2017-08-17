@@ -1,6 +1,6 @@
-#import "SWGInlineResponse20011Items.h"
+#import "SWGIAMIN1.h"
 
-@implementation SWGInlineResponse20011Items
+@implementation SWGIAMIN1
 
 - (instancetype)init {
   self = [super init];
@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"name": @"name", @"parentMainEventId": @"parentMainEventId", @"isdefault": @"isdefault", @"isHidden": @"isHidden", @"backdropUrl": @"backdropUrl" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"appUserEmail": @"appUserEmail", @"eventId": @"eventId", @"timeStamp": @"timeStamp", @"parentMainEventId": @"parentMainEventId", @"contactPreference": @"contactPreference", @"requestQuantity": @"requestQuantity", @"event": @"event", @"bearer": @"bearer" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"name", @"parentMainEventId", @"isdefault", @"isHidden", @"backdropUrl"];
+  NSArray *optionalProperties = @[@"_id", @"appUserEmail", @"eventId", @"timeStamp", @"parentMainEventId", @"contactPreference", @"requestQuantity", @"event", @"bearer"];
   return [optionalProperties containsObject:propertyName];
 }
 

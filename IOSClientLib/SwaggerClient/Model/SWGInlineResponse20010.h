@@ -14,6 +14,7 @@
 */
 
 
+#import "SWGInlineResponse20010Items.h"
 
 
 @protocol SWGInlineResponse20010
@@ -22,32 +23,6 @@
 @interface SWGInlineResponse20010 : SWGObject
 
 
-@property(nonatomic) NSString* oRDERID;
-
-@property(nonatomic) NSNumber* gENERATETIMESTAMP;
-
-@property(nonatomic) NSNumber* tXNAMOUNT;
-
-@property(nonatomic) NSString* mOBILENO;
-
-@property(nonatomic) NSString* eMAIL;
-
-@property(nonatomic) NSNumber* ticketQuantity;
-
-@property(nonatomic) NSNumber* eventId;
-
-@property(nonatomic) NSNumber* isTicketIssued;
-
-@property(nonatomic) NSString* status;
-
-@property(nonatomic) NSString* mID;
-
-@property(nonatomic) NSString* cHANNELID;
-
-@property(nonatomic) NSString* iNDUSTRYTYPEID;
-
-@property(nonatomic) NSString* wEBSITE;
-
-@property(nonatomic) NSString* cUSTID;
+@property(nonatomic) NSArray<SWGInlineResponse20010Items>* items;
 
 @end

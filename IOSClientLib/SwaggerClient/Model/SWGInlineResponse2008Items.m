@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"timeStamp": @"timeStamp", @"eventID": @"eventID", @"senderEmail": @"senderEmail", @"message": @"message", @"senderProfilePic": @"senderProfilePic", @"senderName": @"senderName", @"isSenderManager": @"isSenderManager", @"isSenderEventHead": @"isSenderEventHead" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"appUserEmail": @"appUserEmail", @"staffEmail": @"staffEmail", @"mainEventListingId": @"MainEventListingId", @"eventId": @"EventId", @"timeStamp": @"timeStamp", @"paytmOrderId": @"paytmOrderId", @"quantity": @"quantity", @"amount": @"Amount", @"mainEventListingName": @"MainEventListingName", @"eventName": @"EventName", @"action": @"action" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"timeStamp", @"eventID", @"senderEmail", @"message", @"senderProfilePic", @"senderName", @"isSenderManager", @"isSenderEventHead"];
+  NSArray *optionalProperties = @[@"_id", @"appUserEmail", @"staffEmail", @"mainEventListingId", @"eventId", @"timeStamp", @"paytmOrderId", @"quantity", @"amount", @"mainEventListingName", @"eventName", @"action"];
   return [optionalProperties containsObject:propertyName];
 }
 

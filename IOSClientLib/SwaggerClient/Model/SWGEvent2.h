@@ -16,10 +16,10 @@
 
 
 
-@protocol SWGInlineResponse2004Items
+@protocol SWGEvent2
 @end
 
-@interface SWGInlineResponse2004Items : SWGObject
+@interface SWGEvent2 : SWGObject
 
 
 @property(nonatomic) NSNumber* _id;

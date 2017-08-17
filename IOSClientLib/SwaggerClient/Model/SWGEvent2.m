@@ -1,6 +1,6 @@
-#import "SWGInlineResponse2004Items.h"
+#import "SWGEvent2.h"
 
-@implementation SWGInlineResponse2004Items
+@implementation SWGEvent2
 
 - (instancetype)init {
   self = [super init];

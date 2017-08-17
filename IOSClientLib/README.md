@@ -51,14 +51,16 @@ Import the following:
 #import <SwaggerClient/SWGComment.h>
 #import <SwaggerClient/SWGEvent.h>
 #import <SwaggerClient/SWGEvent1.h>
+#import <SwaggerClient/SWGEvent2.h>
 #import <SwaggerClient/SWGEventHead.h>
 #import <SwaggerClient/SWGEventLog.h>
 #import <SwaggerClient/SWGIAMIN.h>
+#import <SwaggerClient/SWGIAMIN1.h>
 #import <SwaggerClient/SWGInlineResponse200.h>
 #import <SwaggerClient/SWGInlineResponse2001.h>
 #import <SwaggerClient/SWGInlineResponse20010.h>
+#import <SwaggerClient/SWGInlineResponse20010Items.h>
 #import <SwaggerClient/SWGInlineResponse20011.h>
-#import <SwaggerClient/SWGInlineResponse20011Items.h>
 #import <SwaggerClient/SWGInlineResponse20012.h>
 #import <SwaggerClient/SWGInlineResponse20012Items.h>
 #import <SwaggerClient/SWGInlineResponse20013.h>
@@ -75,8 +77,8 @@ Import the following:
 #import <SwaggerClient/SWGInlineResponse2005.h>
 #import <SwaggerClient/SWGInlineResponse2005Items.h>
 #import <SwaggerClient/SWGInlineResponse2006.h>
+#import <SwaggerClient/SWGInlineResponse2006Items.h>
 #import <SwaggerClient/SWGInlineResponse2007.h>
-#import <SwaggerClient/SWGInlineResponse2007Items.h>
 #import <SwaggerClient/SWGInlineResponse2008.h>
 #import <SwaggerClient/SWGInlineResponse2008Items.h>
 #import <SwaggerClient/SWGInlineResponse2009.h>
@@ -96,7 +98,9 @@ Import the following:
 #import <SwaggerClient/SWGUserRoles.h>
 // load API classes for accessing endpoints
 #import <SwaggerClient/SWGAppUserApi.h>
+#import <SwaggerClient/SWGEventHeadApi.h>
 #import <SwaggerClient/SWGManagerApi.h>
+#import <SwaggerClient/SWGPRApi.h>
 
 ```
 
@@ -146,8 +150,9 @@ Class | Method | HTTP request | Description
 *SWGAppUserApi* | [**deleteIAMIN**](docs/SWGAppUserApi.md#deleteiamin) | **DELETE** /appUserApi/v1/deleteIAMIN | Delete IAMIN
 *SWGAppUserApi* | [**getAppPopup**](docs/SWGAppUserApi.md#getapppopup) | **GET** /appUserApi/v1/getAppPopup | Get the current application popup
 *SWGAppUserApi* | [**getAppVersion**](docs/SWGAppUserApi.md#getappversion) | **GET** /appUserApi/v1/getAppVersion | Register a new app user
+*SWGAppUserApi* | [**getCategories**](docs/SWGAppUserApi.md#getcategories) | **GET** /appUserApi/v1/getCategories | get categories inside a main-event
 *SWGAppUserApi* | [**getCommentsForEvent**](docs/SWGAppUserApi.md#getcommentsforevent) | **GET** /appUserApi/v1/getCommentsForEvent | get Comments on a Event
-*SWGAppUserApi* | [**getEvent**](docs/SWGAppUserApi.md#getevent) | **GET** /appUserApi/v1/getEvent | get events inside a category
+*SWGAppUserApi* | [**getEvent**](docs/SWGAppUserApi.md#getevent) | **GET** /appUserApi/v1/getEvent | get a single event inside a category
 *SWGAppUserApi* | [**getEvents**](docs/SWGAppUserApi.md#getevents) | **GET** /appUserApi/v1/getEvents | get events inside a category
 *SWGAppUserApi* | [**getHistory**](docs/SWGAppUserApi.md#gethistory) | **GET** /appUserApi/v1/getHistory | get history of transactions for a user
 *SWGAppUserApi* | [**getIAMIN**](docs/SWGAppUserApi.md#getiamin) | **GET** /appUserApi/v1/getIAMIN | get by IAMIN ID
@@ -169,6 +174,22 @@ Class | Method | HTTP request | Description
 *SWGAppUserApi* | [**setIaminQuantity**](docs/SWGAppUserApi.md#setiaminquantity) | **PUT** /appUserApi/v1/setIaminQuantity | Set quantity of tickets wanted
 *SWGAppUserApi* | [**transferTicket**](docs/SWGAppUserApi.md#transferticket) | **POST** /appUserApi/v1/transferTicket | Transfer your ticket
 *SWGAppUserApi* | [**updateContactPreference**](docs/SWGAppUserApi.md#updatecontactpreference) | **PUT** /appUserApi/v1/updateContactPreference | update contact preferences on an iamin
+*SWGEventHeadApi* | [**ehAddVotingCandidate**](docs/SWGEventHeadApi.md#ehaddvotingcandidate) | **POST** /eventHeadApi/v1/addVotingCandidate | Add a voting candidate
+*SWGEventHeadApi* | [**ehAnnounceAll**](docs/SWGEventHeadApi.md#ehannounceall) | **POST** /eventHeadApi/v1/announceAll | send anouncement to everyone
+*SWGEventHeadApi* | [**ehAnnounceIAMINers**](docs/SWGEventHeadApi.md#ehannounceiaminers) | **POST** /eventHeadApi/v1/announceIAMINers | send anouncement to iaminers
+*SWGEventHeadApi* | [**ehAnnounceTicketHolders**](docs/SWGEventHeadApi.md#ehannounceticketholders) | **POST** /eventHeadApi/v1/announceTicketHolders | send anouncement to tickey holders
+*SWGEventHeadApi* | [**ehDisableVoting**](docs/SWGEventHeadApi.md#ehdisablevoting) | **PUT** /eventHeadApi/v1/disableVoting | Disable Voting
+*SWGEventHeadApi* | [**ehEditEvent**](docs/SWGEventHeadApi.md#eheditevent) | **PUT** /eventHeadApi/v1/editEvent | Edit Event
+*SWGEventHeadApi* | [**ehEnableVoting**](docs/SWGEventHeadApi.md#ehenablevoting) | **PUT** /eventHeadApi/v1/enableVoting | Enable Voting
+*SWGEventHeadApi* | [**ehFreeUpgradeIAMINER**](docs/SWGEventHeadApi.md#ehfreeupgradeiaminer) | **POST** /eventHeadApi/v1/freeUpgradeIAMINER | give Ticket to iaminer
+*SWGEventHeadApi* | [**ehGetEvent**](docs/SWGEventHeadApi.md#ehgetevent) | **GET** /eventHeadApi/v1/getEvent | get Event
+*SWGEventHeadApi* | [**ehGetIAMINers**](docs/SWGEventHeadApi.md#ehgetiaminers) | **GET** /eventHeadApi/v1/getIAMINers | get IAMINers
+*SWGEventHeadApi* | [**ehGetStats**](docs/SWGEventHeadApi.md#ehgetstats) | **GET** /eventHeadApi/v1/getStats | get Event
+*SWGEventHeadApi* | [**ehGetTicketHolders**](docs/SWGEventHeadApi.md#ehgetticketholders) | **GET** /eventHeadApi/v1/getTicketHolders | get Ticket holders for this event
+*SWGEventHeadApi* | [**ehGetVotingCandidates**](docs/SWGEventHeadApi.md#ehgetvotingcandidates) | **GET** /eventHeadApi/v1/getVotingCandidates | get Voting Candidates
+*SWGEventHeadApi* | [**ehRemoveAllCandidatesAndResetVoting**](docs/SWGEventHeadApi.md#ehremoveallcandidatesandresetvoting) | **DELETE** /eventHeadApi/v1/removeAllCandidatesAndResetVoting | Remove a voting candidate
+*SWGEventHeadApi* | [**ehRemoveVotingCandidate**](docs/SWGEventHeadApi.md#ehremovevotingcandidate) | **DELETE** /eventHeadApi/v1/removeVotingCandidate | Remove a voting candidate
+*SWGEventHeadApi* | [**ehgetHistory**](docs/SWGEventHeadApi.md#ehgethistory) | **GET** /eventHeadApi/v1/getHistory | get History
 *SWGManagerApi* | [**managerAddEventHead**](docs/SWGManagerApi.md#manageraddeventhead) | **POST** /managerApi/v1/addEventHead | Add Event Head to Event
 *SWGManagerApi* | [**managerAddManager**](docs/SWGManagerApi.md#manageraddmanager) | **POST** /managerApi/v1/addManager | Add Manager to Main Event
 *SWGManagerApi* | [**managerAddPR**](docs/SWGManagerApi.md#manageraddpr) | **POST** /managerApi/v1/addPR | Add PR Representative to Main Event
@@ -193,6 +214,19 @@ Class | Method | HTTP request | Description
 *SWGManagerApi* | [**managerGetManagers**](docs/SWGManagerApi.md#managergetmanagers) | **GET** /managerApi/v1/getManagers | get Managers for main event
 *SWGManagerApi* | [**managerGetPRS**](docs/SWGManagerApi.md#managergetprs) | **GET** /managerApi/v1/getPRS | get PRs for main event
 *SWGManagerApi* | [**managerGetStats**](docs/SWGManagerApi.md#managergetstats) | **GET** /managerApi/v1/getStats | Delete Main Event Stats
+*SWGPRApi* | [**prCheckInByEmail**](docs/SWGPRApi.md#prcheckinbyemail) | **POST** /prApi/v1/checkInByEmail | Check in User
+*SWGPRApi* | [**prCheckInByTicketId**](docs/SWGPRApi.md#prcheckinbyticketid) | **POST** /prApi/v1/checkInByTicketId | Check in User
+*SWGPRApi* | [**prGetEventList**](docs/SWGPRApi.md#prgeteventlist) | **GET** /prApi/v1/getEventList | get Events
+*SWGPRApi* | [**prGetHistory**](docs/SWGPRApi.md#prgethistory) | **GET** /prApi/v1/getHistory | get History
+*SWGPRApi* | [**prGetIAMIN**](docs/SWGPRApi.md#prgetiamin) | **GET** /prApi/v1/getIAMIN | get IAMIN
+*SWGPRApi* | [**prGetIAMINers**](docs/SWGPRApi.md#prgetiaminers) | **GET** /prApi/v1/getIAMINers | get IAMINers for the main event sharing contacts
+*SWGPRApi* | [**prGetIaminByEmail**](docs/SWGPRApi.md#prgetiaminbyemail) | **GET** /prApi/v1/getIaminByEmail | get IAMIN
+*SWGPRApi* | [**prGetPRRepresentative**](docs/SWGPRApi.md#prgetprrepresentative) | **GET** /prApi/v1/getPRRepresentative | get Self Profile
+*SWGPRApi* | [**prGetStats**](docs/SWGPRApi.md#prgetstats) | **GET** /prApi/v1/getStats | get Stats
+*SWGPRApi* | [**prGetTicketById**](docs/SWGPRApi.md#prgetticketbyid) | **GET** /prApi/v1/getTicketById | get Ticket
+*SWGPRApi* | [**prGiveTicketByEmailAndCell**](docs/SWGPRApi.md#prgiveticketbyemailandcell) | **POST** /prApi/v1/giveTicketByEmailAndCell | give Ticket
+*SWGPRApi* | [**prGiveTicketbyIaminId**](docs/SWGPRApi.md#prgiveticketbyiaminid) | **POST** /prApi/v1/giveTicketbyIaminId | give Ticket
+*SWGPRApi* | [**prUpdateLocation**](docs/SWGPRApi.md#prupdatelocation) | **PUT** /prApi/v1/UpdateLocation | update location shown on the map to buyers
 
 
 ## Documentation For Models
@@ -207,14 +241,16 @@ Class | Method | HTTP request | Description
  - [SWGComment](docs/SWGComment.md)
  - [SWGEvent](docs/SWGEvent.md)
  - [SWGEvent1](docs/SWGEvent1.md)
+ - [SWGEvent2](docs/SWGEvent2.md)
  - [SWGEventHead](docs/SWGEventHead.md)
  - [SWGEventLog](docs/SWGEventLog.md)
  - [SWGIAMIN](docs/SWGIAMIN.md)
+ - [SWGIAMIN1](docs/SWGIAMIN1.md)
  - [SWGInlineResponse200](docs/SWGInlineResponse200.md)
  - [SWGInlineResponse2001](docs/SWGInlineResponse2001.md)
  - [SWGInlineResponse20010](docs/SWGInlineResponse20010.md)
+ - [SWGInlineResponse20010Items](docs/SWGInlineResponse20010Items.md)
  - [SWGInlineResponse20011](docs/SWGInlineResponse20011.md)
- - [SWGInlineResponse20011Items](docs/SWGInlineResponse20011Items.md)
  - [SWGInlineResponse20012](docs/SWGInlineResponse20012.md)
  - [SWGInlineResponse20012Items](docs/SWGInlineResponse20012Items.md)
  - [SWGInlineResponse20013](docs/SWGInlineResponse20013.md)
@@ -231,8 +267,8 @@ Class | Method | HTTP request | Description
  - [SWGInlineResponse2005](docs/SWGInlineResponse2005.md)
  - [SWGInlineResponse2005Items](docs/SWGInlineResponse2005Items.md)
  - [SWGInlineResponse2006](docs/SWGInlineResponse2006.md)
+ - [SWGInlineResponse2006Items](docs/SWGInlineResponse2006Items.md)
  - [SWGInlineResponse2007](docs/SWGInlineResponse2007.md)
- - [SWGInlineResponse2007Items](docs/SWGInlineResponse2007Items.md)
  - [SWGInlineResponse2008](docs/SWGInlineResponse2008.md)
  - [SWGInlineResponse2008Items](docs/SWGInlineResponse2008Items.md)
  - [SWGInlineResponse2009](docs/SWGInlineResponse2009.md)

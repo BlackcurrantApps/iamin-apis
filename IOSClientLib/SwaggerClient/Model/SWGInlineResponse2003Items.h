@@ -26,34 +26,12 @@
 
 @property(nonatomic) NSString* name;
 
-@property(nonatomic) NSString* _description;
-
-@property(nonatomic) NSNumber* entryFee;
-
 @property(nonatomic) NSNumber* parentMainEventId;
 
-@property(nonatomic) NSNumber* parentCategoryId;
+@property(nonatomic) NSNumber* isdefault;
 
-@property(nonatomic) NSNumber* multipleTicketsPerUser;
-
-@property(nonatomic) NSNumber* groupSize;
-
-@property(nonatomic) NSNumber* registrable;
-
-@property(nonatomic) NSNumber* startTime;
-
-@property(nonatomic) NSNumber* isVotingEnabled;
-
-@property(nonatomic) NSString* intrestType;
-
-@property(nonatomic) NSNumber* isEventTicketTransferable;
+@property(nonatomic) NSNumber* isHidden;
 
 @property(nonatomic) NSString* backdropUrl;
-
-@property(nonatomic) NSNumber* currentInvolvement;
-
-@property(nonatomic) NSNumber* isCurrentUserIAMINED;
-
-@property(nonatomic) NSNumber* isCurrentUserHavingTicket;
 
 @end

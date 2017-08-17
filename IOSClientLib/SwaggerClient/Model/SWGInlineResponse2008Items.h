@@ -24,20 +24,26 @@
 
 @property(nonatomic) NSNumber* _id;
 
+@property(nonatomic) NSString* appUserEmail;
+
+@property(nonatomic) NSString* staffEmail;
+
+@property(nonatomic) NSNumber* mainEventListingId;
+
+@property(nonatomic) NSNumber* eventId;
+
 @property(nonatomic) NSNumber* timeStamp;
 
-@property(nonatomic) NSNumber* eventID;
+@property(nonatomic) NSString* paytmOrderId;
 
-@property(nonatomic) NSString* senderEmail;
+@property(nonatomic) NSNumber* quantity;
 
-@property(nonatomic) NSString* message;
+@property(nonatomic) NSNumber* amount;
 
-@property(nonatomic) NSString* senderProfilePic;
+@property(nonatomic) NSString* mainEventListingName;
 
-@property(nonatomic) NSString* senderName;
+@property(nonatomic) NSString* eventName;
 
-@property(nonatomic) NSNumber* isSenderManager;
-
-@property(nonatomic) NSNumber* isSenderEventHead;
+@property(nonatomic) NSString* action;
 
 @end

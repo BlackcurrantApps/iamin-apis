@@ -18,10 +18,10 @@
 #import "SWGInlineResponse2004Items.h"
 
 
-@protocol SWGInlineResponse2005Items
+@protocol SWGIAMIN1
 @end
 
-@interface SWGInlineResponse2005Items : SWGObject
+@interface SWGIAMIN1 : SWGObject
 
 
 @property(nonatomic) NSNumber* _id;

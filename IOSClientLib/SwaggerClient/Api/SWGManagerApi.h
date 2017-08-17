@@ -1,8 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "SWGCategory1.h"
 #import "SWGEvent1.h"
-#import "SWGInlineResponse20011.h"
-#import "SWGInlineResponse20011Items.h"
 #import "SWGInlineResponse20012.h"
 #import "SWGInlineResponse20012Items.h"
 #import "SWGInlineResponse20013.h"
@@ -12,7 +10,9 @@
 #import "SWGInlineResponse20015.h"
 #import "SWGInlineResponse2003.h"
 #import "SWGInlineResponse2003Items.h"
-#import "SWGInlineResponse2007.h"
+#import "SWGInlineResponse2004.h"
+#import "SWGInlineResponse2004Items.h"
+#import "SWGInlineResponse2008.h"
 #import "SWGMainEvent1.h"
 #import "SWGMainEvent2.h"
 #import "SWGApi.h"
@@ -195,9 +195,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20011Items*
+/// @return SWGInlineResponse2003Items*
 -(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory1*) category
-    completionHandler: (void (^)(SWGInlineResponse20011Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
 
 
 /// Edit & Add Event
@@ -207,9 +207,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2003Items*
+/// @return SWGInlineResponse2004Items*
 -(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent1*) event
-    completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
 
 
 /// Edit Main Event
@@ -231,9 +231,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2003Items*
+/// @return SWGInlineResponse2004Items*
 -(NSURLSessionTask*) managerGetEventWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
 
 
 /// get a categories under a main event
@@ -243,9 +243,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20011*
+/// @return SWGInlineResponse2003*
 -(NSURLSessionTask*) managerGetEventCategoriesWithMainEventID: (NSNumber*) mainEventID
-    completionHandler: (void (^)(SWGInlineResponse20011* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
 
 
 /// get a category by id
@@ -255,9 +255,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20011Items*
+/// @return SWGInlineResponse2003Items*
 -(NSURLSessionTask*) managerGetEventCategoryWithCategoryID: (NSNumber*) categoryID
-    completionHandler: (void (^)(SWGInlineResponse20011Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
 
 
 /// get Event Heads for Event
@@ -279,9 +279,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2003*
+/// @return SWGInlineResponse2004*
 -(NSURLSessionTask*) managerGetEventsWithCategoryID: (NSNumber*) categoryID
-    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
 
 
 /// Get Main Event History
@@ -291,9 +291,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2007*
+/// @return SWGInlineResponse2008*
 -(NSURLSessionTask*) managerGetHistoryWithMaineventId: (NSNumber*) maineventId
-    completionHandler: (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
 
 
 /// get a single Main Event

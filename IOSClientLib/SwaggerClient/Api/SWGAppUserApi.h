@@ -5,14 +5,15 @@
 #import "SWGInlineResponse200.h"
 #import "SWGInlineResponse2001.h"
 #import "SWGInlineResponse20010.h"
+#import "SWGInlineResponse20011.h"
 #import "SWGInlineResponse2002.h"
 #import "SWGInlineResponse2003.h"
-#import "SWGInlineResponse2003Items.h"
 #import "SWGInlineResponse2004.h"
 #import "SWGInlineResponse2004Items.h"
 #import "SWGInlineResponse2005.h"
 #import "SWGInlineResponse2005Items.h"
 #import "SWGInlineResponse2006.h"
+#import "SWGInlineResponse2006Items.h"
 #import "SWGInlineResponse2007.h"
 #import "SWGInlineResponse2008.h"
 #import "SWGInlineResponse2009.h"
@@ -100,6 +101,18 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
     (void (^)(SWGAppVersion* output, NSError* error)) handler;
 
 
+/// get categories inside a main-event
+/// 
+///
+/// @param mainEventId 
+/// 
+///  code:200 message:"OK"
+///
+/// @return SWGInlineResponse2003*
+-(NSURLSessionTask*) getCategoriesWithMainEventId: (NSNumber*) mainEventId
+    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
+
+
 /// get Comments on a Event
 /// 
 ///
@@ -107,21 +120,21 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2008*
+/// @return SWGInlineResponse2009*
 -(NSURLSessionTask*) getCommentsForEventWithEventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2009* output, NSError* error)) handler;
 
 
-/// get events inside a category
+/// get a single event inside a category
 /// 
 ///
 /// @param eventID 
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2003Items*
+/// @return SWGInlineResponse2004Items*
 -(NSURLSessionTask*) getEventWithEventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
 
 
 /// get events inside a category
@@ -131,9 +144,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2003*
+/// @return SWGInlineResponse2004*
 -(NSURLSessionTask*) getEventsWithCategoryId: (NSNumber*) categoryId
-    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
 
 
 /// get history of transactions for a user
@@ -142,9 +155,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2007*
+/// @return SWGInlineResponse2008*
 -(NSURLSessionTask*) getHistoryWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
+    (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
 
 
 /// get by IAMIN ID
@@ -154,9 +167,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004Items*
+/// @return SWGInlineResponse2005Items*
 -(NSURLSessionTask*) getIAMINWithIaminID: (NSNumber*) iaminID
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 
 
 /// get iamins of a user
@@ -165,9 +178,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004*
+/// @return SWGInlineResponse2005*
 -(NSURLSessionTask*) getIAMINSWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
+    (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
 
 
 /// get all published Main Events
@@ -223,9 +236,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2005*
+/// @return SWGInlineResponse2006*
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
 
 
 /// get Tickets of a user
@@ -234,9 +247,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2005*
+/// @return SWGInlineResponse2006*
 -(NSURLSessionTask*) getTicketsWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
+    (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
 
 
 /// Get registered app user
@@ -256,9 +269,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2006*
+/// @return SWGInlineResponse2007*
 -(NSURLSessionTask*) getUserRolesWithCompletionHandler: 
-    (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
+    (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
 
 
 /// get Voting candidates on a event if enabled
@@ -268,9 +281,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2009*
+/// @return SWGInlineResponse20010*
 -(NSURLSessionTask*) getVotingCandidatesWithEventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGInlineResponse2009* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler;
 
 
 /// IAMIN in an event
@@ -280,9 +293,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004Items*
+/// @return SWGInlineResponse2005Items*
 -(NSURLSessionTask*) iaminWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 
 
 /// Initialize a paytm transaction
@@ -295,12 +308,12 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20010*
+/// @return SWGInlineResponse20011*
 -(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
     transferToEmail: (NSString*) transferToEmail
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse20011* output, NSError* error)) handler;
 
 
 /// Initialize a paytm transaction
@@ -310,9 +323,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2005Items*
+/// @return SWGInlineResponse2006Items*
 -(NSURLSessionTask*) paytmTransactionSuccessWithOrderID: (NSString*) orderID
-    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler;
 
 
 /// Post comment on a event
@@ -355,10 +368,10 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004Items*
+/// @return SWGInlineResponse2005Items*
 -(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
     canContact: (NSNumber*) canContact
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 
 
 /// Transfer your ticket
@@ -387,10 +400,10 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004Items*
+/// @return SWGInlineResponse2005Items*
 -(NSURLSessionTask*) updateContactPreferenceWithIaminId: (NSNumber*) iaminId
     canContact: (NSString*) canContact
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 
 
 
