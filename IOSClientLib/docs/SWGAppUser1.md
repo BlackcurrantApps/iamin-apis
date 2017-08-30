@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_id** | **NSString*** | email id of the user | [optional] 
+**email** | **NSString*** | email id of the user | [optional] 
 **contactNo** | **NSString*** |  | [optional] 
 **name** | **NSString*** |  | [optional] 
 **gender** | **NSNumber*** | 1 for male 0 for female | [optional] 

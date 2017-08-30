@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **isdefault** | **NSNumber*** |  | [optional] 
 **isHidden** | **NSNumber*** |  | [optional] 
 **backdropUrl** | **NSString*** |  | [optional] 
+**condenseEvents** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -34,4 +34,6 @@
 
 @property(nonatomic) NSString* backdropUrl;
 
+@property(nonatomic) NSNumber* condenseEvents;
+
 @end

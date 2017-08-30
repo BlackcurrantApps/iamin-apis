@@ -1079,10 +1079,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param ticketID  
 ///
-///  @returns SWGInlineResponse2006*
+///  @returns SWGInlineResponse2006Items*
 ///
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-    completionHandler: (void (^)(SWGInlineResponse2006* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler {
     // verify the required parameter 'ticketID' is set
     if (ticketID == nil) {
         NSParameterAssert(ticketID);
@@ -1134,10 +1134,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2006*"
+                              responseType: @"SWGInlineResponse2006Items*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2006*)data, error);
+                                    handler((SWGInlineResponse2006Items*)data, error);
                                 }
                             }];
 }
@@ -1628,13 +1628,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 ///  @param message  
 ///
-///  @param rating  (optional)
-///
 ///  @returns void
 ///
 -(NSURLSessionTask*) postCommentWithEventID: (NSNumber*) eventID
     message: (NSString*) message
-    rating: (NSNumber*) rating
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'eventID' is set
     if (eventID == nil) {
@@ -1668,9 +1665,6 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     }
     if (message != nil) {
         queryParams[@"Message"] = message;
-    }
-    if (rating != nil) {
-        queryParams[@"Rating"] = rating;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -1808,12 +1802,12 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param iaminId  
 ///
-///  @param canContact  
+///  @param quantity  
 ///
 ///  @returns SWGInlineResponse2005Items*
 ///
 -(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
-    canContact: (NSNumber*) canContact
+    quantity: (NSNumber*) quantity
     completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler {
     // verify the required parameter 'iaminId' is set
     if (iaminId == nil) {
@@ -1826,11 +1820,11 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
         return nil;
     }
 
-    // verify the required parameter 'canContact' is set
-    if (canContact == nil) {
-        NSParameterAssert(canContact);
+    // verify the required parameter 'quantity' is set
+    if (quantity == nil) {
+        NSParameterAssert(quantity);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"canContact"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"quantity"] };
             NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
@@ -1845,8 +1839,8 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     if (iaminId != nil) {
         queryParams[@"iaminId"] = iaminId;
     }
-    if (canContact != nil) {
-        queryParams[@"canContact"] = canContact;
+    if (quantity != nil) {
+        queryParams[@"quantity"] = quantity;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];

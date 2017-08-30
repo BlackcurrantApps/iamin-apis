@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"name": @"name", @"_description": @"description", @"entryFee": @"entryFee", @"parentMainEventId": @"parentMainEventId", @"parentCategoryId": @"parentCategoryId", @"multipleTicketsPerUser": @"multipleTicketsPerUser", @"groupSize": @"groupSize", @"registrable": @"registrable", @"startTime": @"startTime", @"isVotingEnabled": @"isVotingEnabled", @"intrestType": @"intrestType", @"isEventTicketTransferable": @"isEventTicketTransferable", @"backdropUrl": @"backdropUrl", @"currentInvolvement": @"currentInvolvement", @"isCurrentUserIAMINED": @"isCurrentUserIAMINED", @"isCurrentUserHavingTicket": @"isCurrentUserHavingTicket" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"name": @"name", @"_description": @"description", @"entryFee": @"entryFee", @"parentMainEventId": @"parentMainEventId", @"parentCategoryId": @"parentCategoryId", @"multipleTicketsPerUser": @"multipleTicketsPerUser", @"groupSize": @"groupSize", @"registrable": @"registrable", @"startTime": @"startTime", @"isVotingEnabled": @"isVotingEnabled", @"intrestType": @"intrestType", @"isEventTicketTransferable": @"isEventTicketTransferable", @"backdropUrl": @"backdropUrl", @"currentInvolvement": @"currentInvolvement", @"isCurrentUserIAMINED": @"isCurrentUserIAMINED", @"isCurrentUserHavingTicket": @"isCurrentUserHavingTicket", @"condensedHead": @"condensedHead" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"name", @"_description", @"entryFee", @"parentMainEventId", @"parentCategoryId", @"multipleTicketsPerUser", @"groupSize", @"registrable", @"startTime", @"isVotingEnabled", @"intrestType", @"isEventTicketTransferable", @"backdropUrl", @"currentInvolvement", @"isCurrentUserIAMINED", @"isCurrentUserHavingTicket"];
+  NSArray *optionalProperties = @[@"_id", @"name", @"_description", @"entryFee", @"parentMainEventId", @"parentCategoryId", @"multipleTicketsPerUser", @"groupSize", @"registrable", @"startTime", @"isVotingEnabled", @"intrestType", @"isEventTicketTransferable", @"backdropUrl", @"currentInvolvement", @"isCurrentUserIAMINED", @"isCurrentUserHavingTicket", @"condensedHead"];
   return [optionalProperties containsObject:propertyName];
 }
 

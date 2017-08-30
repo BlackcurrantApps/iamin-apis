@@ -1,6 +1,6 @@
 # SWGAppUserApi
 
-All URIs are relative to *https://2-dot-iamin-events.appspot.com/_ah/api*
+All URIs are relative to *https://iamin-events.appspot.com/_ah/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -892,7 +892,7 @@ Name | Type | Description  | Notes
 # **getTicket**
 ```objc
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-        completionHandler: (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler;
 ```
 
 get Tickets of a user
@@ -913,7 +913,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get Tickets of a user
 [apiInstance getTicketWithTicketID:ticketID
-          completionHandler: ^(SWGInlineResponse2006* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2006Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -931,7 +931,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2006***](SWGInlineResponse2006.md)
+[**SWGInlineResponse2006Items***](SWGInlineResponse2006Items.md)
 
 ### Authorization
 
@@ -1337,7 +1337,6 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) postCommentWithEventID: (NSNumber*) eventID
     message: (NSString*) message
-    rating: (NSNumber*) rating
         completionHandler: (void (^)(NSError* error)) handler;
 ```
 
@@ -1355,14 +1354,12 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 NSNumber* eventID = @789; // 
 NSString* message = @"message_example"; // 
-NSNumber* rating = @56; //  (optional)
 
 SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // Post comment on a event
 [apiInstance postCommentWithEventID:eventID
               message:message
-              rating:rating
           completionHandler: ^(NSError* error) {
                         if (error) {
                             NSLog(@"Error calling SWGAppUserApi->postComment: %@", error);
@@ -1376,7 +1373,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **eventID** | **NSNumber***|  | 
  **message** | **NSString***|  | 
- **rating** | **NSNumber***|  | [optional] 
 
 ### Return type
 
@@ -1456,7 +1452,7 @@ void (empty response body)
 # **setIaminQuantity**
 ```objc
 -(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
-    canContact: (NSNumber*) canContact
+    quantity: (NSNumber*) quantity
         completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 ```
 
@@ -1473,13 +1469,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSNumber* iaminId = @789; // 
-NSNumber* canContact = @true; // 
+NSNumber* quantity = @56; // 
 
 SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // Set quantity of tickets wanted
 [apiInstance setIaminQuantityWithIaminId:iaminId
-              canContact:canContact
+              quantity:quantity
           completionHandler: ^(SWGInlineResponse2005Items* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -1495,7 +1491,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **iaminId** | **NSNumber***|  | 
- **canContact** | **NSNumber***|  | 
+ **quantity** | **NSNumber***|  | 
 
 ### Return type
 

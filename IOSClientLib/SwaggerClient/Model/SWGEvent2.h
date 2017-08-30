@@ -56,4 +56,6 @@
 
 @property(nonatomic) NSNumber* isCurrentUserHavingTicket;
 
+@property(nonatomic) NSNumber* condensedHead;
+
 @end

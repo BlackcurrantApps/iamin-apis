@@ -141,7 +141,7 @@ SWGAppUserApi *apiInstance = [[SWGAppUserApi alloc] init];
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://2-dot-iamin-events.appspot.com/_ah/api*
+All URIs are relative to *https://iamin-events.appspot.com/_ah/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

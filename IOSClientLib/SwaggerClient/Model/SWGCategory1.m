@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"name": @"name", @"parentMainEventId": @"parentMainEventId", @"isdefault": @"isdefault", @"isHidden": @"isHidden", @"backdropUrl": @"backdropUrl" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"name": @"name", @"parentMainEventId": @"parentMainEventId", @"isdefault": @"isdefault", @"isHidden": @"isHidden", @"backdropUrl": @"backdropUrl", @"condenseEvents": @"condenseEvents" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"name", @"parentMainEventId", @"isdefault", @"isHidden", @"backdropUrl"];
+  NSArray *optionalProperties = @[@"_id", @"name", @"parentMainEventId", @"isdefault", @"isHidden", @"backdropUrl", @"condenseEvents"];
   return [optionalProperties containsObject:propertyName];
 }
 

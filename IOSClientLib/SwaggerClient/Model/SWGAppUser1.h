@@ -23,7 +23,7 @@
 
 /* email id of the user [optional]
  */
-@property(nonatomic) NSString* _id;
+@property(nonatomic) NSString* email;
 
 @property(nonatomic) NSString* contactNo;
 

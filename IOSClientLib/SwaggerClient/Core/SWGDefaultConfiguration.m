@@ -28,7 +28,7 @@
 - (instancetype) init {
     self = [super init];
     if (self) {
-        _host = @"https://2-dot-iamin-events.appspot.com/_ah/api";
+        _host = @"https://iamin-events.appspot.com/_ah/api";
         _username = @"";
         _password = @"";
         _accessToken= @"";

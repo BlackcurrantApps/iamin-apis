@@ -1,6 +1,6 @@
 # SWGPRApi
 
-All URIs are relative to *https://2-dot-iamin-events.appspot.com/_ah/api*
+All URIs are relative to *https://iamin-events.appspot.com/_ah/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

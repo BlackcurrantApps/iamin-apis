@@ -5,7 +5,7 @@ info:
   title: IAMIN API
   contact:
     email: sanket@blackcurrantapps.com
-host: 2-dot-iamin-events.appspot.com
+host: iamin-events.appspot.com
 basePath: /_ah/api
 tags:
   - name: AppUser
@@ -93,7 +93,7 @@ paths:
           schema:
             type: object
             properties:
-              id:
+              email:
                 type: string
                 description: email id of the user
               contactNo:
@@ -373,12 +373,7 @@ paths:
         '200':
           description: OK
           schema:
-            type: object
-            properties:
-              items:
-                type: array
-                items:
-                  $ref: '#/definitions/Ticket'
+            $ref: '#/definitions/Ticket'
                   
   /appUserApi/v1/getUserRoles:
     get:
@@ -436,8 +431,9 @@ paths:
           format: int64
           in: query
           required: true
-        - name: canContact
-          type: boolean
+        - name: quantity
+          type: integer
+          format: int32
           in: query
           required: true
       responses:
@@ -553,12 +549,6 @@ paths:
           type: string
           in: query
           required: true
-        - name: Rating
-          type: integer
-          format: int32
-          in: query
-          minimum: 1
-          maximum: 5
       responses:
         '200':
           description: OK
@@ -2047,6 +2037,8 @@ definitions:
         type: boolean
       backdropUrl:
         type: string
+      condenseEvents:
+        type: boolean
 
   Event:
     type: object
@@ -2092,6 +2084,8 @@ definitions:
         type: boolean
       isCurrentUserHavingTicket:
         type: boolean
+      condensedHead:
+        type: boolean
         
   UserRoles:
     type: object
@@ -2114,7 +2108,7 @@ definitions:
   AppUser:
     type: object
     properties:
-      id:
+      email:
         type: string
         description: email id of the user
       contactNo:

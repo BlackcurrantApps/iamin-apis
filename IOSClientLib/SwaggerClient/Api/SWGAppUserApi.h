@@ -236,9 +236,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2006*
+/// @return SWGInlineResponse2006Items*
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-    completionHandler: (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler;
 
 
 /// get Tickets of a user
@@ -333,14 +333,12 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 ///
 /// @param eventID 
 /// @param message 
-/// @param rating  (optional)
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return 
 -(NSURLSessionTask*) postCommentWithEventID: (NSNumber*) eventID
     message: (NSString*) message
-    rating: (NSNumber*) rating
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -364,13 +362,13 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///
 /// @param iaminId 
-/// @param canContact 
+/// @param quantity 
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return SWGInlineResponse2005Items*
 -(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
-    canContact: (NSNumber*) canContact
+    quantity: (NSNumber*) quantity
     completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
 
 
