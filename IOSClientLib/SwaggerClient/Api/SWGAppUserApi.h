@@ -302,7 +302,6 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// Call this before making any payment
 ///
 /// @param eventId 
-/// @param transferToEmail 
 /// @param cellNo 
 /// @param quantity 
 /// 
@@ -310,7 +309,6 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 ///
 /// @return SWGPaytmTransaction1*
 -(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
-    transferToEmail: (NSString*) transferToEmail
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
     completionHandler: (void (^)(SWGPaytmTransaction1* output, NSError* error)) handler;

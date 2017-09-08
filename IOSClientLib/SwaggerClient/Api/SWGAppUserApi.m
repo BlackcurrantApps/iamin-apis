@@ -1439,8 +1439,6 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// Call this before making any payment
 ///  @param eventId  
 ///
-///  @param transferToEmail  
-///
 ///  @param cellNo  
 ///
 ///  @param quantity  
@@ -1448,7 +1446,6 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///  @returns SWGPaytmTransaction1*
 ///
 -(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
-    transferToEmail: (NSString*) transferToEmail
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
     completionHandler: (void (^)(SWGPaytmTransaction1* output, NSError* error)) handler {
@@ -1457,17 +1454,6 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
         NSParameterAssert(eventId);
         if(handler) {
             NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventId"] };
-            NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
-            handler(nil, error);
-        }
-        return nil;
-    }
-
-    // verify the required parameter 'transferToEmail' is set
-    if (transferToEmail == nil) {
-        NSParameterAssert(transferToEmail);
-        if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"transferToEmail"] };
             NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
@@ -1503,9 +1489,6 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     if (eventId != nil) {
         queryParams[@"eventId"] = eventId;
-    }
-    if (transferToEmail != nil) {
-        queryParams[@"transferToEmail"] = transferToEmail;
     }
     if (cellNo != nil) {
         queryParams[@"cellNo"] = cellNo;

@@ -1207,7 +1207,6 @@ Name | Type | Description  | Notes
 # **initializePaytmTransaction**
 ```objc
 -(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
-    transferToEmail: (NSString*) transferToEmail
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
         completionHandler: (void (^)(SWGPaytmTransaction1* output, NSError* error)) handler;
@@ -1228,7 +1227,6 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 
 
 NSNumber* eventId = @789; // 
-NSString* transferToEmail = @"transferToEmail_example"; // 
 NSString* cellNo = @"cellNo_example"; // 
 NSNumber* quantity = @56; // 
 
@@ -1236,7 +1234,6 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // Initialize a paytm transaction
 [apiInstance initializePaytmTransactionWithEventId:eventId
-              transferToEmail:transferToEmail
               cellNo:cellNo
               quantity:quantity
           completionHandler: ^(SWGPaytmTransaction1* output, NSError* error) {
@@ -1254,7 +1251,6 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **eventId** | **NSNumber***|  | 
- **transferToEmail** | **NSString***|  | 
  **cellNo** | **NSString***|  | 
  **quantity** | **NSNumber***|  | 
 

@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
     s.name             = "SwaggerClient"
-    s.version          = "1.0.4"
+    s.version          = "1.0.5"
 
     s.summary          = "IAMIN API"
     s.description      = <<-DESC
