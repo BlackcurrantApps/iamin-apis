@@ -671,10 +671,6 @@ paths:
           format: int64
           required: true
           in: query
-        - name: transferToEmail
-          type: string
-          required: true
-          in: query
         - name: cellNo
           type: string
           required: true
