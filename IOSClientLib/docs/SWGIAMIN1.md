@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **parentMainEventId** | **NSNumber*** |  | [optional] 
 **contactPreference** | **NSNumber*** |  | [optional] 
 **requestQuantity** | **NSNumber*** |  | [optional] 
-**event** | [**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md) |  | [optional] 
-**bearer** | [**SWGInlineResponse200***](SWGInlineResponse200.md) |  | [optional] 
+**event** | [**SWGEvent1***](SWGEvent1.md) |  | [optional] 
+**bearer** | [**SWGAppUser2***](SWGAppUser2.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

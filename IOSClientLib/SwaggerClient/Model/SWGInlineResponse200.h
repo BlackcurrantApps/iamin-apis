@@ -14,6 +14,7 @@
 */
 
 
+#import "SWGOffer1.h"
 
 
 @protocol SWGInlineResponse200
@@ -21,27 +22,7 @@
 
 @interface SWGInlineResponse200 : SWGObject
 
-/* email id of the user [optional]
- */
-@property(nonatomic) NSString* email;
 
-@property(nonatomic) NSString* contactNo;
-
-@property(nonatomic) NSString* name;
-/* 1 for male 0 for female [optional]
- */
-@property(nonatomic) NSNumber* gender;
-
-@property(nonatomic) NSString* institution;
-
-@property(nonatomic) NSString* city;
-
-@property(nonatomic) NSArray<NSString*>* intrests;
-/* url to the profile picture [optional]
- */
-@property(nonatomic) NSString* profilePic;
-/* Google Cloud Messaging Registration ID [optional]
- */
-@property(nonatomic) NSString* regId;
+@property(nonatomic) NSArray<SWGOffer1>* items;
 
 @end

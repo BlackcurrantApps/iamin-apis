@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"isManagerForMainEvents": @"isManagerForMainEvents", @"isPrForEvents": @"isPrForEvents", @"isEventHeadForEvents": @"isEventHeadForEvents" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"items": @"items" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"isManagerForMainEvents", @"isPrForEvents", @"isEventHeadForEvents"];
+  NSArray *optionalProperties = @[@"items"];
   return [optionalProperties containsObject:propertyName];
 }
 

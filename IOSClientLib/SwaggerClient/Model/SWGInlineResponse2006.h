@@ -14,7 +14,7 @@
 */
 
 
-#import "SWGInlineResponse2006Items.h"
+#import "SWGComment1.h"
 
 
 @protocol SWGInlineResponse2006
@@ -23,6 +23,6 @@
 @interface SWGInlineResponse2006 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGInlineResponse2006Items>* items;
+@property(nonatomic) NSArray<SWGComment1>* items;
 
 @end

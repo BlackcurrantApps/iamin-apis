@@ -14,7 +14,7 @@
 */
 
 
-#import "SWGInlineResponse200.h"
+#import "SWGAppUser2.h"
 
 
 @protocol SWGPRLocation
@@ -27,6 +27,6 @@
 
 @property(nonatomic) NSNumber* lon;
 
-@property(nonatomic) SWGInlineResponse200* appUser;
+@property(nonatomic) SWGAppUser2* appUser;
 
 @end

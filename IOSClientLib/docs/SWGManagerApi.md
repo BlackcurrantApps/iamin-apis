@@ -34,7 +34,7 @@ Method | HTTP request | Description
 ```objc
 -(NSURLSessionTask*) managerAddEventHeadWithEhEmail: (NSString*) ehEmail
     eventID: (NSNumber*) eventID
-        completionHandler: (void (^)(SWGInlineResponse20014Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEventHead1* output, NSError* error)) handler;
 ```
 
 Add Event Head to Event
@@ -57,7 +57,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 // Add Event Head to Event
 [apiInstance managerAddEventHeadWithEhEmail:ehEmail
               eventID:eventID
-          completionHandler: ^(SWGInlineResponse20014Items* output, NSError* error) {
+          completionHandler: ^(SWGEventHead1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20014Items***](SWGInlineResponse20014Items.md)
+[**SWGEventHead1***](SWGEventHead1.md)
 
 ### Authorization
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) managerAddManagerWithManageremail: (NSString*) manageremail
     mainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGInlineResponse20013Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGManager1* output, NSError* error)) handler;
 ```
 
 Add Manager to Main Event
@@ -116,7 +116,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 // Add Manager to Main Event
 [apiInstance managerAddManagerWithManageremail:manageremail
               mainEventId:mainEventId
-          completionHandler: ^(SWGInlineResponse20013Items* output, NSError* error) {
+          completionHandler: ^(SWGManager1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20013Items***](SWGInlineResponse20013Items.md)
+[**SWGManager1***](SWGManager1.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) managerAddPRWithPRemail: (NSString*) pRemail
     mainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGInlineResponse20012Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGPRRepresentative1* output, NSError* error)) handler;
 ```
 
 Add PR Representative to Main Event
@@ -175,7 +175,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 // Add PR Representative to Main Event
 [apiInstance managerAddPRWithPRemail:pRemail
               mainEventId:mainEventId
-          completionHandler: ^(SWGInlineResponse20012Items* output, NSError* error) {
+          completionHandler: ^(SWGPRRepresentative1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20012Items***](SWGInlineResponse20012Items.md)
+[**SWGPRRepresentative1***](SWGPRRepresentative1.md)
 
 ### Authorization
 
@@ -649,8 +649,8 @@ void (empty response body)
 
 # **managerEditCategory**
 ```objc
--(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory1*) category
-        completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
+-(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory2*) category
+        completionHandler: (void (^)(SWGCategory1* output, NSError* error)) handler;
 ```
 
 Edit & Add Event
@@ -665,13 +665,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-SWGCategory1* category = [[SWGCategory1 alloc] init]; // 
+SWGCategory2* category = [[SWGCategory2 alloc] init]; // 
 
 SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // Edit & Add Event
 [apiInstance managerEditCategoryWithCategory:category
-          completionHandler: ^(SWGInlineResponse2003Items* output, NSError* error) {
+          completionHandler: ^(SWGCategory1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -685,11 +685,11 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **category** | [**SWGCategory1***](SWGCategory1.md)|  | 
+ **category** | [**SWGCategory2***](SWGCategory2.md)|  | 
 
 ### Return type
 
-[**SWGInlineResponse2003Items***](SWGInlineResponse2003Items.md)
+[**SWGCategory1***](SWGCategory1.md)
 
 ### Authorization
 
@@ -704,8 +704,8 @@ Name | Type | Description  | Notes
 
 # **managerEditEvent**
 ```objc
--(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent1*) event
-        completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+-(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent2*) event
+        completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
 ```
 
 Edit & Add Event
@@ -720,13 +720,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-SWGEvent1* event = [[SWGEvent1 alloc] init]; // 
+SWGEvent2* event = [[SWGEvent2 alloc] init]; // 
 
 SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // Edit & Add Event
 [apiInstance managerEditEventWithEvent:event
-          completionHandler: ^(SWGInlineResponse2004Items* output, NSError* error) {
+          completionHandler: ^(SWGEvent1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -740,11 +740,11 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **event** | [**SWGEvent1***](SWGEvent1.md)|  | 
+ **event** | [**SWGEvent2***](SWGEvent2.md)|  | 
 
 ### Return type
 
-[**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md)
+[**SWGEvent1***](SWGEvent1.md)
 
 ### Authorization
 
@@ -812,7 +812,7 @@ void (empty response body)
 # **managerGetEvent**
 ```objc
 -(NSURLSessionTask*) managerGetEventWithEventId: (NSNumber*) eventId
-        completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
 ```
 
 get a event by event id
@@ -833,7 +833,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get a event by event id
 [apiInstance managerGetEventWithEventId:eventId
-          completionHandler: ^(SWGInlineResponse2004Items* output, NSError* error) {
+          completionHandler: ^(SWGEvent1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -851,7 +851,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2004Items***](SWGInlineResponse2004Items.md)
+[**SWGEvent1***](SWGEvent1.md)
 
 ### Authorization
 
@@ -867,7 +867,7 @@ Name | Type | Description  | Notes
 # **managerGetEventCategories**
 ```objc
 -(NSURLSessionTask*) managerGetEventCategoriesWithMainEventID: (NSNumber*) mainEventID
-        completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2001* output, NSError* error)) handler;
 ```
 
 get a categories under a main event
@@ -888,7 +888,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get a categories under a main event
 [apiInstance managerGetEventCategoriesWithMainEventID:mainEventID
-          completionHandler: ^(SWGInlineResponse2003* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2001* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -906,7 +906,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2003***](SWGInlineResponse2003.md)
+[**SWGInlineResponse2001***](SWGInlineResponse2001.md)
 
 ### Authorization
 
@@ -922,7 +922,7 @@ Name | Type | Description  | Notes
 # **managerGetEventCategory**
 ```objc
 -(NSURLSessionTask*) managerGetEventCategoryWithCategoryID: (NSNumber*) categoryID
-        completionHandler: (void (^)(SWGInlineResponse2003Items* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGCategory1* output, NSError* error)) handler;
 ```
 
 get a category by id
@@ -943,7 +943,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get a category by id
 [apiInstance managerGetEventCategoryWithCategoryID:categoryID
-          completionHandler: ^(SWGInlineResponse2003Items* output, NSError* error) {
+          completionHandler: ^(SWGCategory1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -961,7 +961,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2003Items***](SWGInlineResponse2003Items.md)
+[**SWGCategory1***](SWGCategory1.md)
 
 ### Authorization
 
@@ -977,7 +977,7 @@ Name | Type | Description  | Notes
 # **managerGetEventHeads**
 ```objc
 -(NSURLSessionTask*) managerGetEventHeadsWithEventID: (NSNumber*) eventID
-        completionHandler: (void (^)(SWGInlineResponse20014* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler;
 ```
 
 get Event Heads for Event
@@ -998,7 +998,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get Event Heads for Event
 [apiInstance managerGetEventHeadsWithEventID:eventID
-          completionHandler: ^(SWGInlineResponse20014* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse20010* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1016,7 +1016,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20014***](SWGInlineResponse20014.md)
+[**SWGInlineResponse20010***](SWGInlineResponse20010.md)
 
 ### Authorization
 
@@ -1032,7 +1032,7 @@ Name | Type | Description  | Notes
 # **managerGetEvents**
 ```objc
 -(NSURLSessionTask*) managerGetEventsWithCategoryID: (NSNumber*) categoryID
-        completionHandler: (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
 ```
 
 get a events under a category
@@ -1053,7 +1053,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get a events under a category
 [apiInstance managerGetEventsWithCategoryID:categoryID
-          completionHandler: ^(SWGInlineResponse2004* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2002* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1071,7 +1071,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2004***](SWGInlineResponse2004.md)
+[**SWGInlineResponse2002***](SWGInlineResponse2002.md)
 
 ### Authorization
 
@@ -1087,7 +1087,7 @@ Name | Type | Description  | Notes
 # **managerGetHistory**
 ```objc
 -(NSURLSessionTask*) managerGetHistoryWithMaineventId: (NSNumber*) maineventId
-        completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
 ```
 
 Get Main Event History
@@ -1108,7 +1108,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // Get Main Event History
 [apiInstance managerGetHistoryWithMaineventId:maineventId
-          completionHandler: ^(SWGInlineResponse2008* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2005* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1126,7 +1126,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse2008***](SWGInlineResponse2008.md)
+[**SWGInlineResponse2005***](SWGInlineResponse2005.md)
 
 ### Authorization
 
@@ -1197,7 +1197,7 @@ Name | Type | Description  | Notes
 # **managerGetManagers**
 ```objc
 -(NSURLSessionTask*) managerGetManagersWithMainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGInlineResponse20013* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2009* output, NSError* error)) handler;
 ```
 
 get Managers for main event
@@ -1218,7 +1218,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get Managers for main event
 [apiInstance managerGetManagersWithMainEventId:mainEventId
-          completionHandler: ^(SWGInlineResponse20013* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2009* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1236,7 +1236,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20013***](SWGInlineResponse20013.md)
+[**SWGInlineResponse2009***](SWGInlineResponse2009.md)
 
 ### Authorization
 
@@ -1252,7 +1252,7 @@ Name | Type | Description  | Notes
 # **managerGetPRS**
 ```objc
 -(NSURLSessionTask*) managerGetPRSWithMainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGInlineResponse20012* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
 ```
 
 get PRs for main event
@@ -1273,7 +1273,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get PRs for main event
 [apiInstance managerGetPRSWithMainEventId:mainEventId
-          completionHandler: ^(SWGInlineResponse20012* output, NSError* error) {
+          completionHandler: ^(SWGInlineResponse2008* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1291,7 +1291,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20012***](SWGInlineResponse20012.md)
+[**SWGInlineResponse2008***](SWGInlineResponse2008.md)
 
 ### Authorization
 
@@ -1307,7 +1307,7 @@ Name | Type | Description  | Notes
 # **managerGetStats**
 ```objc
 -(NSURLSessionTask*) managerGetStatsWithMainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGInlineResponse20015* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler;
 ```
 
 Delete Main Event Stats
@@ -1328,7 +1328,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // Delete Main Event Stats
 [apiInstance managerGetStatsWithMainEventId:mainEventId
-          completionHandler: ^(SWGInlineResponse20015* output, NSError* error) {
+          completionHandler: ^(SWGMainEventStats1* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1346,7 +1346,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGInlineResponse20015***](SWGInlineResponse20015.md)
+[**SWGMainEventStats1***](SWGMainEventStats1.md)
 
 ### Authorization
 

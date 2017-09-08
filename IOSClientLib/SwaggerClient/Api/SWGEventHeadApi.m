@@ -1,15 +1,15 @@
 #import "SWGEventHeadApi.h"
 #import "SWGQueryParamCollection.h"
 #import "SWGApiClient.h"
-#import "SWGEvent2.h"
-#import "SWGIAMIN1.h"
-#import "SWGInlineResponse20010.h"
-#import "SWGInlineResponse20010Items.h"
-#import "SWGInlineResponse20015.h"
-#import "SWGInlineResponse2004Items.h"
+#import "SWGCandidate1.h"
+#import "SWGEvent1.h"
+#import "SWGEvent3.h"
+#import "SWGIAMIN2.h"
+#import "SWGInlineResponse2003.h"
+#import "SWGInlineResponse2004.h"
 #import "SWGInlineResponse2005.h"
-#import "SWGInlineResponse2006.h"
-#import "SWGInlineResponse2008.h"
+#import "SWGInlineResponse2007.h"
+#import "SWGMainEventStats1.h"
 
 
 @interface SWGEventHeadApi ()
@@ -64,11 +64,11 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 ///
 ///  @param name  
 ///
-///  @returns SWGInlineResponse20010Items*
+///  @returns SWGCandidate1*
 ///
 -(NSURLSessionTask*) ehAddVotingCandidateWithEventId: (NSNumber*) eventId
     name: (NSString*) name
-    completionHandler: (void (^)(SWGInlineResponse20010Items* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGCandidate1* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -134,10 +134,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse20010Items*"
+                              responseType: @"SWGCandidate1*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse20010Items*)data, error);
+                                    handler((SWGCandidate1*)data, error);
                                 }
                             }];
 }
@@ -470,10 +470,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 /// 
 ///  @param event  
 ///
-///  @returns SWGInlineResponse2004Items*
+///  @returns SWGEvent1*
 ///
--(NSURLSessionTask*) ehEditEventWithEvent: (SWGEvent2*) event
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler {
+-(NSURLSessionTask*) ehEditEventWithEvent: (SWGEvent3*) event
+    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler {
     // verify the required parameter 'event' is set
     if (event == nil) {
         NSParameterAssert(event);
@@ -523,10 +523,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2004Items*"
+                              responseType: @"SWGEvent1*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2004Items*)data, error);
+                                    handler((SWGEvent1*)data, error);
                                 }
                             }];
 }
@@ -606,7 +606,7 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) ehFreeUpgradeIAMINERWithIAMIN: (SWGIAMIN1*) iAMIN
+-(NSURLSessionTask*) ehFreeUpgradeIAMINERWithIAMIN: (SWGIAMIN2*) iAMIN
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'iAMIN' is set
     if (iAMIN == nil) {
@@ -670,10 +670,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventId  
 ///
-///  @returns SWGInlineResponse2004Items*
+///  @returns SWGEvent1*
 ///
 -(NSURLSessionTask*) ehGetEventWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -725,10 +725,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2004Items*"
+                              responseType: @"SWGEvent1*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2004Items*)data, error);
+                                    handler((SWGEvent1*)data, error);
                                 }
                             }];
 }
@@ -738,10 +738,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventId  
 ///
-///  @returns SWGInlineResponse2005*
+///  @returns SWGInlineResponse2003*
 ///
 -(NSURLSessionTask*) ehGetIAMINersWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -793,10 +793,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2005*"
+                              responseType: @"SWGInlineResponse2003*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2005*)data, error);
+                                    handler((SWGInlineResponse2003*)data, error);
                                 }
                             }];
 }
@@ -806,10 +806,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventId  
 ///
-///  @returns SWGInlineResponse20015*
+///  @returns SWGMainEventStats1*
 ///
 -(NSURLSessionTask*) ehGetStatsWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse20015* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -861,10 +861,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse20015*"
+                              responseType: @"SWGMainEventStats1*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse20015*)data, error);
+                                    handler((SWGMainEventStats1*)data, error);
                                 }
                             }];
 }
@@ -874,10 +874,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventId  
 ///
-///  @returns SWGInlineResponse2006*
+///  @returns SWGInlineResponse2004*
 ///
 -(NSURLSessionTask*) ehGetTicketHoldersWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2006* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGInlineResponse2004* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -929,10 +929,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2006*"
+                              responseType: @"SWGInlineResponse2004*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2006*)data, error);
+                                    handler((SWGInlineResponse2004*)data, error);
                                 }
                             }];
 }
@@ -942,10 +942,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventId  
 ///
-///  @returns SWGInlineResponse20010*
+///  @returns SWGInlineResponse2007*
 ///
 -(NSURLSessionTask*) ehGetVotingCandidatesWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGInlineResponse2007* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -997,10 +997,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse20010*"
+                              responseType: @"SWGInlineResponse2007*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse20010*)data, error);
+                                    handler((SWGInlineResponse2007*)data, error);
                                 }
                             }];
 }
@@ -1163,10 +1163,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventId  
 ///
-///  @returns SWGInlineResponse2008*
+///  @returns SWGInlineResponse2005*
 ///
 -(NSURLSessionTask*) ehgetHistoryWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -1218,10 +1218,10 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGInlineResponse2008*"
+                              responseType: @"SWGInlineResponse2005*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGInlineResponse2008*)data, error);
+                                    handler((SWGInlineResponse2005*)data, error);
                                 }
                             }];
 }

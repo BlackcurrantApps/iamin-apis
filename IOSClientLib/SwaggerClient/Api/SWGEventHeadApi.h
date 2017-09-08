@@ -1,13 +1,13 @@
 #import <Foundation/Foundation.h>
-#import "SWGEvent2.h"
-#import "SWGIAMIN1.h"
-#import "SWGInlineResponse20010.h"
-#import "SWGInlineResponse20010Items.h"
-#import "SWGInlineResponse20015.h"
-#import "SWGInlineResponse2004Items.h"
+#import "SWGCandidate1.h"
+#import "SWGEvent1.h"
+#import "SWGEvent3.h"
+#import "SWGIAMIN2.h"
+#import "SWGInlineResponse2003.h"
+#import "SWGInlineResponse2004.h"
 #import "SWGInlineResponse2005.h"
-#import "SWGInlineResponse2006.h"
-#import "SWGInlineResponse2008.h"
+#import "SWGInlineResponse2007.h"
+#import "SWGMainEventStats1.h"
 #import "SWGApi.h"
 
 /**
@@ -39,10 +39,10 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20010Items*
+/// @return SWGCandidate1*
 -(NSURLSessionTask*) ehAddVotingCandidateWithEventId: (NSNumber*) eventId
     name: (NSString*) name
-    completionHandler: (void (^)(SWGInlineResponse20010Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGCandidate1* output, NSError* error)) handler;
 
 
 /// send anouncement to everyone
@@ -106,9 +106,9 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004Items*
--(NSURLSessionTask*) ehEditEventWithEvent: (SWGEvent2*) event
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+/// @return SWGEvent1*
+-(NSURLSessionTask*) ehEditEventWithEvent: (SWGEvent3*) event
+    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
 
 
 /// Enable Voting
@@ -131,7 +131,7 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 ///  code:200 message:"OK"
 ///
 /// @return 
--(NSURLSessionTask*) ehFreeUpgradeIAMINERWithIAMIN: (SWGIAMIN1*) iAMIN
+-(NSURLSessionTask*) ehFreeUpgradeIAMINERWithIAMIN: (SWGIAMIN2*) iAMIN
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -142,9 +142,9 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004Items*
+/// @return SWGEvent1*
 -(NSURLSessionTask*) ehGetEventWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2004Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
 
 
 /// get IAMINers
@@ -154,9 +154,9 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2005*
+/// @return SWGInlineResponse2003*
 -(NSURLSessionTask*) ehGetIAMINersWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
 
 
 /// get Event
@@ -166,9 +166,9 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20015*
+/// @return SWGMainEventStats1*
 -(NSURLSessionTask*) ehGetStatsWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse20015* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler;
 
 
 /// get Ticket holders for this event
@@ -178,9 +178,9 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2006*
+/// @return SWGInlineResponse2004*
 -(NSURLSessionTask*) ehGetTicketHoldersWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2006* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
 
 
 /// get Voting Candidates
@@ -190,9 +190,9 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20010*
+/// @return SWGInlineResponse2007*
 -(NSURLSessionTask*) ehGetVotingCandidatesWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse20010* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
 
 
 /// Remove a voting candidate
@@ -228,9 +228,9 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2008*
+/// @return SWGInlineResponse2005*
 -(NSURLSessionTask*) ehgetHistoryWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
 
 
 

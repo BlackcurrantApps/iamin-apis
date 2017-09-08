@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **mainEventListingName** | **NSString*** |  | [optional] 
 **eventName** | **NSString*** |  | [optional] 
 **action** | **NSString*** |  | [optional] 
+**remark** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

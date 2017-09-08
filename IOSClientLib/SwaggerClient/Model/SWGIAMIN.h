@@ -14,8 +14,8 @@
 */
 
 
-#import "SWGInlineResponse200.h"
-#import "SWGInlineResponse2004Items.h"
+#import "SWGAppUser2.h"
+#import "SWGEvent1.h"
 
 
 @protocol SWGIAMIN
@@ -38,8 +38,8 @@
 
 @property(nonatomic) NSNumber* requestQuantity;
 
-@property(nonatomic) SWGInlineResponse2004Items* event;
+@property(nonatomic) SWGEvent1* event;
 
-@property(nonatomic) SWGInlineResponse200* bearer;
+@property(nonatomic) SWGAppUser2* bearer;
 
 @end

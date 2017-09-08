@@ -46,4 +46,6 @@
 
 @property(nonatomic) NSString* action;
 
+@property(nonatomic) NSString* remark;
+
 @end

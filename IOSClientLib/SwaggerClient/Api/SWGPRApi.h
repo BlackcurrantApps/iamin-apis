@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
-#import "SWGInlineResponse20012Items.h"
-#import "SWGInlineResponse20015.h"
-#import "SWGInlineResponse2004.h"
+#import "SWGEventLog1.h"
+#import "SWGIAMIN1.h"
+#import "SWGInlineResponse2002.h"
+#import "SWGInlineResponse2003.h"
 #import "SWGInlineResponse2005.h"
-#import "SWGInlineResponse2005Items.h"
-#import "SWGInlineResponse2006Items.h"
-#import "SWGInlineResponse2008.h"
-#import "SWGInlineResponse2008Items.h"
+#import "SWGMainEventStats1.h"
+#import "SWGPRRepresentative1.h"
+#import "SWGTicket1.h"
 #import "SWGApi.h"
 
 /**
@@ -39,11 +39,11 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2008Items*
+/// @return SWGEventLog1*
 -(NSURLSessionTask*) prCheckInByEmailWithEmail: (NSString*) email
     eventId: (NSNumber*) eventId
     quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGInlineResponse2008Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGEventLog1* output, NSError* error)) handler;
 
 
 /// Check in User
@@ -54,10 +54,10 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2008Items*
+/// @return SWGEventLog1*
 -(NSURLSessionTask*) prCheckInByTicketIdWithTicketID: (NSNumber*) ticketID
     quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGInlineResponse2008Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGEventLog1* output, NSError* error)) handler;
 
 
 /// get Events
@@ -67,9 +67,9 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2004*
+/// @return SWGInlineResponse2002*
 -(NSURLSessionTask*) prGetEventListWithMainEventID: (NSNumber*) mainEventID
-    completionHandler: (void (^)(SWGInlineResponse2004* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2002* output, NSError* error)) handler;
 
 
 /// get History
@@ -79,9 +79,9 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2008*
+/// @return SWGInlineResponse2005*
 -(NSURLSessionTask*) prGetHistoryWithMaineventId: (NSNumber*) maineventId
-    completionHandler: (void (^)(SWGInlineResponse2008* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
 
 
 /// get IAMIN
@@ -91,9 +91,9 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2005Items*
+/// @return SWGIAMIN1*
 -(NSURLSessionTask*) prGetIAMINWithIaminId: (NSNumber*) iaminId
-    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
 
 
 /// get IAMINers for the main event sharing contacts
@@ -103,9 +103,9 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2005*
+/// @return SWGInlineResponse2003*
 -(NSURLSessionTask*) prGetIAMINersWithMainEventid: (NSNumber*) mainEventid
-    completionHandler: (void (^)(SWGInlineResponse2005* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGInlineResponse2003* output, NSError* error)) handler;
 
 
 /// get IAMIN
@@ -117,11 +117,11 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2005Items*
+/// @return SWGIAMIN1*
 -(NSURLSessionTask*) prGetIaminByEmailWithEmail: (NSString*) email
     eventId: (NSNumber*) eventId
     cellNo: (NSString*) cellNo
-    completionHandler: (void (^)(SWGInlineResponse2005Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
 
 
 /// get Self Profile
@@ -131,9 +131,9 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20012Items*
+/// @return SWGPRRepresentative1*
 -(NSURLSessionTask*) prGetPRRepresentativeWithMainEventid: (NSNumber*) mainEventid
-    completionHandler: (void (^)(SWGInlineResponse20012Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGPRRepresentative1* output, NSError* error)) handler;
 
 
 /// get Stats
@@ -143,9 +143,9 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20015*
+/// @return SWGMainEventStats1*
 -(NSURLSessionTask*) prGetStatsWithMainEventId: (NSNumber*) mainEventId
-    completionHandler: (void (^)(SWGInlineResponse20015* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler;
 
 
 /// get Ticket
@@ -155,9 +155,9 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2006Items*
+/// @return SWGTicket1*
 -(NSURLSessionTask*) prGetTicketByIdWithTicketID: (NSNumber*) ticketID
-    completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
 
 
 /// give Ticket
@@ -171,13 +171,13 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2006Items*
+/// @return SWGTicket1*
 -(NSURLSessionTask*) prGiveTicketByEmailAndCellWithEmail: (NSString*) email
     eventId: (NSNumber*) eventId
     quantity: (NSNumber*) quantity
     cellNo: (NSString*) cellNo
     remark: (NSString*) remark
-    completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
 
 
 /// give Ticket
@@ -189,11 +189,11 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse2006Items*
+/// @return SWGTicket1*
 -(NSURLSessionTask*) prGiveTicketbyIaminIdWithIaminId: (NSNumber*) iaminId
     quantity: (NSNumber*) quantity
     remark: (NSString*) remark
-    completionHandler: (void (^)(SWGInlineResponse2006Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
 
 
 /// update location shown on the map to buyers
@@ -204,10 +204,10 @@ extern NSInteger kSWGPRApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGInlineResponse20012Items*
+/// @return SWGPRRepresentative1*
 -(NSURLSessionTask*) prUpdateLocationWithLat: (NSNumber*) lat
     lon: (NSNumber*) lon
-    completionHandler: (void (^)(SWGInlineResponse20012Items* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGPRRepresentative1* output, NSError* error)) handler;
 
 
 

@@ -14,7 +14,7 @@
 */
 
 
-#import "SWGInlineResponse2005Items.h"
+#import "SWGEventLog1.h"
 
 
 @protocol SWGInlineResponse2005
@@ -23,6 +23,6 @@
 @interface SWGInlineResponse2005 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGInlineResponse2005Items>* items;
+@property(nonatomic) NSArray<SWGEventLog1>* items;
 
 @end

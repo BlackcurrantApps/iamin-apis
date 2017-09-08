@@ -44,58 +44,58 @@ Import the following:
 #import <SwaggerClient/SWGAppPopup.h>
 #import <SwaggerClient/SWGAppUser.h>
 #import <SwaggerClient/SWGAppUser1.h>
+#import <SwaggerClient/SWGAppUser2.h>
 #import <SwaggerClient/SWGAppVersion.h>
 #import <SwaggerClient/SWGCandidate.h>
+#import <SwaggerClient/SWGCandidate1.h>
 #import <SwaggerClient/SWGCategory.h>
 #import <SwaggerClient/SWGCategory1.h>
+#import <SwaggerClient/SWGCategory2.h>
 #import <SwaggerClient/SWGComment.h>
+#import <SwaggerClient/SWGComment1.h>
 #import <SwaggerClient/SWGEvent.h>
 #import <SwaggerClient/SWGEvent1.h>
 #import <SwaggerClient/SWGEvent2.h>
+#import <SwaggerClient/SWGEvent3.h>
 #import <SwaggerClient/SWGEventHead.h>
+#import <SwaggerClient/SWGEventHead1.h>
 #import <SwaggerClient/SWGEventLog.h>
+#import <SwaggerClient/SWGEventLog1.h>
 #import <SwaggerClient/SWGIAMIN.h>
 #import <SwaggerClient/SWGIAMIN1.h>
+#import <SwaggerClient/SWGIAMIN2.h>
 #import <SwaggerClient/SWGInlineResponse200.h>
 #import <SwaggerClient/SWGInlineResponse2001.h>
 #import <SwaggerClient/SWGInlineResponse20010.h>
-#import <SwaggerClient/SWGInlineResponse20010Items.h>
-#import <SwaggerClient/SWGInlineResponse20011.h>
-#import <SwaggerClient/SWGInlineResponse20012.h>
-#import <SwaggerClient/SWGInlineResponse20012Items.h>
-#import <SwaggerClient/SWGInlineResponse20013.h>
-#import <SwaggerClient/SWGInlineResponse20013Items.h>
-#import <SwaggerClient/SWGInlineResponse20014.h>
-#import <SwaggerClient/SWGInlineResponse20014Items.h>
-#import <SwaggerClient/SWGInlineResponse20015.h>
-#import <SwaggerClient/SWGInlineResponse2001Items.h>
 #import <SwaggerClient/SWGInlineResponse2002.h>
 #import <SwaggerClient/SWGInlineResponse2003.h>
-#import <SwaggerClient/SWGInlineResponse2003Items.h>
 #import <SwaggerClient/SWGInlineResponse2004.h>
-#import <SwaggerClient/SWGInlineResponse2004Items.h>
 #import <SwaggerClient/SWGInlineResponse2005.h>
-#import <SwaggerClient/SWGInlineResponse2005Items.h>
 #import <SwaggerClient/SWGInlineResponse2006.h>
-#import <SwaggerClient/SWGInlineResponse2006Items.h>
 #import <SwaggerClient/SWGInlineResponse2007.h>
 #import <SwaggerClient/SWGInlineResponse2008.h>
-#import <SwaggerClient/SWGInlineResponse2008Items.h>
 #import <SwaggerClient/SWGInlineResponse2009.h>
-#import <SwaggerClient/SWGInlineResponse2009Items.h>
 #import <SwaggerClient/SWGLocationContainer.h>
 #import <SwaggerClient/SWGMainEvent.h>
 #import <SwaggerClient/SWGMainEvent1.h>
 #import <SwaggerClient/SWGMainEvent2.h>
 #import <SwaggerClient/SWGMainEventStats.h>
+#import <SwaggerClient/SWGMainEventStats1.h>
 #import <SwaggerClient/SWGManager.h>
+#import <SwaggerClient/SWGManager1.h>
 #import <SwaggerClient/SWGOffer.h>
+#import <SwaggerClient/SWGOffer1.h>
 #import <SwaggerClient/SWGPRLocation.h>
 #import <SwaggerClient/SWGPRRepresentative.h>
+#import <SwaggerClient/SWGPRRepresentative1.h>
 #import <SwaggerClient/SWGPaytmTransaction.h>
+#import <SwaggerClient/SWGPaytmTransaction1.h>
 #import <SwaggerClient/SWGSortedMainEvents.h>
+#import <SwaggerClient/SWGSortedMainEvents1.h>
 #import <SwaggerClient/SWGTicket.h>
+#import <SwaggerClient/SWGTicket1.h>
 #import <SwaggerClient/SWGUserRoles.h>
+#import <SwaggerClient/SWGUserRoles1.h>
 // load API classes for accessing endpoints
 #import <SwaggerClient/SWGAppUserApi.h>
 #import <SwaggerClient/SWGEventHeadApi.h>
@@ -128,10 +128,7 @@ SWGAppUserApi *apiInstance = [[SWGAppUserApi alloc] init];
 
 // Register a new App User
 [apiInstance callRegisterWithAppUser:appUser
-              completionHandler: ^(SWGInlineResponse200* output, NSError* error) {
-                            if (output) {
-                                NSLog(@"%@", output);
-                            }
+              completionHandler: ^(NSError* error) {
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -234,58 +231,58 @@ Class | Method | HTTP request | Description
  - [SWGAppPopup](docs/SWGAppPopup.md)
  - [SWGAppUser](docs/SWGAppUser.md)
  - [SWGAppUser1](docs/SWGAppUser1.md)
+ - [SWGAppUser2](docs/SWGAppUser2.md)
  - [SWGAppVersion](docs/SWGAppVersion.md)
  - [SWGCandidate](docs/SWGCandidate.md)
+ - [SWGCandidate1](docs/SWGCandidate1.md)
  - [SWGCategory](docs/SWGCategory.md)
  - [SWGCategory1](docs/SWGCategory1.md)
+ - [SWGCategory2](docs/SWGCategory2.md)
  - [SWGComment](docs/SWGComment.md)
+ - [SWGComment1](docs/SWGComment1.md)
  - [SWGEvent](docs/SWGEvent.md)
  - [SWGEvent1](docs/SWGEvent1.md)
  - [SWGEvent2](docs/SWGEvent2.md)
+ - [SWGEvent3](docs/SWGEvent3.md)
  - [SWGEventHead](docs/SWGEventHead.md)
+ - [SWGEventHead1](docs/SWGEventHead1.md)
  - [SWGEventLog](docs/SWGEventLog.md)
+ - [SWGEventLog1](docs/SWGEventLog1.md)
  - [SWGIAMIN](docs/SWGIAMIN.md)
  - [SWGIAMIN1](docs/SWGIAMIN1.md)
+ - [SWGIAMIN2](docs/SWGIAMIN2.md)
  - [SWGInlineResponse200](docs/SWGInlineResponse200.md)
  - [SWGInlineResponse2001](docs/SWGInlineResponse2001.md)
  - [SWGInlineResponse20010](docs/SWGInlineResponse20010.md)
- - [SWGInlineResponse20010Items](docs/SWGInlineResponse20010Items.md)
- - [SWGInlineResponse20011](docs/SWGInlineResponse20011.md)
- - [SWGInlineResponse20012](docs/SWGInlineResponse20012.md)
- - [SWGInlineResponse20012Items](docs/SWGInlineResponse20012Items.md)
- - [SWGInlineResponse20013](docs/SWGInlineResponse20013.md)
- - [SWGInlineResponse20013Items](docs/SWGInlineResponse20013Items.md)
- - [SWGInlineResponse20014](docs/SWGInlineResponse20014.md)
- - [SWGInlineResponse20014Items](docs/SWGInlineResponse20014Items.md)
- - [SWGInlineResponse20015](docs/SWGInlineResponse20015.md)
- - [SWGInlineResponse2001Items](docs/SWGInlineResponse2001Items.md)
  - [SWGInlineResponse2002](docs/SWGInlineResponse2002.md)
  - [SWGInlineResponse2003](docs/SWGInlineResponse2003.md)
- - [SWGInlineResponse2003Items](docs/SWGInlineResponse2003Items.md)
  - [SWGInlineResponse2004](docs/SWGInlineResponse2004.md)
- - [SWGInlineResponse2004Items](docs/SWGInlineResponse2004Items.md)
  - [SWGInlineResponse2005](docs/SWGInlineResponse2005.md)
- - [SWGInlineResponse2005Items](docs/SWGInlineResponse2005Items.md)
  - [SWGInlineResponse2006](docs/SWGInlineResponse2006.md)
- - [SWGInlineResponse2006Items](docs/SWGInlineResponse2006Items.md)
  - [SWGInlineResponse2007](docs/SWGInlineResponse2007.md)
  - [SWGInlineResponse2008](docs/SWGInlineResponse2008.md)
- - [SWGInlineResponse2008Items](docs/SWGInlineResponse2008Items.md)
  - [SWGInlineResponse2009](docs/SWGInlineResponse2009.md)
- - [SWGInlineResponse2009Items](docs/SWGInlineResponse2009Items.md)
  - [SWGLocationContainer](docs/SWGLocationContainer.md)
  - [SWGMainEvent](docs/SWGMainEvent.md)
  - [SWGMainEvent1](docs/SWGMainEvent1.md)
  - [SWGMainEvent2](docs/SWGMainEvent2.md)
  - [SWGMainEventStats](docs/SWGMainEventStats.md)
+ - [SWGMainEventStats1](docs/SWGMainEventStats1.md)
  - [SWGManager](docs/SWGManager.md)
+ - [SWGManager1](docs/SWGManager1.md)
  - [SWGOffer](docs/SWGOffer.md)
+ - [SWGOffer1](docs/SWGOffer1.md)
  - [SWGPRLocation](docs/SWGPRLocation.md)
  - [SWGPRRepresentative](docs/SWGPRRepresentative.md)
+ - [SWGPRRepresentative1](docs/SWGPRRepresentative1.md)
  - [SWGPaytmTransaction](docs/SWGPaytmTransaction.md)
+ - [SWGPaytmTransaction1](docs/SWGPaytmTransaction1.md)
  - [SWGSortedMainEvents](docs/SWGSortedMainEvents.md)
+ - [SWGSortedMainEvents1](docs/SWGSortedMainEvents1.md)
  - [SWGTicket](docs/SWGTicket.md)
+ - [SWGTicket1](docs/SWGTicket1.md)
  - [SWGUserRoles](docs/SWGUserRoles.md)
+ - [SWGUserRoles1](docs/SWGUserRoles1.md)
 
 
 ## Documentation For Authorization

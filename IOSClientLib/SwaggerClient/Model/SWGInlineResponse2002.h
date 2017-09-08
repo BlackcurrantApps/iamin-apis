@@ -14,7 +14,7 @@
 */
 
 
-#import "SWGMainEvent1.h"
+#import "SWGEvent1.h"
 
 
 @protocol SWGInlineResponse2002
@@ -23,12 +23,6 @@
 @interface SWGInlineResponse2002 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGMainEvent1>* trendingEvents;
-
-@property(nonatomic) NSArray<SWGMainEvent1>* collegeEvents;
-
-@property(nonatomic) NSArray<SWGMainEvent1>* clubEvents;
-
-@property(nonatomic) NSArray<SWGMainEvent1>* concertEvents;
+@property(nonatomic) NSArray<SWGEvent1>* items;
 
 @end

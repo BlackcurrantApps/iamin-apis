@@ -118,10 +118,8 @@ paths:
                 type: string
                 description: Google Cloud Messaging Registration ID
       responses:
-        '200':
+        '204':
           description: OK
-          schema:
-            $ref: '#/definitions/AppUser'
             
   /appUserApi/v1/getUser:
     get:
@@ -2001,6 +1999,7 @@ definitions:
         type: string
  
   SortedMainEvents:
+    title: SortedMainEvents
     type: object
     properties:
       trendingEvents:
@@ -2021,6 +2020,7 @@ definitions:
           $ref: '#/definitions/MainEvent'
           
   Category:
+    title: Category
     type: object
     properties:
       id:
@@ -2041,6 +2041,7 @@ definitions:
         type: boolean
 
   Event:
+    title: Event
     type: object
     properties:
       id:
@@ -2088,6 +2089,7 @@ definitions:
         type: boolean
         
   UserRoles:
+    title: UserRoles
     type: object
     properties:
       isManagerForMainEvents:
@@ -2103,9 +2105,8 @@ definitions:
         items:
           $ref: '#/definitions/Event'
       
-    
-        
   AppUser:
+    title: AppUser
     type: object
     properties:
       email:
@@ -2134,6 +2135,7 @@ definitions:
         description: Google Cloud Messaging Registration ID
         
   Manager:
+    title: Manager
     type: object
     properties:
       id:
@@ -2146,6 +2148,7 @@ definitions:
         format: int64
         
   PRRepresentative:
+    title: PRRepresentative
     type: object
     properties:
       id:
@@ -2170,6 +2173,7 @@ definitions:
         format: int64
         
   EventHead:
+    title: EventHead
     type: object
     properties:
       id:
@@ -2185,6 +2189,7 @@ definitions:
         format: int64
         
   IAMIN:
+    title: IAMIN
     type: object
     properties:
       id:
@@ -2212,6 +2217,7 @@ definitions:
         $ref: '#/definitions/AppUser'
         
   Ticket:
+    title: Ticket
     type: object
     properties:
       id:
@@ -2242,6 +2248,7 @@ definitions:
         $ref: '#/definitions/AppUser'
         
   EventLog:
+    title: EventLog
     type: object
     properties:
       id:
@@ -2280,8 +2287,11 @@ definitions:
           - FREE_TICKET
           - TRANSFER_TICKET
           - BUY_TICKET_ONLINE
+      remark:
+        type: string
           
   Offer:
+    title: Offer
     type: object
     properties:
       id:
@@ -2314,6 +2324,7 @@ definitions:
         type: string
         
   Comment:
+    title: Comment
     type: object
     properties:
       id:
@@ -2339,6 +2350,7 @@ definitions:
         type: boolean
         
   Candidate:
+    title: Candidate
     type: object
     properties:
       id:
@@ -2354,6 +2366,7 @@ definitions:
         format: int64
         
   PaytmTransaction:
+    title: PaytmTransaction
     type: object
     properties:
       ORDER_ID:
@@ -2394,6 +2407,7 @@ definitions:
         type: string
         
   MainEventStats:
+    title: MainEventStats
     type: object
     properties:
       totalIamins:
