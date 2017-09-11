@@ -50,4 +50,10 @@
 
 @property(nonatomic) NSString* cUSTID;
 
+@property(nonatomic) NSString* cALLBACKURL;
+
+@property(nonatomic) NSString* cHECKSUMGENERATORURL;
+
+@property(nonatomic) NSString* cHECKSUMVERIFYURL;
+
 @end

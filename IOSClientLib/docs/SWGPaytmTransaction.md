@@ -17,6 +17,9 @@ Name | Type | Description | Notes
 **iNDUSTRYTYPEID** | **NSString*** |  | [optional] 
 **wEBSITE** | **NSString*** |  | [optional] 
 **cUSTID** | **NSString*** |  | [optional] 
+**cALLBACKURL** | **NSString*** |  | [optional] 
+**cHECKSUMGENERATORURL** | **NSString*** |  | [optional] 
+**cHECKSUMVERIFYURL** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
