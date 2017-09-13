@@ -2142,6 +2142,8 @@ definitions:
       MainEventListingId:
         type: integer
         format: int64
+      appUser:
+        $ref: '#/definitions/AppUser'
         
   PRRepresentative:
     title: PRRepresentative
@@ -2167,6 +2169,8 @@ definitions:
       locationUpdateTimestamp:
         type: number
         format: int64
+      appUser:
+        $ref: '#/definitions/AppUser'
         
   EventHead:
     title: EventHead
@@ -2183,6 +2187,8 @@ definitions:
       EventId:
         type: integer
         format: int64
+      appUser:
+        $ref: '#/definitions/AppUser'
         
   IAMIN:
     title: IAMIN

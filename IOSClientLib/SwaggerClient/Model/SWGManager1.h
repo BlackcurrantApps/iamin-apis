@@ -14,6 +14,7 @@
 */
 
 
+#import "SWGAppUser2.h"
 
 
 @protocol SWGManager1
@@ -27,5 +28,7 @@
 @property(nonatomic) NSString* email;
 
 @property(nonatomic) NSNumber* mainEventListingId;
+
+@property(nonatomic) SWGAppUser2* appUser;
 
 @end

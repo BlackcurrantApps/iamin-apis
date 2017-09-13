@@ -14,6 +14,7 @@
 */
 
 
+#import "SWGAppUser2.h"
 
 
 @protocol SWGPRRepresentative
@@ -35,5 +36,7 @@
 @property(nonatomic) NSNumber* lon;
 
 @property(nonatomic) NSNumber* locationUpdateTimestamp;
+
+@property(nonatomic) SWGAppUser2* appUser;
 
 @end

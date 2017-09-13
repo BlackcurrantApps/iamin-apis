@@ -14,6 +14,7 @@
 */
 
 
+#import "SWGAppUser2.h"
 
 
 @protocol SWGEventHead1
@@ -29,5 +30,7 @@
 @property(nonatomic) NSNumber* mainEventListingId;
 
 @property(nonatomic) NSNumber* eventId;
+
+@property(nonatomic) SWGAppUser2* appUser;
 
 @end
