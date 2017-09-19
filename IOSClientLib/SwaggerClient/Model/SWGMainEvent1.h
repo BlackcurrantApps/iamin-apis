@@ -64,4 +64,8 @@
 
 @property(nonatomic) NSString* backdropUrl;
 
+@property(nonatomic) NSNumber* iaminsCount;
+
+@property(nonatomic) NSNumber* ticketsCount;
+
 @end

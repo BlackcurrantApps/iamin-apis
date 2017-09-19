@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **isPaytmEnabled** | **NSNumber*** |  | [optional] 
 **mainEventType** | **NSString*** |  | [optional] 
 **backdropUrl** | **NSString*** |  | [optional] 
+**iaminsCount** | **NSNumber*** |  | [optional] 
+**ticketsCount** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

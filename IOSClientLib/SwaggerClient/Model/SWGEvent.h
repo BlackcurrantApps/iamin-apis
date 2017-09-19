@@ -58,4 +58,8 @@
 
 @property(nonatomic) NSNumber* condensedHead;
 
+@property(nonatomic) NSNumber* iaminsCount;
+
+@property(nonatomic) NSNumber* ticketsCount;
+
 @end

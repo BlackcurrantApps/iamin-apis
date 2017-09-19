@@ -17,7 +17,7 @@
  * This method is used by `JSONModel`.
  */
 + (JSONKeyMapper *)keyMapper {
-  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"positionInList": @"positionInList", @"name": @"name", @"_description": @"description", @"eventStart": @"eventStart", @"eventEnd": @"eventEnd", @"managerEmail": @"ManagerEmail", @"hasSingleCategory": @"hasSingleCategory", @"hasSingleEvent": @"hasSingleEvent", @"singleEventId": @"singleEventId", @"singleCategoryId": @"singleCategoryId", @"isPublished": @"isPublished", @"lat": @"lat", @"lon": @"lon", @"hashtag": @"hashtag", @"isTrending": @"isTrending", @"city": @"city", @"isPaytmEnabled": @"isPaytmEnabled", @"mainEventType": @"mainEventType", @"backdropUrl": @"backdropUrl" }];
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"id", @"positionInList": @"positionInList", @"name": @"name", @"_description": @"description", @"eventStart": @"eventStart", @"eventEnd": @"eventEnd", @"managerEmail": @"ManagerEmail", @"hasSingleCategory": @"hasSingleCategory", @"hasSingleEvent": @"hasSingleEvent", @"singleEventId": @"singleEventId", @"singleCategoryId": @"singleCategoryId", @"isPublished": @"isPublished", @"lat": @"lat", @"lon": @"lon", @"hashtag": @"hashtag", @"isTrending": @"isTrending", @"city": @"city", @"isPaytmEnabled": @"isPaytmEnabled", @"mainEventType": @"mainEventType", @"backdropUrl": @"backdropUrl", @"iaminsCount": @"iaminsCount", @"ticketsCount": @"ticketsCount" }];
 }
 
 /**
@@ -27,7 +27,7 @@
  */
 + (BOOL)propertyIsOptional:(NSString *)propertyName {
 
-  NSArray *optionalProperties = @[@"_id", @"positionInList", @"name", @"_description", @"eventStart", @"eventEnd", @"managerEmail", @"hasSingleCategory", @"hasSingleEvent", @"singleEventId", @"singleCategoryId", @"isPublished", @"lat", @"lon", @"hashtag", @"isTrending", @"city", @"isPaytmEnabled", @"mainEventType", @"backdropUrl"];
+  NSArray *optionalProperties = @[@"_id", @"positionInList", @"name", @"_description", @"eventStart", @"eventEnd", @"managerEmail", @"hasSingleCategory", @"hasSingleEvent", @"singleEventId", @"singleCategoryId", @"isPublished", @"lat", @"lon", @"hashtag", @"isTrending", @"city", @"isPaytmEnabled", @"mainEventType", @"backdropUrl", @"iaminsCount", @"ticketsCount"];
   return [optionalProperties containsObject:propertyName];
 }
 

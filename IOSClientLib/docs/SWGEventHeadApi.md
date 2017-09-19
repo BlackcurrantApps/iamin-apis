@@ -682,7 +682,7 @@ Name | Type | Description  | Notes
 
 # **ehGetVotingCandidates**
 ```objc
--(NSURLSessionTask*) ehGetVotingCandidatesWithEventId: (NSNumber*) eventId
+-(NSURLSessionTask*) ehGetVotingCandidatesWithEventID: (NSNumber*) eventID
         completionHandler: (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
 ```
 
@@ -698,12 +698,12 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-NSNumber* eventId = @789; // 
+NSNumber* eventID = @789; // 
 
 SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
 // get Voting Candidates
-[apiInstance ehGetVotingCandidatesWithEventId:eventId
+[apiInstance ehGetVotingCandidatesWithEventID:eventID
           completionHandler: ^(SWGInlineResponse2007* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
@@ -718,7 +718,7 @@ SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **eventId** | **NSNumber***|  | 
+ **eventID** | **NSNumber***|  | 
 
 ### Return type
 

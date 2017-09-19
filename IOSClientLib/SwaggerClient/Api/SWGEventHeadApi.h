@@ -186,12 +186,12 @@ extern NSInteger kSWGEventHeadApiMissingParamErrorCode;
 /// get Voting Candidates
 /// 
 ///
-/// @param eventId 
+/// @param eventID 
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return SWGInlineResponse2007*
--(NSURLSessionTask*) ehGetVotingCandidatesWithEventId: (NSNumber*) eventId
+-(NSURLSessionTask*) ehGetVotingCandidatesWithEventID: (NSNumber*) eventID
     completionHandler: (void (^)(SWGInlineResponse2007* output, NSError* error)) handler;
 
 

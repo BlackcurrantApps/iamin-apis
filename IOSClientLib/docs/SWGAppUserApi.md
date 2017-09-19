@@ -1444,7 +1444,7 @@ void (empty response body)
 
 # **setIaminQuantity**
 ```objc
--(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
+-(NSURLSessionTask*) setIaminQuantityWithIaminID: (NSNumber*) iaminID
     quantity: (NSNumber*) quantity
         completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
 ```
@@ -1461,13 +1461,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-NSNumber* iaminId = @789; // 
+NSNumber* iaminID = @789; // 
 NSNumber* quantity = @56; // 
 
 SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // Set quantity of tickets wanted
-[apiInstance setIaminQuantityWithIaminId:iaminId
+[apiInstance setIaminQuantityWithIaminID:iaminID
               quantity:quantity
           completionHandler: ^(SWGIAMIN1* output, NSError* error) {
                         if (output) {
@@ -1483,7 +1483,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **iaminId** | **NSNumber***|  | 
+ **iaminID** | **NSNumber***|  | 
  **quantity** | **NSNumber***|  | 
 
 ### Return type

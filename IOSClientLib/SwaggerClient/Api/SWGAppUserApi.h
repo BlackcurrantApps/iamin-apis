@@ -359,13 +359,13 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// Set quantity of tickets wanted
 /// 
 ///
-/// @param iaminId 
+/// @param iaminID 
 /// @param quantity 
 /// 
 ///  code:200 message:"OK"
 ///
 /// @return SWGIAMIN1*
--(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
+-(NSURLSessionTask*) setIaminQuantityWithIaminID: (NSNumber*) iaminID
     quantity: (NSNumber*) quantity
     completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
 

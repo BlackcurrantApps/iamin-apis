@@ -940,17 +940,17 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
 ///
 /// get Voting Candidates
 /// 
-///  @param eventId  
+///  @param eventID  
 ///
 ///  @returns SWGInlineResponse2007*
 ///
--(NSURLSessionTask*) ehGetVotingCandidatesWithEventId: (NSNumber*) eventId
+-(NSURLSessionTask*) ehGetVotingCandidatesWithEventID: (NSNumber*) eventID
     completionHandler: (void (^)(SWGInlineResponse2007* output, NSError* error)) handler {
-    // verify the required parameter 'eventId' is set
-    if (eventId == nil) {
-        NSParameterAssert(eventId);
+    // verify the required parameter 'eventID' is set
+    if (eventID == nil) {
+        NSParameterAssert(eventID);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventId"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"eventID"] };
             NSError* error = [NSError errorWithDomain:kSWGEventHeadApiErrorDomain code:kSWGEventHeadApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
@@ -962,8 +962,8 @@ NSInteger kSWGEventHeadApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (eventId != nil) {
-        queryParams[@"eventId"] = eventId;
+    if (eventID != nil) {
+        queryParams[@"eventID"] = eventID;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];

@@ -424,7 +424,7 @@ paths:
       tags:
         - AppUser
       parameters: 
-        - name: iaminId
+        - name: iaminID
           type: integer
           format: int64
           in: query
@@ -543,7 +543,7 @@ paths:
           format: int64
           in: query
           required: true
-        - name: Message
+        - name: message
           type: string
           in: query
           required: true
@@ -1812,7 +1812,7 @@ paths:
       tags:
         - EventHead
       parameters:
-        - name: eventId
+        - name: eventID
           type: integer
           format: int64
           required: true
@@ -1993,6 +1993,10 @@ definitions:
           - CLUB
       backdropUrl:
         type: string
+      iaminsCount:
+        type: integer
+      ticketsCount:
+        type: integer
  
   SortedMainEvents:
     title: SortedMainEvents
@@ -2083,6 +2087,10 @@ definitions:
         type: boolean
       condensedHead:
         type: boolean
+      iaminsCount:
+        type: integer
+      ticketsCount:
+        type: integer
         
   UserRoles:
     title: UserRoles

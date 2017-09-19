@@ -1647,7 +1647,7 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
         queryParams[@"eventID"] = eventID;
     }
     if (message != nil) {
-        queryParams[@"Message"] = message;
+        queryParams[@"message"] = message;
     }
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
@@ -1783,20 +1783,20 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 /// Set quantity of tickets wanted
 /// 
-///  @param iaminId  
+///  @param iaminID  
 ///
 ///  @param quantity  
 ///
 ///  @returns SWGIAMIN1*
 ///
--(NSURLSessionTask*) setIaminQuantityWithIaminId: (NSNumber*) iaminId
+-(NSURLSessionTask*) setIaminQuantityWithIaminID: (NSNumber*) iaminID
     quantity: (NSNumber*) quantity
     completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler {
-    // verify the required parameter 'iaminId' is set
-    if (iaminId == nil) {
-        NSParameterAssert(iaminId);
+    // verify the required parameter 'iaminID' is set
+    if (iaminID == nil) {
+        NSParameterAssert(iaminID);
         if(handler) {
-            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"iaminId"] };
+            NSDictionary * userInfo = @{NSLocalizedDescriptionKey : [NSString stringWithFormat:NSLocalizedString(@"Missing required parameter '%@'", nil),@"iaminID"] };
             NSError* error = [NSError errorWithDomain:kSWGAppUserApiErrorDomain code:kSWGAppUserApiMissingParamErrorCode userInfo:userInfo];
             handler(nil, error);
         }
@@ -1819,8 +1819,8 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
 
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
-    if (iaminId != nil) {
-        queryParams[@"iaminId"] = iaminId;
+    if (iaminID != nil) {
+        queryParams[@"iaminID"] = iaminID;
     }
     if (quantity != nil) {
         queryParams[@"quantity"] = quantity;

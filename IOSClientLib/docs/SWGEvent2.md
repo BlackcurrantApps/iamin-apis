@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **isCurrentUserIAMINED** | **NSNumber*** |  | [optional] 
 **isCurrentUserHavingTicket** | **NSNumber*** |  | [optional] 
 **condensedHead** | **NSNumber*** |  | [optional] 
+**iaminsCount** | **NSNumber*** |  | [optional] 
+**ticketsCount** | **NSNumber*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
