@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **activeQuantity** | **NSNumber*** |  | [optional] 
 **checkedInQuantity** | **NSNumber*** |  | [optional] 
 **parentMainEventId** | **NSNumber*** |  | [optional] 
-**event** | [**SWGEvent1***](SWGEvent1.md) |  | [optional] 
-**bearer** | [**SWGAppUser2***](SWGAppUser2.md) |  | [optional] 
+**event** | [**SWGEvent***](SWGEvent.md) |  | [optional] 
+**bearer** | [**SWGAppUser***](SWGAppUser.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

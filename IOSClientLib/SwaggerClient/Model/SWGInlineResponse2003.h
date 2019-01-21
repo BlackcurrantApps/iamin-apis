@@ -14,7 +14,10 @@
 */
 
 
-#import "SWGIAMIN1.h"
+#import "SWGIAMIN.h"
+@protocol SWGIAMIN;
+@class SWGIAMIN;
+
 
 
 @protocol SWGInlineResponse2003
@@ -23,6 +26,6 @@
 @interface SWGInlineResponse2003 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGIAMIN1>* items;
+@property(nonatomic) NSArray<SWGIAMIN>* items;
 
 @end

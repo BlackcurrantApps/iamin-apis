@@ -24,7 +24,7 @@ Method | HTTP request | Description
 -(NSURLSessionTask*) prCheckInByEmailWithEmail: (NSString*) email
     eventId: (NSNumber*) eventId
     quantity: (NSNumber*) quantity
-        completionHandler: (void (^)(SWGEventLog1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEventLog* output, NSError* error)) handler;
 ```
 
 Check in User
@@ -49,7 +49,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 [apiInstance prCheckInByEmailWithEmail:email
               eventId:eventId
               quantity:quantity
-          completionHandler: ^(SWGEventLog1* output, NSError* error) {
+          completionHandler: ^(SWGEventLog* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGEventLog1***](SWGEventLog1.md)
+[**SWGEventLog***](SWGEventLog.md)
 
 ### Authorization
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) prCheckInByTicketIdWithTicketID: (NSNumber*) ticketID
     quantity: (NSNumber*) quantity
-        completionHandler: (void (^)(SWGEventLog1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEventLog* output, NSError* error)) handler;
 ```
 
 Check in User
@@ -109,7 +109,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 // Check in User
 [apiInstance prCheckInByTicketIdWithTicketID:ticketID
               quantity:quantity
-          completionHandler: ^(SWGEventLog1* output, NSError* error) {
+          completionHandler: ^(SWGEventLog* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGEventLog1***](SWGEventLog1.md)
+[**SWGEventLog***](SWGEventLog.md)
 
 ### Authorization
 
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 # **prGetIAMIN**
 ```objc
 -(NSURLSessionTask*) prGetIAMINWithIaminId: (NSNumber*) iaminId
-        completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 ```
 
 get IAMIN
@@ -275,7 +275,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 
 // get IAMIN
 [apiInstance prGetIAMINWithIaminId:iaminId
-          completionHandler: ^(SWGIAMIN1* output, NSError* error) {
+          completionHandler: ^(SWGIAMIN* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -293,7 +293,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGIAMIN1***](SWGIAMIN1.md)
+[**SWGIAMIN***](SWGIAMIN.md)
 
 ### Authorization
 
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 -(NSURLSessionTask*) prGetIaminByEmailWithEmail: (NSString*) email
     eventId: (NSNumber*) eventId
     cellNo: (NSString*) cellNo
-        completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 ```
 
 get IAMIN
@@ -391,7 +391,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 [apiInstance prGetIaminByEmailWithEmail:email
               eventId:eventId
               cellNo:cellNo
-          completionHandler: ^(SWGIAMIN1* output, NSError* error) {
+          completionHandler: ^(SWGIAMIN* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -411,7 +411,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGIAMIN1***](SWGIAMIN1.md)
+[**SWGIAMIN***](SWGIAMIN.md)
 
 ### Authorization
 
@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 # **prGetPRRepresentative**
 ```objc
 -(NSURLSessionTask*) prGetPRRepresentativeWithMainEventid: (NSNumber*) mainEventid
-        completionHandler: (void (^)(SWGPRRepresentative1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGPRRepresentative* output, NSError* error)) handler;
 ```
 
 get Self Profile
@@ -448,7 +448,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 
 // get Self Profile
 [apiInstance prGetPRRepresentativeWithMainEventid:mainEventid
-          completionHandler: ^(SWGPRRepresentative1* output, NSError* error) {
+          completionHandler: ^(SWGPRRepresentative* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -466,7 +466,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGPRRepresentative1***](SWGPRRepresentative1.md)
+[**SWGPRRepresentative***](SWGPRRepresentative.md)
 
 ### Authorization
 
@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
 # **prGetStats**
 ```objc
 -(NSURLSessionTask*) prGetStatsWithMainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGMainEventStats* output, NSError* error)) handler;
 ```
 
 get Stats
@@ -503,7 +503,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 
 // get Stats
 [apiInstance prGetStatsWithMainEventId:mainEventId
-          completionHandler: ^(SWGMainEventStats1* output, NSError* error) {
+          completionHandler: ^(SWGMainEventStats* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -521,7 +521,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGMainEventStats1***](SWGMainEventStats1.md)
+[**SWGMainEventStats***](SWGMainEventStats.md)
 
 ### Authorization
 
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 # **prGetTicketById**
 ```objc
 -(NSURLSessionTask*) prGetTicketByIdWithTicketID: (NSNumber*) ticketID
-        completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler;
 ```
 
 get Ticket
@@ -558,7 +558,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 
 // get Ticket
 [apiInstance prGetTicketByIdWithTicketID:ticketID
-          completionHandler: ^(SWGTicket1* output, NSError* error) {
+          completionHandler: ^(SWGTicket* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -576,7 +576,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGTicket1***](SWGTicket1.md)
+[**SWGTicket***](SWGTicket.md)
 
 ### Authorization
 
@@ -596,7 +596,7 @@ Name | Type | Description  | Notes
     quantity: (NSNumber*) quantity
     cellNo: (NSString*) cellNo
     remark: (NSString*) remark
-        completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler;
 ```
 
 give Ticket
@@ -625,7 +625,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
               quantity:quantity
               cellNo:cellNo
               remark:remark
-          completionHandler: ^(SWGTicket1* output, NSError* error) {
+          completionHandler: ^(SWGTicket* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -647,7 +647,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGTicket1***](SWGTicket1.md)
+[**SWGTicket***](SWGTicket.md)
 
 ### Authorization
 
@@ -665,7 +665,7 @@ Name | Type | Description  | Notes
 -(NSURLSessionTask*) prGiveTicketbyIaminIdWithIaminId: (NSNumber*) iaminId
     quantity: (NSNumber*) quantity
     remark: (NSString*) remark
-        completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler;
 ```
 
 give Ticket
@@ -690,7 +690,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 [apiInstance prGiveTicketbyIaminIdWithIaminId:iaminId
               quantity:quantity
               remark:remark
-          completionHandler: ^(SWGTicket1* output, NSError* error) {
+          completionHandler: ^(SWGTicket* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -710,7 +710,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGTicket1***](SWGTicket1.md)
+[**SWGTicket***](SWGTicket.md)
 
 ### Authorization
 
@@ -727,7 +727,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) prUpdateLocationWithLat: (NSNumber*) lat
     lon: (NSNumber*) lon
-        completionHandler: (void (^)(SWGPRRepresentative1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGPRRepresentative* output, NSError* error)) handler;
 ```
 
 update location shown on the map to buyers
@@ -750,7 +750,7 @@ SWGPRApi*apiInstance = [[SWGPRApi alloc] init];
 // update location shown on the map to buyers
 [apiInstance prUpdateLocationWithLat:lat
               lon:lon
-          completionHandler: ^(SWGPRRepresentative1* output, NSError* error) {
+          completionHandler: ^(SWGPRRepresentative* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -769,7 +769,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGPRRepresentative1***](SWGPRRepresentative1.md)
+[**SWGPRRepresentative***](SWGPRRepresentative.md)
 
 ### Authorization
 

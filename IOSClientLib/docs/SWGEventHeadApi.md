@@ -26,7 +26,7 @@ Method | HTTP request | Description
 ```objc
 -(NSURLSessionTask*) ehAddVotingCandidateWithEventId: (NSNumber*) eventId
     name: (NSString*) name
-        completionHandler: (void (^)(SWGCandidate1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGCandidate* output, NSError* error)) handler;
 ```
 
 Add a voting candidate
@@ -49,7 +49,7 @@ SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 // Add a voting candidate
 [apiInstance ehAddVotingCandidateWithEventId:eventId
               name:name
-          completionHandler: ^(SWGCandidate1* output, NSError* error) {
+          completionHandler: ^(SWGCandidate* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGCandidate1***](SWGCandidate1.md)
+[**SWGCandidate***](SWGCandidate.md)
 
 ### Authorization
 
@@ -303,8 +303,8 @@ void (empty response body)
 
 # **ehEditEvent**
 ```objc
--(NSURLSessionTask*) ehEditEventWithEvent: (SWGEvent3*) event
-        completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+-(NSURLSessionTask*) ehEditEventWithEvent: (SWGEvent*) event
+        completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 ```
 
 Edit Event
@@ -319,13 +319,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-SWGEvent3* event = [[SWGEvent3 alloc] init]; // 
+SWGEvent* event = [[SWGEvent alloc] init]; // 
 
 SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
 // Edit Event
 [apiInstance ehEditEventWithEvent:event
-          completionHandler: ^(SWGEvent1* output, NSError* error) {
+          completionHandler: ^(SWGEvent* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -339,11 +339,11 @@ SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **event** | [**SWGEvent3***](SWGEvent3.md)|  | 
+ **event** | [**SWGEvent***](SWGEvent.md)|  | 
 
 ### Return type
 
-[**SWGEvent1***](SWGEvent1.md)
+[**SWGEvent***](SWGEvent.md)
 
 ### Authorization
 
@@ -410,7 +410,7 @@ void (empty response body)
 
 # **ehFreeUpgradeIAMINER**
 ```objc
--(NSURLSessionTask*) ehFreeUpgradeIAMINERWithIAMIN: (SWGIAMIN2*) iAMIN
+-(NSURLSessionTask*) ehFreeUpgradeIAMINERWithIAMIN: (SWGIAMIN*) iAMIN
         completionHandler: (void (^)(NSError* error)) handler;
 ```
 
@@ -426,7 +426,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-SWGIAMIN2* iAMIN = [[SWGIAMIN2 alloc] init]; // 
+SWGIAMIN* iAMIN = [[SWGIAMIN alloc] init]; // 
 
 SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
@@ -443,7 +443,7 @@ SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **iAMIN** | [**SWGIAMIN2***](SWGIAMIN2.md)|  | 
+ **iAMIN** | [**SWGIAMIN***](SWGIAMIN.md)|  | 
 
 ### Return type
 
@@ -463,7 +463,7 @@ void (empty response body)
 # **ehGetEvent**
 ```objc
 -(NSURLSessionTask*) ehGetEventWithEventId: (NSNumber*) eventId
-        completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 ```
 
 get Event
@@ -484,7 +484,7 @@ SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
 // get Event
 [apiInstance ehGetEventWithEventId:eventId
-          completionHandler: ^(SWGEvent1* output, NSError* error) {
+          completionHandler: ^(SWGEvent* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -502,7 +502,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGEvent1***](SWGEvent1.md)
+[**SWGEvent***](SWGEvent.md)
 
 ### Authorization
 
@@ -573,7 +573,7 @@ Name | Type | Description  | Notes
 # **ehGetStats**
 ```objc
 -(NSURLSessionTask*) ehGetStatsWithEventId: (NSNumber*) eventId
-        completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGMainEventStats* output, NSError* error)) handler;
 ```
 
 get Event
@@ -594,7 +594,7 @@ SWGEventHeadApi*apiInstance = [[SWGEventHeadApi alloc] init];
 
 // get Event
 [apiInstance ehGetStatsWithEventId:eventId
-          completionHandler: ^(SWGMainEventStats1* output, NSError* error) {
+          completionHandler: ^(SWGMainEventStats* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -612,7 +612,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGMainEventStats1***](SWGMainEventStats1.md)
+[**SWGMainEventStats***](SWGMainEventStats.md)
 
 ### Authorization
 

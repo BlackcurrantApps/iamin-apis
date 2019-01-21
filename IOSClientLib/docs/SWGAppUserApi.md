@@ -410,7 +410,7 @@ Name | Type | Description  | Notes
 # **getEvent**
 ```objc
 -(NSURLSessionTask*) getEventWithEventID: (NSNumber*) eventID
-        completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 ```
 
 get a single event inside a category
@@ -431,7 +431,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get a single event inside a category
 [apiInstance getEventWithEventID:eventID
-          completionHandler: ^(SWGEvent1* output, NSError* error) {
+          completionHandler: ^(SWGEvent* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -449,7 +449,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGEvent1***](SWGEvent1.md)
+[**SWGEvent***](SWGEvent.md)
 
 ### Authorization
 
@@ -571,7 +571,7 @@ This endpoint does not need any parameter.
 # **getIAMIN**
 ```objc
 -(NSURLSessionTask*) getIAMINWithIaminID: (NSNumber*) iaminID
-        completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 ```
 
 get by IAMIN ID
@@ -592,7 +592,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get by IAMIN ID
 [apiInstance getIAMINWithIaminID:iaminID
-          completionHandler: ^(SWGIAMIN1* output, NSError* error) {
+          completionHandler: ^(SWGIAMIN* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -610,7 +610,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGIAMIN1***](SWGIAMIN1.md)
+[**SWGIAMIN***](SWGIAMIN.md)
 
 ### Authorization
 
@@ -677,7 +677,7 @@ This endpoint does not need any parameter.
 # **getMainListings**
 ```objc
 -(NSURLSessionTask*) getMainListingsWithCompletionHandler: 
-        (void (^)(SWGSortedMainEvents1* output, NSError* error)) handler;
+        (void (^)(SWGSortedMainEvents* output, NSError* error)) handler;
 ```
 
 get all published Main Events
@@ -697,7 +697,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get all published Main Events
 [apiInstance getMainListingsWithCompletionHandler: 
-          ^(SWGSortedMainEvents1* output, NSError* error) {
+          ^(SWGSortedMainEvents* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -712,7 +712,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGSortedMainEvents1***](SWGSortedMainEvents1.md)
+[**SWGSortedMainEvents***](SWGSortedMainEvents.md)
 
 ### Authorization
 
@@ -834,7 +834,7 @@ Name | Type | Description  | Notes
 # **getSortedMainListings**
 ```objc
 -(NSURLSessionTask*) getSortedMainListingsWithCity: (NSString*) city
-        completionHandler: (void (^)(SWGSortedMainEvents1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGSortedMainEvents* output, NSError* error)) handler;
 ```
 
 get sorted Main Events
@@ -855,7 +855,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get sorted Main Events
 [apiInstance getSortedMainListingsWithCity:city
-          completionHandler: ^(SWGSortedMainEvents1* output, NSError* error) {
+          completionHandler: ^(SWGSortedMainEvents* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -873,7 +873,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGSortedMainEvents1***](SWGSortedMainEvents1.md)
+[**SWGSortedMainEvents***](SWGSortedMainEvents.md)
 
 ### Authorization
 
@@ -889,7 +889,7 @@ Name | Type | Description  | Notes
 # **getTicket**
 ```objc
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-        completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler;
 ```
 
 get Tickets of a user
@@ -910,7 +910,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get Tickets of a user
 [apiInstance getTicketWithTicketID:ticketID
-          completionHandler: ^(SWGTicket1* output, NSError* error) {
+          completionHandler: ^(SWGTicket* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -928,7 +928,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGTicket1***](SWGTicket1.md)
+[**SWGTicket***](SWGTicket.md)
 
 ### Authorization
 
@@ -995,7 +995,7 @@ This endpoint does not need any parameter.
 # **getUser**
 ```objc
 -(NSURLSessionTask*) getUserWithCompletionHandler: 
-        (void (^)(SWGAppUser2* output, NSError* error)) handler;
+        (void (^)(SWGAppUser* output, NSError* error)) handler;
 ```
 
 Get registered app user
@@ -1015,7 +1015,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // Get registered app user
 [apiInstance getUserWithCompletionHandler: 
-          ^(SWGAppUser2* output, NSError* error) {
+          ^(SWGAppUser* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1030,7 +1030,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGAppUser2***](SWGAppUser2.md)
+[**SWGAppUser***](SWGAppUser.md)
 
 ### Authorization
 
@@ -1046,7 +1046,7 @@ This endpoint does not need any parameter.
 # **getUserRoles**
 ```objc
 -(NSURLSessionTask*) getUserRolesWithCompletionHandler: 
-        (void (^)(SWGUserRoles1* output, NSError* error)) handler;
+        (void (^)(SWGUserRoles* output, NSError* error)) handler;
 ```
 
 get priviledges for a user
@@ -1066,7 +1066,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // get priviledges for a user
 [apiInstance getUserRolesWithCompletionHandler: 
-          ^(SWGUserRoles1* output, NSError* error) {
+          ^(SWGUserRoles* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1081,7 +1081,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**SWGUserRoles1***](SWGUserRoles1.md)
+[**SWGUserRoles***](SWGUserRoles.md)
 
 ### Authorization
 
@@ -1152,7 +1152,7 @@ Name | Type | Description  | Notes
 # **iamin**
 ```objc
 -(NSURLSessionTask*) iaminWithEventId: (NSNumber*) eventId
-        completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 ```
 
 IAMIN in an event
@@ -1173,7 +1173,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // IAMIN in an event
 [apiInstance iaminWithEventId:eventId
-          completionHandler: ^(SWGIAMIN1* output, NSError* error) {
+          completionHandler: ^(SWGIAMIN* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGIAMIN1***](SWGIAMIN1.md)
+[**SWGIAMIN***](SWGIAMIN.md)
 
 ### Authorization
 
@@ -1209,7 +1209,7 @@ Name | Type | Description  | Notes
 -(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
-        completionHandler: (void (^)(SWGPaytmTransaction1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGPaytmTransaction* output, NSError* error)) handler;
 ```
 
 Initialize a paytm transaction
@@ -1236,7 +1236,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 [apiInstance initializePaytmTransactionWithEventId:eventId
               cellNo:cellNo
               quantity:quantity
-          completionHandler: ^(SWGPaytmTransaction1* output, NSError* error) {
+          completionHandler: ^(SWGPaytmTransaction* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1256,7 +1256,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGPaytmTransaction1***](SWGPaytmTransaction1.md)
+[**SWGPaytmTransaction***](SWGPaytmTransaction.md)
 
 ### Authorization
 
@@ -1272,7 +1272,7 @@ Name | Type | Description  | Notes
 # **paytmTransactionSuccess**
 ```objc
 -(NSURLSessionTask*) paytmTransactionSuccessWithOrderID: (NSString*) orderID
-        completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler;
 ```
 
 Initialize a paytm transaction
@@ -1295,7 +1295,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 
 // Initialize a paytm transaction
 [apiInstance paytmTransactionSuccessWithOrderID:orderID
-          completionHandler: ^(SWGTicket1* output, NSError* error) {
+          completionHandler: ^(SWGTicket* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1313,7 +1313,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGTicket1***](SWGTicket1.md)
+[**SWGTicket***](SWGTicket.md)
 
 ### Authorization
 
@@ -1446,7 +1446,7 @@ void (empty response body)
 ```objc
 -(NSURLSessionTask*) setIaminQuantityWithIaminID: (NSNumber*) iaminID
     quantity: (NSNumber*) quantity
-        completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 ```
 
 Set quantity of tickets wanted
@@ -1469,7 +1469,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 // Set quantity of tickets wanted
 [apiInstance setIaminQuantityWithIaminID:iaminID
               quantity:quantity
-          completionHandler: ^(SWGIAMIN1* output, NSError* error) {
+          completionHandler: ^(SWGIAMIN* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1488,7 +1488,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGIAMIN1***](SWGIAMIN1.md)
+[**SWGIAMIN***](SWGIAMIN.md)
 
 ### Authorization
 
@@ -1571,7 +1571,7 @@ void (empty response body)
 ```objc
 -(NSURLSessionTask*) updateContactPreferenceWithIaminId: (NSNumber*) iaminId
     canContact: (NSString*) canContact
-        completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 ```
 
 update contact preferences on an iamin
@@ -1596,7 +1596,7 @@ SWGAppUserApi*apiInstance = [[SWGAppUserApi alloc] init];
 // update contact preferences on an iamin
 [apiInstance updateContactPreferenceWithIaminId:iaminId
               canContact:canContact
-          completionHandler: ^(SWGIAMIN1* output, NSError* error) {
+          completionHandler: ^(SWGIAMIN* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1615,7 +1615,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGIAMIN1***](SWGIAMIN1.md)
+[**SWGIAMIN***](SWGIAMIN.md)
 
 ### Authorization
 

@@ -14,7 +14,10 @@
 */
 
 
-#import "SWGCandidate1.h"
+#import "SWGCandidate.h"
+@protocol SWGCandidate;
+@class SWGCandidate;
+
 
 
 @protocol SWGInlineResponse2007
@@ -23,6 +26,6 @@
 @interface SWGInlineResponse2007 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGCandidate1>* items;
+@property(nonatomic) NSArray<SWGCandidate>* items;
 
 @end

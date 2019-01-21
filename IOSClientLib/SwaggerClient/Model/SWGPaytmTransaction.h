@@ -16,6 +16,7 @@
 
 
 
+
 @protocol SWGPaytmTransaction
 @end
 
@@ -55,5 +56,7 @@
 @property(nonatomic) NSString* cHECKSUMGENERATORURL;
 
 @property(nonatomic) NSString* cHECKSUMVERIFYURL;
+
+@property(nonatomic) NSString* cHECKSUMHASH;
 
 @end

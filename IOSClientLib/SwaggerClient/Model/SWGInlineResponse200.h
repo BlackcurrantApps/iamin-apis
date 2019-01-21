@@ -14,7 +14,10 @@
 */
 
 
-#import "SWGOffer1.h"
+#import "SWGOffer.h"
+@protocol SWGOffer;
+@class SWGOffer;
+
 
 
 @protocol SWGInlineResponse200
@@ -23,6 +26,6 @@
 @interface SWGInlineResponse200 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGOffer1>* items;
+@property(nonatomic) NSArray<SWGOffer>* items;
 
 @end

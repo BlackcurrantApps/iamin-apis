@@ -14,7 +14,10 @@
 */
 
 
-#import "SWGPRRepresentative1.h"
+#import "SWGPRRepresentative.h"
+@protocol SWGPRRepresentative;
+@class SWGPRRepresentative;
+
 
 
 @protocol SWGInlineResponse2008
@@ -23,6 +26,6 @@
 @interface SWGInlineResponse2008 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGPRRepresentative1>* items;
+@property(nonatomic) NSArray<SWGPRRepresentative>* items;
 
 @end

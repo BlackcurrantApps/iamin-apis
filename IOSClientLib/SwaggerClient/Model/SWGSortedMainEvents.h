@@ -14,7 +14,10 @@
 */
 
 
-#import "SWGMainEvent1.h"
+#import "SWGMainEvent.h"
+@protocol SWGMainEvent;
+@class SWGMainEvent;
+
 
 
 @protocol SWGSortedMainEvents
@@ -23,12 +26,12 @@
 @interface SWGSortedMainEvents : SWGObject
 
 
-@property(nonatomic) NSArray<SWGMainEvent1>* trendingEvents;
+@property(nonatomic) NSArray<SWGMainEvent>* trendingEvents;
 
-@property(nonatomic) NSArray<SWGMainEvent1>* collegeEvents;
+@property(nonatomic) NSArray<SWGMainEvent>* collegeEvents;
 
-@property(nonatomic) NSArray<SWGMainEvent1>* clubEvents;
+@property(nonatomic) NSArray<SWGMainEvent>* clubEvents;
 
-@property(nonatomic) NSArray<SWGMainEvent1>* concertEvents;
+@property(nonatomic) NSArray<SWGMainEvent>* concertEvents;
 
 @end

@@ -15,6 +15,9 @@
 
 
 #import "SWGPRLocation.h"
+@protocol SWGPRLocation;
+@class SWGPRLocation;
+
 
 
 @protocol SWGLocationContainer

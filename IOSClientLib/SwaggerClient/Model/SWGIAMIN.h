@@ -14,8 +14,13 @@
 */
 
 
-#import "SWGAppUser2.h"
-#import "SWGEvent1.h"
+#import "SWGAppUser.h"
+#import "SWGEvent.h"
+@protocol SWGAppUser;
+@class SWGAppUser;
+@protocol SWGEvent;
+@class SWGEvent;
+
 
 
 @protocol SWGIAMIN
@@ -38,8 +43,8 @@
 
 @property(nonatomic) NSNumber* requestQuantity;
 
-@property(nonatomic) SWGEvent1* event;
+@property(nonatomic) SWGEvent* event;
 
-@property(nonatomic) SWGAppUser2* bearer;
+@property(nonatomic) SWGAppUser* bearer;
 
 @end

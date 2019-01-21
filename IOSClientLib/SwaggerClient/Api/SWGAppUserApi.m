@@ -2,11 +2,11 @@
 #import "SWGQueryParamCollection.h"
 #import "SWGApiClient.h"
 #import "SWGAppPopup.h"
+#import "SWGAppUser.h"
 #import "SWGAppUser1.h"
-#import "SWGAppUser2.h"
 #import "SWGAppVersion.h"
-#import "SWGEvent1.h"
-#import "SWGIAMIN1.h"
+#import "SWGEvent.h"
+#import "SWGIAMIN.h"
 #import "SWGInlineResponse200.h"
 #import "SWGInlineResponse2001.h"
 #import "SWGInlineResponse2002.h"
@@ -16,10 +16,10 @@
 #import "SWGInlineResponse2006.h"
 #import "SWGInlineResponse2007.h"
 #import "SWGLocationContainer.h"
-#import "SWGPaytmTransaction1.h"
-#import "SWGSortedMainEvents1.h"
-#import "SWGTicket1.h"
-#import "SWGUserRoles1.h"
+#import "SWGPaytmTransaction.h"
+#import "SWGSortedMainEvents.h"
+#import "SWGTicket.h"
+#import "SWGUserRoles.h"
 
 
 @interface SWGAppUserApi ()
@@ -531,10 +531,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventID  
 ///
-///  @returns SWGEvent1*
+///  @returns SWGEvent*
 ///
 -(NSURLSessionTask*) getEventWithEventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler {
     // verify the required parameter 'eventID' is set
     if (eventID == nil) {
         NSParameterAssert(eventID);
@@ -586,10 +586,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGEvent1*"
+                              responseType: @"SWGEvent*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGEvent1*)data, error);
+                                    handler((SWGEvent*)data, error);
                                 }
                             }];
 }
@@ -719,10 +719,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param iaminID  
 ///
-///  @returns SWGIAMIN1*
+///  @returns SWGIAMIN*
 ///
 -(NSURLSessionTask*) getIAMINWithIaminID: (NSNumber*) iaminID
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler {
     // verify the required parameter 'iaminID' is set
     if (iaminID == nil) {
         NSParameterAssert(iaminID);
@@ -774,10 +774,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGIAMIN1*"
+                              responseType: @"SWGIAMIN*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGIAMIN1*)data, error);
+                                    handler((SWGIAMIN*)data, error);
                                 }
                             }];
 }
@@ -837,10 +837,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 /// get all published Main Events
 /// 
-///  @returns SWGSortedMainEvents1*
+///  @returns SWGSortedMainEvents*
 ///
 -(NSURLSessionTask*) getMainListingsWithCompletionHandler: 
-    (void (^)(SWGSortedMainEvents1* output, NSError* error)) handler {
+    (void (^)(SWGSortedMainEvents* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getMainListings"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -878,10 +878,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGSortedMainEvents1*"
+                              responseType: @"SWGSortedMainEvents*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGSortedMainEvents1*)data, error);
+                                    handler((SWGSortedMainEvents*)data, error);
                                 }
                             }];
 }
@@ -1011,10 +1011,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param city  
 ///
-///  @returns SWGSortedMainEvents1*
+///  @returns SWGSortedMainEvents*
 ///
 -(NSURLSessionTask*) getSortedMainListingsWithCity: (NSString*) city
-    completionHandler: (void (^)(SWGSortedMainEvents1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGSortedMainEvents* output, NSError* error)) handler {
     // verify the required parameter 'city' is set
     if (city == nil) {
         NSParameterAssert(city);
@@ -1066,10 +1066,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGSortedMainEvents1*"
+                              responseType: @"SWGSortedMainEvents*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGSortedMainEvents1*)data, error);
+                                    handler((SWGSortedMainEvents*)data, error);
                                 }
                             }];
 }
@@ -1079,10 +1079,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param ticketID  
 ///
-///  @returns SWGTicket1*
+///  @returns SWGTicket*
 ///
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-    completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler {
     // verify the required parameter 'ticketID' is set
     if (ticketID == nil) {
         NSParameterAssert(ticketID);
@@ -1134,10 +1134,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGTicket1*"
+                              responseType: @"SWGTicket*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGTicket1*)data, error);
+                                    handler((SWGTicket*)data, error);
                                 }
                             }];
 }
@@ -1197,10 +1197,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 /// Get registered app user
 /// 
-///  @returns SWGAppUser2*
+///  @returns SWGAppUser*
 ///
 -(NSURLSessionTask*) getUserWithCompletionHandler: 
-    (void (^)(SWGAppUser2* output, NSError* error)) handler {
+    (void (^)(SWGAppUser* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getUser"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -1238,10 +1238,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGAppUser2*"
+                              responseType: @"SWGAppUser*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGAppUser2*)data, error);
+                                    handler((SWGAppUser*)data, error);
                                 }
                             }];
 }
@@ -1249,10 +1249,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 /// get priviledges for a user
 /// 
-///  @returns SWGUserRoles1*
+///  @returns SWGUserRoles*
 ///
 -(NSURLSessionTask*) getUserRolesWithCompletionHandler: 
-    (void (^)(SWGUserRoles1* output, NSError* error)) handler {
+    (void (^)(SWGUserRoles* output, NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/appUserApi/v1/getUserRoles"];
 
     NSMutableDictionary *pathParams = [[NSMutableDictionary alloc] init];
@@ -1290,10 +1290,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGUserRoles1*"
+                              responseType: @"SWGUserRoles*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGUserRoles1*)data, error);
+                                    handler((SWGUserRoles*)data, error);
                                 }
                             }];
 }
@@ -1371,10 +1371,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @param eventId  
 ///
-///  @returns SWGIAMIN1*
+///  @returns SWGIAMIN*
 ///
 -(NSURLSessionTask*) iaminWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -1426,10 +1426,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGIAMIN1*"
+                              responseType: @"SWGIAMIN*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGIAMIN1*)data, error);
+                                    handler((SWGIAMIN*)data, error);
                                 }
                             }];
 }
@@ -1443,12 +1443,12 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 ///  @param quantity  
 ///
-///  @returns SWGPaytmTransaction1*
+///  @returns SWGPaytmTransaction*
 ///
 -(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGPaytmTransaction1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGPaytmTransaction* output, NSError* error)) handler {
     // verify the required parameter 'eventId' is set
     if (eventId == nil) {
         NSParameterAssert(eventId);
@@ -1528,10 +1528,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGPaytmTransaction1*"
+                              responseType: @"SWGPaytmTransaction*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGPaytmTransaction1*)data, error);
+                                    handler((SWGPaytmTransaction*)data, error);
                                 }
                             }];
 }
@@ -1541,10 +1541,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 /// Call this before making any payment
 ///  @param orderID  
 ///
-///  @returns SWGTicket1*
+///  @returns SWGTicket*
 ///
 -(NSURLSessionTask*) paytmTransactionSuccessWithOrderID: (NSString*) orderID
-    completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler {
     // verify the required parameter 'orderID' is set
     if (orderID == nil) {
         NSParameterAssert(orderID);
@@ -1596,10 +1596,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGTicket1*"
+                              responseType: @"SWGTicket*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGTicket1*)data, error);
+                                    handler((SWGTicket*)data, error);
                                 }
                             }];
 }
@@ -1787,11 +1787,11 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 ///  @param quantity  
 ///
-///  @returns SWGIAMIN1*
+///  @returns SWGIAMIN*
 ///
 -(NSURLSessionTask*) setIaminQuantityWithIaminID: (NSNumber*) iaminID
     quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler {
     // verify the required parameter 'iaminID' is set
     if (iaminID == nil) {
         NSParameterAssert(iaminID);
@@ -1857,10 +1857,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGIAMIN1*"
+                              responseType: @"SWGIAMIN*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGIAMIN1*)data, error);
+                                    handler((SWGIAMIN*)data, error);
                                 }
                             }];
 }
@@ -1991,11 +1991,11 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
 ///
 ///  @param canContact  
 ///
-///  @returns SWGIAMIN1*
+///  @returns SWGIAMIN*
 ///
 -(NSURLSessionTask*) updateContactPreferenceWithIaminId: (NSNumber*) iaminId
     canContact: (NSString*) canContact
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler {
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler {
     // verify the required parameter 'iaminId' is set
     if (iaminId == nil) {
         NSParameterAssert(iaminId);
@@ -2061,10 +2061,10 @@ NSInteger kSWGAppUserApiMissingParamErrorCode = 234513;
                               authSettings: authSettings
                         requestContentType: requestContentType
                        responseContentType: responseContentType
-                              responseType: @"SWGIAMIN1*"
+                              responseType: @"SWGIAMIN*"
                            completionBlock: ^(id data, NSError *error) {
                                 if(handler) {
-                                    handler((SWGIAMIN1*)data, error);
+                                    handler((SWGIAMIN*)data, error);
                                 }
                             }];
 }

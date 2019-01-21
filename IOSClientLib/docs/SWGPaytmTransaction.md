@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **cALLBACKURL** | **NSString*** |  | [optional] 
 **cHECKSUMGENERATORURL** | **NSString*** |  | [optional] 
 **cHECKSUMVERIFYURL** | **NSString*** |  | [optional] 
+**cHECKSUMHASH** | **NSString*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

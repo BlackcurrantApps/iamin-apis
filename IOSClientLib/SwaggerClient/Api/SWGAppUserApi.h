@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 #import "SWGAppPopup.h"
+#import "SWGAppUser.h"
 #import "SWGAppUser1.h"
-#import "SWGAppUser2.h"
 #import "SWGAppVersion.h"
-#import "SWGEvent1.h"
-#import "SWGIAMIN1.h"
+#import "SWGEvent.h"
+#import "SWGIAMIN.h"
 #import "SWGInlineResponse200.h"
 #import "SWGInlineResponse2001.h"
 #import "SWGInlineResponse2002.h"
@@ -14,10 +14,10 @@
 #import "SWGInlineResponse2006.h"
 #import "SWGInlineResponse2007.h"
 #import "SWGLocationContainer.h"
-#import "SWGPaytmTransaction1.h"
-#import "SWGSortedMainEvents1.h"
-#import "SWGTicket1.h"
-#import "SWGUserRoles1.h"
+#import "SWGPaytmTransaction.h"
+#import "SWGSortedMainEvents.h"
+#import "SWGTicket.h"
+#import "SWGUserRoles.h"
 #import "SWGApi.h"
 
 /**
@@ -48,7 +48,7 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:204 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) callRegisterWithAppUser: (SWGAppUser1*) appUser
     completionHandler: (void (^)(NSError* error)) handler;
 
@@ -61,7 +61,7 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) castVoteWithEventID: (NSNumber*) eventID
     candidateID: (NSNumber*) candidateID
     completionHandler: (void (^)(NSError* error)) handler;
@@ -74,7 +74,7 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) deleteIAMINWithEventId: (NSNumber*) eventId
     completionHandler: (void (^)(NSError* error)) handler;
 
@@ -132,9 +132,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGEvent1*
+/// @return SWGEvent*
 -(NSURLSessionTask*) getEventWithEventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 
 
 /// get events inside a category
@@ -167,9 +167,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGIAMIN1*
+/// @return SWGIAMIN*
 -(NSURLSessionTask*) getIAMINWithIaminID: (NSNumber*) iaminID
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 
 
 /// get iamins of a user
@@ -189,9 +189,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGSortedMainEvents1*
+/// @return SWGSortedMainEvents*
 -(NSURLSessionTask*) getMainListingsWithCompletionHandler: 
-    (void (^)(SWGSortedMainEvents1* output, NSError* error)) handler;
+    (void (^)(SWGSortedMainEvents* output, NSError* error)) handler;
 
 
 /// Get offers displayed on the app
@@ -224,9 +224,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGSortedMainEvents1*
+/// @return SWGSortedMainEvents*
 -(NSURLSessionTask*) getSortedMainListingsWithCity: (NSString*) city
-    completionHandler: (void (^)(SWGSortedMainEvents1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGSortedMainEvents* output, NSError* error)) handler;
 
 
 /// get Tickets of a user
@@ -236,9 +236,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGTicket1*
+/// @return SWGTicket*
 -(NSURLSessionTask*) getTicketWithTicketID: (NSNumber*) ticketID
-    completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler;
 
 
 /// get Tickets of a user
@@ -258,9 +258,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGAppUser2*
+/// @return SWGAppUser*
 -(NSURLSessionTask*) getUserWithCompletionHandler: 
-    (void (^)(SWGAppUser2* output, NSError* error)) handler;
+    (void (^)(SWGAppUser* output, NSError* error)) handler;
 
 
 /// get priviledges for a user
@@ -269,9 +269,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGUserRoles1*
+/// @return SWGUserRoles*
 -(NSURLSessionTask*) getUserRolesWithCompletionHandler: 
-    (void (^)(SWGUserRoles1* output, NSError* error)) handler;
+    (void (^)(SWGUserRoles* output, NSError* error)) handler;
 
 
 /// get Voting candidates on a event if enabled
@@ -293,9 +293,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGIAMIN1*
+/// @return SWGIAMIN*
 -(NSURLSessionTask*) iaminWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 
 
 /// Initialize a paytm transaction
@@ -307,11 +307,11 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGPaytmTransaction1*
+/// @return SWGPaytmTransaction*
 -(NSURLSessionTask*) initializePaytmTransactionWithEventId: (NSNumber*) eventId
     cellNo: (NSString*) cellNo
     quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGPaytmTransaction1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGPaytmTransaction* output, NSError* error)) handler;
 
 
 /// Initialize a paytm transaction
@@ -321,9 +321,9 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGTicket1*
+/// @return SWGTicket*
 -(NSURLSessionTask*) paytmTransactionSuccessWithOrderID: (NSString*) orderID
-    completionHandler: (void (^)(SWGTicket1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGTicket* output, NSError* error)) handler;
 
 
 /// Post comment on a event
@@ -334,7 +334,7 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postCommentWithEventID: (NSNumber*) eventID
     message: (NSString*) message
     completionHandler: (void (^)(NSError* error)) handler;
@@ -349,7 +349,7 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) postEventFeedbackWithEventID: (NSNumber*) eventID
     message: (NSString*) message
     rating: (NSNumber*) rating
@@ -364,10 +364,10 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGIAMIN1*
+/// @return SWGIAMIN*
 -(NSURLSessionTask*) setIaminQuantityWithIaminID: (NSNumber*) iaminID
     quantity: (NSNumber*) quantity
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 
 
 /// Transfer your ticket
@@ -380,7 +380,7 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) transferTicketWithTicketId: (NSNumber*) ticketId
     transferToEmail: (NSString*) transferToEmail
     transferToCell: (NSString*) transferToCell
@@ -396,10 +396,10 @@ extern NSInteger kSWGAppUserApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGIAMIN1*
+/// @return SWGIAMIN*
 -(NSURLSessionTask*) updateContactPreferenceWithIaminId: (NSNumber*) iaminId
     canContact: (NSString*) canContact
-    completionHandler: (void (^)(SWGIAMIN1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGIAMIN* output, NSError* error)) handler;
 
 
 

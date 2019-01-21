@@ -14,7 +14,10 @@
 */
 
 
-#import "SWGAppUser2.h"
+#import "SWGAppUser.h"
+@protocol SWGAppUser;
+@class SWGAppUser;
+
 
 
 @protocol SWGPRLocation
@@ -27,6 +30,6 @@
 
 @property(nonatomic) NSNumber* lon;
 
-@property(nonatomic) SWGAppUser2* appUser;
+@property(nonatomic) SWGAppUser* appUser;
 
 @end

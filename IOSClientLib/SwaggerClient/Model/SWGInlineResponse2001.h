@@ -14,7 +14,10 @@
 */
 
 
-#import "SWGCategory1.h"
+#import "SWGCategory.h"
+@protocol SWGCategory;
+@class SWGCategory;
+
 
 
 @protocol SWGInlineResponse2001
@@ -23,6 +26,6 @@
 @interface SWGInlineResponse2001 : SWGObject
 
 
-@property(nonatomic) NSArray<SWGCategory1>* items;
+@property(nonatomic) NSArray<SWGCategory>* items;
 
 @end

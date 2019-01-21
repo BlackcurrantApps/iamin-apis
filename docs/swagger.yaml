@@ -1,2628 +1,2280 @@
 swagger: '2.0'
 info:
+  description: API Backend for the IAMIN App
   version: 1.0.0
-  title: iamin-events.appspot.com
+  title: IAMIN API
+  contact:
+    email: sanket@blackcurrantapps.com
 host: iamin-events.appspot.com
 basePath: /_ah/api
+tags:
+  - name: AppUser
+    description: Everything done by AppUsers
+  - name: PR
+    description: Everything done by PR
+  - name: Manager
+    description: Everything done by Manager
+  - name: EventHead
+    description: Everything done by EventHead
 schemes:
   - https
-  - http
-consumes:
-  - application/json
+security:
+  - GoogleAuth: []
+securityDefinitions:
+  GoogleAuth:
+    type: apiKey
+    in: header
+    name: Authorization
 produces:
   - application/json
+  
+  
 paths:
+# App User API
+  /appUserApi/v1/getAppVersion:
+    get:
+      summary: Register a new app user
+      operationId: getAppVersion
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            title: AppVersion
+            properties:
+              latestAppVersion:
+                type: integer
+                format: int32
+              lastSupportedAppVersion:
+                type: integer
+                format: int32
+    
+  /appUserApi/v1/getAppPopup:
+    get:
+      summary: Get the current application popup
+      operationId: getAppPopup
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            title: AppPopup
+            properties:
+              picture_url:
+                type: string
+              updateTimestamp:
+                type: integer
+                format: int64
+              enabled:
+                type: boolean
 
-  /addMainEventApi:
+  /appUserApi/v1/register:
     post:
-      operationId: AppAdminApiAddMainEventApi
+      summary: Register a new App User
+      operationId: register
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      consumes: 
+        - application/json
       parameters:
-        - name: name
-          in: query
+        - name: AppUser
+          in: body
           required: true
-          type: string
-        - name: ManagerEmail
-          in: query
-          required: true
-          type: string
-        - name: hashtag
-          in: query
-          required: true
-          type: string
-        - name: positionInList
-          in: query
-          required: true
-          type: integer
-          format: int32
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                description: email id of the user
+              contactNo:
+                type: string
+              name:
+                type: string
+              gender:
+                type: boolean
+                description: 1 for male 0 for female
+              Institution:
+                type: string
+              city:
+                type: string
+              intrests:
+                type: array
+                items:
+                  type: string
+              profilePic:
+                type: string
+                description: url to the profile picture
+              regId:
+                type: string
+                description: Google Cloud Messaging Registration ID
+      responses:
+        '204':
+          description: OK
+            
+  /appUserApi/v1/getUser:
+    get:
+      summary: Get registered app user
+      operationId: getUser
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/AppUser'
+            
+  /appUserApi/v1/getOffers:
+    get:
+      summary: Get offers displayed on the app
+      operationId: getOffers
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Offer'
+                  
+  /appUserApi/v1/getSortedMainListings:
+    get:
+      summary: get sorted Main Events
+      operationId: getSortedMainListings
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
         - name: city
-          in: query
-          required: true
           type: string
-        - name: mainEventType
-          in: query
           required: true
-          type: string
-        - name: isTrending
           in: query
-          required: true
-          type: boolean
-        - name: description
-          in: query
-          required: true
-          type: string
-        - name: apiKey
-          in: query
-          required: true
-          type: string
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/MainEventListing'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-              
-  /appAdminApi/v1/addMainEvent:
-    post:
-      operationId: AppAdminApiAddMainEvent
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/MainEventListing'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/MainEventListing'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/addOfferCall:
-    post:
-      operationId: AppAdminApiAddOfferCall
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/Offer'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Offer'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/addOfferCode:
-    post:
-      operationId: AppAdminApiAddOfferCode
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/Offer'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Offer'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/addOfferSMS:
-    post:
-      operationId: AppAdminApiAddOfferSMS
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/Offer'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Offer'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/addOfferUrl:
-    post:
-      operationId: AppAdminApiAddOfferUrl
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/Offer'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Offer'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/collectionresponse_appuser:
+            $ref: '#/definitions/SortedMainEvents'
+            
+  /appUserApi/v1/getMainListings:
     get:
-      operationId: AppAdminApiGetUserDump
-      parameters:
-        - name: cursor
-          in: query
-          required: false
-          type: string
+      summary: get all published Main Events
+      operationId: getMainListings
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/CollectionResponse_AppUser'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/collectionresponse_eventlog/{mainEventId}':
+            $ref: '#/definitions/SortedMainEvents'
+            
+  /appUserApi/v1/getCategories:
     get:
-      operationId: AppAdminApiGetEventLog
-      parameters:
-        - name: mainEventId
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventLog'
+      summary: get categories inside a main-event
+      operationId: getCategories
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/collectionresponse_maineventlisting:
-    get:
-      operationId: AppAdminApiGetAllEventsTillDate
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_MainEventListing'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/exportEvent/:
-    get:
-      operationId: AppAdminApiGetTicketHolders
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: cursor
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_AppUser'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/exportEventLog/:
-    get:
-      operationId: AppAdminApiGetEventLogDump
-      parameters:
-        - name: cursor
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventLog'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/exportMainEvent/:
-    get:
-      operationId: AppAdminApiGetTicketHoldersForMainEvent
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: cursor
-          in: query
-          required: false
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_Ticket'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/mainevent/{mainEventListingid}':
-    delete:
-      operationId: AppAdminApiDeleteMainEvent
-      parameters:
-        - name: mainEventListingid
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/offer/{offerId}':
-    delete:
-      operationId: AppAdminApiDeleteOffer
-      parameters:
-        - name: offerId
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/restartMainEvent/{mainEventListingid}':
-    post:
-      operationId: AppAdminApiRestartMainEvent
-      parameters:
-        - name: mainEventListingid
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/sendEventPromo/{eventID}/{title}/{message}':
-    post:
-      operationId: AppAdminApiSendEventPromo
-      parameters:
-        - name: eventID
-          in: path
-          required: true
-          type: integer
-          format: int64
-        - name: title
-          in: path
-          required: true
-          type: string
-        - name: message
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/sendMessageToEveryone/{message}':
-    post:
-      operationId: AppAdminApiSendMessageToEveryone
-      parameters:
-        - name: message
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/sendMessageToSomeone/{email}/{message}':
-    post:
-      operationId: AppAdminApiSendMessageToSomeone
-      parameters:
-        - name: email
-          in: path
-          required: true
-          type: string
-        - name: message
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/sendSMS/{receiver}/{message}':
-    post:
-      operationId: AppAdminApiSendSMS
-      parameters:
-        - name: receiver
-          in: path
-          required: true
-          type: string
-        - name: message
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/sendWelcomeEmail/{name}/{Email}':
-    post:
-      operationId: AppAdminApiSendWelcomeEmail
-      parameters:
-        - name: name
-          in: path
-          required: true
-          type: string
-        - name: Email
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/appAdminApi/v1/testMail/{email}/{html}':
-    post:
-      operationId: AppAdminApiTestMail
-      parameters:
-        - name: email
-          in: path
-          required: true
-          type: string
-        - name: html
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appAdminApi/v1/void:
-    get:
-      operationId: AppAdminApiGetStats
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/PaytmTransactionSuccess/:
-    post:
-      operationId: AppUserApiPaytmTransactionSuccess
-      parameters:
-        - name: OrderID
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Ticket'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/PostEventFeedback/:
-    post:
-      operationId: AppUserApiPostEventFeedback
-      parameters:
-        - name: eventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: Message
-          in: query
-          required: true
-          type: string
-        - name: Rating
-          in: query
-          required: true
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/castVote/:
-    post:
-      operationId: AppUserApiCastVote
-      parameters:
-        - name: candidateID
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: eventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Vote'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/deleteIAMIN/:
-    delete:
-      operationId: AppUserApiDeleteIAMIN
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getAppPopup/:
-    get:
-      operationId: AppUserApiGetAppPopup
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/AppPopup'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getAppVersion/:
-    get:
-      operationId: AppUserApiGetAppVersion
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/AppVersion'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getCategories/:
-    get:
-      operationId: AppUserApiGetCategories
+        - GoogleAuth: []
+      tags:
+        - AppUser
       parameters:
         - name: MainEventId
-          in: query
-          required: true
           type: integer
           format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventCategories'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getCommentsForEvent/:
-    get:
-      operationId: AppUserApiGetCommentsForEvent
-      parameters:
-        - name: eventID
-          in: query
           required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_Comments'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getEvent/:
-    get:
-      operationId: AppUserApiGetEvent
-      parameters:
-        - name: eventID
           in: query
-          required: true
-          type: integer
-          format: int64
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/Event'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getEvents/:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Category'       
+            
+  /appUserApi/v1/getEvents:
     get:
-      operationId: AppUserApiGetEvents
+      summary: get events inside a category
+      operationId: getEvents
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
       parameters:
         - name: categoryId
-          in: query
-          required: true
           type: integer
           format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_Event'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getHistory/:
-    get:
-      operationId: AppUserApiGetHistory
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventLog'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getIAMIN/:
-    get:
-      operationId: AppUserApiGetIAMIN
-      parameters:
-        - name: iaminID
-          in: query
           required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/IAMIN'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getIAMINS/:
-    get:
-      operationId: AppUserApiGetIAMINS
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/IAMINCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getMainListings/:
-    get:
-      operationId: AppUserApiGetMainListings
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_MainEventListing'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getOffers/:
-    get:
-      operationId: AppUserApiGetOffers
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/OfferCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getPRLocations/:
-    get:
-      operationId: AppUserApiGetLocations
-      parameters:
-        - name: mainEventID
           in: query
-          required: true
-          type: integer
-          format: int64
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/LocationContainer'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getSortedMainListings/:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+                  
+  /appUserApi/v1/getEvent:
     get:
-      operationId: AppUserApiGetSortedMainListings
-      parameters:
-        - name: city
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/SortedMainListings'
+      summary: get a single event inside a category
+      operationId: getEvent
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getTicket/:
-    get:
-      operationId: AppUserApiGetTicket
-      parameters:
-        - name: ticketID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Ticket'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getTickets/:
-    get:
-      operationId: AppUserApiGetTickets
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/TicketCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getUser/:
-    get:
-      operationId: AppUserApiGetUser
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/AppUser'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getUserRoles/:
-    get:
-      operationId: AppUserApiGetUserRoles
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/UserRole'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/getVotingCandidates/:
-    get:
-      operationId: AppUserApiGetVotingCandidates
+        - GoogleAuth: []
+      tags:
+        - AppUser
       parameters:
         - name: eventID
-          in: query
-          required: true
           type: integer
           format: int64
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/CollectionResponse_Candidate'
+            $ref: '#/definitions/Event'
+            
+  /appUserApi/v1/getIAMINS:
+    get:
+      summary: get iamins of a user
+      operationId: getIAMINS
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/iamin/:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/IAMIN'
+                  
+  /appUserApi/v1/iamin:
     post:
-      operationId: AppUserApiIamin
+      summary: IAMIN in an event
+      operationId: iamin
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
       parameters:
         - name: eventId
-          in: query
-          required: true
           type: integer
           format: int64
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
             $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/getIAMIN:
+    get:
+      summary: get by IAMIN ID
+      operationId: getIAMIN
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/initializePaytmTransaction/:
-    post:
-      operationId: AppUserApiInitializePaytmTransaction
+        - GoogleAuth: []
+      tags:
+        - AppUser
       parameters:
-        - name: eventId
-          in: query
-          required: true
+        - name: iaminID
           type: integer
           format: int64
-        - name: quantity
-          in: query
           required: true
-          type: integer
-          format: int32
-        - name: cellNo
           in: query
-          required: true
-          type: string
       responses:
         '200':
-          description: A successful response
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/deleteIAMIN:
+    delete:
+      summary: Delete IAMIN
+      operationId: deleteIAMIN
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /appUserApi/v1/getTickets:
+    get:
+      summary: get Tickets of a user
+      operationId: getTickets
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Ticket'
+                  
+  /appUserApi/v1/getTicket:
+    get:
+      summary: get Tickets of a user
+      operationId: getTicket
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: ticketID
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Ticket'
+                  
+  /appUserApi/v1/getUserRoles:
+    get:
+      summary: get priviledges for a user
+      operationId: getUserRoles
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UserRoles'
+            
+  /appUserApi/v1/updateContactPreference:
+    put:
+      summary: update contact preferences on an iamin
+      description: set whether or not the user wants to share contact details.
+      operationId: updateContactPreference
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: iaminId
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: canContact
+          type: string
+          in: query
+          required: true
+          enum:
+            - "true"
+            - "false"
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/setIaminQuantity:
+    put:
+      summary: Set quantity of tickets wanted
+      operationId: setIaminQuantity
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: iaminID
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: quantity
+          type: integer
+          format: int32
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+            
+  /appUserApi/v1/getHistory:
+    get:
+      summary: get history of transactions for a user
+      operationId: getHistory
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+                  
+  /appUserApi/v1/getPRLocations:
+    get:
+      summary: get prs for a event along with their locations
+      operationId: getPRLocations
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: mainEventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            title: LocationContainer
+            properties:
+              mainEventLat:
+                type: number
+                format: double
+              mainEventLon:
+                type: number
+                format: double
+              prLocations:
+                type: array
+                items:
+                  type: object
+                  title: PRLocation
+                  properties:
+                    lat:
+                      type: number
+                      format: double
+                    lon:
+                      type: number
+                      format: double
+                    appUser:
+                      $ref: '#/definitions/AppUser'
+                  
+  /appUserApi/v1/PostEventFeedback:
+    post:
+      summary: post feedback on a event
+      operationId: PostEventFeedback
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: eventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: Message
+          type: string
+          in: query
+          required: true
+        - name: Rating
+          type: integer
+          format: int32
+          in: query
+          minimum: 1
+          maximum: 5
+      responses:
+        '200':
+          description: OK
+                  
+  /appUserApi/v1/postComment:
+    post:
+      summary: Post comment on a event
+      operationId: postComment
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters: 
+        - name: eventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+        - name: message
+          type: string
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+        
+  /appUserApi/v1/getCommentsForEvent:
+    get:
+      summary: get Comments on a Event
+      operationId: getCommentsForEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Comment'
+                  
+  /appUserApi/v1/getVotingCandidates:
+    get:
+      summary: get Voting candidates on a event if enabled
+      operationId: getVotingCandidates
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Candidate'
+                  
+  /appUserApi/v1/castVote:
+    post:
+      summary: Cast a vote
+      operationId: castVote
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: candidateID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /appUserApi/v1/transferTicket:
+    post:
+      summary: Transfer your ticket
+      description: Transfering ticket can be enabled/disabled in the manager console
+      operationId: transferTicket
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: ticketId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: transferToEmail
+          type: string
+          required: true
+          in: query
+        - name: transferToCell
+          type: string
+          required: true
+          in: query
+        - name: transferQuantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /appUserApi/v1/initializePaytmTransaction:
+    post:
+      summary: Initialize a paytm transaction
+      description: Call this before making any payment
+      operationId: initializePaytmTransaction
+      security:
+        - GoogleAuth: []
+      tags:
+        - AppUser
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: cellNo
+          type: string
+          required: true
+          in: query
+        - name: quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
           schema:
             $ref: '#/definitions/PaytmTransaction'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/postComment/:
+          
+  /appUserApi/v1/PaytmTransactionSuccess:
     post:
-      operationId: AppUserApiPostComment
-      parameters:
-        - name: message
-          in: query
-          required: true
-          type: string
-        - name: eventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
+      summary: Initialize a paytm transaction
+      description: Call this before making any payment
+      operationId: PaytmTransactionSuccess
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/register/:
-    post:
-      operationId: AppUserApiRegister
+        - GoogleAuth: []
+      tags:
+        - AppUser
       parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/AppUser'
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/setIaminQuantity/:
-    put:
-      operationId: AppUserApiSetIaminQuantity
-      parameters:
-        - name: iaminID
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: quantity
-          in: query
-          required: true
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/IAMIN'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/transferTicket/:
-    post:
-      operationId: AppUserApiTransferTicket
-      parameters:
-        - name: ticketId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: transferToEmail
-          in: query
-          required: true
+        - name: OrderID
           type: string
-        - name: transferToCell
-          in: query
           required: true
-          type: string
-        - name: transferQuantity
           in: query
-          required: true
-          type: integer
-          format: int32
       responses:
         '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /appUserApi/v1/updateContactPreference/:
-    put:
-      operationId: AppUserApiUpdateContactPreference
-      parameters:
-        - name: iaminId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: canContact
-          in: query
-          required: true
-          type: boolean
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/IAMIN'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/burstApi/v1/sendTicketTo/{email}/{eventID}/{apiKey}':
-    get:
-      operationId: BurstApiSendTicketTo
-      parameters:
-        - name: email
-          in: path
-          required: true
-          type: string
-        - name: eventID
-          in: path
-          required: true
-          type: integer
-          format: int64
-        - name: apiKey
-          in: path
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
+          description: OK
           schema:
             $ref: '#/definitions/Ticket'
+
+# Manager Api
+
+  /managerApi/v1/getMainListing:
+    get:
+      summary: get a single Main Event
+      operationId: managerGetMainListing
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/burstApi/v1/sendTicketToIAMINers/{hostEventId}/{TargetEventId}':
-    post:
-      operationId: BurstApiSendTicketToIAMINers
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - name: hostEventId
-          in: path
-          required: true
+        - name: mainEventId
           type: integer
           format: int64
-        - name: TargetEventId
-          in: path
           required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/burstApi/v1/sendTicketToTicketHolders/{hostEventId}/{TargetEventId}':
-    post:
-      operationId: BurstApiSendTicketToTicketHolders
-      parameters:
-        - name: hostEventId
-          in: path
-          required: true
-          type: integer
-          format: int64
-        - name: TargetEventId
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/addVotingCandidate/:
-    post:
-      operationId: EventHeadApiAddVotingCandidate
-      parameters:
-        - name: eventId
           in: query
-          required: true
-          type: integer
-          format: int64
-        - name: name
-          in: query
-          required: true
-          type: string
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/Candidate'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/announceAll/:
-    post:
-      operationId: EventHeadApiAnnounceAll
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: message
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/announceIAMINers/:
-    post:
-      operationId: EventHeadApiAnnounceIAMINers
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: message
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/announceTicketHolders/:
-    post:
-      operationId: EventHeadApiAnnounceTicketHolders
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: message
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/disableVoting/:
+            $ref: '#/definitions/MainEvent'
+            
+  /managerApi/v1/editMainListing:
     put:
-      operationId: EventHeadApiDisableVoting
+      summary: Edit Main Event
+      operationId: managerEditMainListing
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
+        - $ref: '#/parameters/MainEvent'
       responses:
         '200':
-          description: A successful response
+          description: OK
+          
+  /managerApi/v1/getEvents:
+    get:
+      summary: get a events under a category
+      operationId: managerGetEvents
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/editEvent/:
-    put:
-      operationId: EventHeadApiEditEvent
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - in: body
-          name: body
-          required: false
+        - name: categoryID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+            
+  /managerApi/v1/getEvent:
+    get:
+      summary: get a event by event id
+      operationId: managerGetEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
           schema:
             $ref: '#/definitions/Event'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Event'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/enableVoting/:
-    put:
-      operationId: EventHeadApiEnableVoting
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/freeUpgradeIAMINER/:
+            
+  /managerApi/v1/editEvent:
     post:
-      operationId: EventHeadApiFreeUpgradeIAMINER
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/IAMIN'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Ticket'
+      summary: Edit & Add Event
+      operationId: managerEditEvent
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/getEvent/:
-    get:
-      operationId: EventHeadApiGetEvent
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
+        - $ref: '#/parameters/Event'
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
             $ref: '#/definitions/Event'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/getHistory/:
-    get:
-      operationId: EventHeadApiGetHistory
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventLog'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/getIAMINers/:
-    get:
-      operationId: EventHeadApiGetIAMINers
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_IAMIN'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/getStats/:
-    get:
-      operationId: EventHeadApiGetStats
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Stats'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/getTicketHolders/:
-    get:
-      operationId: EventHeadApiGetTicketHolders
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_Ticket'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/getVotingCandidates/:
-    get:
-      operationId: EventHeadApiGetVotingCandidates
-      parameters:
-        - name: eventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_Candidate'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/removeAllCandidatesAndResetVoting/:
+            
+  /managerApi/v1/deleteEvent:
     delete:
-      operationId: EventHeadApiRemoveAllCandidatesAndResetVoting
+      summary: Edit & Add Event
+      operationId: managerDeleteEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
         - name: eventId
-          in: query
-          required: true
           type: integer
           format: int64
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
+          
+  /managerApi/v1/getEventCategories:
+    get:
+      summary: get a categories under a main event
+      operationId: managerGetEventCategories
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /eventHeadApi/v1/removeVotingCandidate/:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Category'
+            
+  /managerApi/v1/getEventCategory:
+    get:
+      summary: get a category by id
+      operationId: managerGetEventCategory
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: categoryID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Category'
+            
+  /managerApi/v1/editCategory:
+    post:
+      summary: Edit & Add Event
+      operationId: managerEditCategory
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - $ref: '#/parameters/Category'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Category'
+            
+  /managerApi/v1/deleteCategory:
     delete:
-      operationId: EventHeadApiRemoveVotingCandidate
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: candidateId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
+      summary: Delete Category only if empty
+      operationId: managerDeleteCategory
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/addEventHead/:
-    post:
-      operationId: ManagerApiAddEventHead
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - name: ehEmail
-          in: query
-          required: true
-          type: string
-        - name: eventID
-          in: query
-          required: true
+        - name: categoryID
           type: integer
           format: int64
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
+          
+  /managerApi/v1/getPRS:
+    get:
+      summary: get PRs for main event
+      operationId: managerGetPRS
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
           schema:
-            $ref: '#/definitions/EventHead'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/addManager/:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/PRRepresentative'
+  
+  /managerApi/v1/addPR:
     post:
-      operationId: ManagerApiAddManager
-      parameters:
-        - name: MainEventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: Manageremail
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Manager'
+      summary: Add PR Representative to Main Event
+      operationId: managerAddPR
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/addPR/:
-    post:
-      operationId: ManagerApiAddPR
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
         - name: PRemail
-          in: query
-          required: true
           type: string
-        - name: MainEventId
           in: query
           required: true
+        - name: MainEventId
           type: integer
           format: int64
+          in: query
+          required: true
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
             $ref: '#/definitions/PRRepresentative'
+            
+  /managerApi/v1/deletePR:
+    delete:
+      summary: Delete PR if Amount collected = 0
+      operationId: managerDeletePR
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/announceAll/:
-    post:
-      operationId: ManagerApiAnnounceAll
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
         - name: mainEventID
-          in: query
-          required: true
           type: integer
           format: int64
-        - name: message
-          in: query
           required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/announceIAMINers/:
-    post:
-      operationId: ManagerApiAnnounceIAMINers
-      parameters:
-        - name: mainEventId
           in: query
-          required: true
-          type: integer
-          format: int64
-        - name: message
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/announceTicketHolders/:
-    post:
-      operationId: ManagerApiAnnounceTicketHolders
-      parameters:
-        - name: mainEventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: message
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/deleteCategory/:
-    delete:
-      operationId: ManagerApiDeleteCategory
-      parameters:
-        - name: categoryID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/deleteEvent/:
-    delete:
-      operationId: ManagerApiDeleteEvent
-      parameters:
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/deleteEventHead/:
-    delete:
-      operationId: ManagerApiDeleteEventHead
-      parameters:
-        - name: ehEmail
-          in: query
-          required: true
-          type: string
-        - name: eventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/deleteManager/:
-    delete:
-      operationId: ManagerApiDeleteManager
-      parameters:
-        - name: MainEventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: ManagerEmail
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/deletePR/:
-    delete:
-      operationId: ManagerApiDeletePR
-      parameters:
-        - name: mainEventID
-          in: query
-          required: true
-          type: integer
-          format: int64
         - name: prEmail
-          in: query
-          required: true
           type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/editCategory/:
-    post:
-      operationId: ManagerApiEditCategory
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/EventCategories'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/EventCategories'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/editEvent/:
-    post:
-      operationId: ManagerApiEditEvent
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/Event'
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Event'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/editMainListing/:
-    put:
-      operationId: ManagerApiEditMainListing
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/MainEventListing'
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getEvent/:
-    get:
-      operationId: ManagerApiGetEvent
-      parameters:
-        - name: eventId
-          in: query
           required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Event'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getEventCategories/:
-    get:
-      operationId: ManagerApiGetEventCategories
-      parameters:
-        - name: mainEventID
           in: query
-          required: true
-          type: integer
-          format: int64
       responses:
         '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventCategories'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getEventCategory/:
+          description: OK
+          
+  /managerApi/v1/getManagers:
     get:
-      operationId: ManagerApiGetEventCategory
-      parameters:
-        - name: categoryID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/EventCategories'
+      summary: get Managers for main event
+      operationId: managerGetManagers
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getEventHeads/:
-    get:
-      operationId: ManagerApiGetEventHeads
-      parameters:
-        - name: eventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventHead'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getEvents/:
-    get:
-      operationId: ManagerApiGetEvents
-      parameters:
-        - name: categoryID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_Event'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getHistory/:
-    get:
-      operationId: ManagerApiGetHistory
-      parameters:
-        - name: maineventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventLog'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getMainListing/:
-    get:
-      operationId: ManagerApiGetMainListing
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
         - name: mainEventId
-          in: query
-          required: true
           type: integer
           format: int64
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/MainEventListing'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getManagers/:
-    get:
-      operationId: ManagerApiGetManagers
-      parameters:
-        - name: mainEventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_Manager'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getPRS/:
-    get:
-      operationId: ManagerApiGetPRS
-      parameters:
-        - name: mainEventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_PRRepresentative'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /managerApi/v1/getStats/:
-    get:
-      operationId: ManagerApiGetStats
-      parameters:
-        - name: mainEventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Stats'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/UpdateLocation/:
-    put:
-      operationId: PrApiUpdateLocation
-      parameters:
-        - name: lat
-          in: query
-          required: true
-          type: number
-          format: double
-        - name: lon
-          in: query
-          required: true
-          type: number
-          format: double
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/checkInByEmail/:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Manager'
+  
+  /managerApi/v1/addManager:
     post:
-      operationId: PrApiCheckInByEmail
+      summary: Add Manager to Main Event
+      operationId: managerAddManager
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - name: email
-          in: query
-          required: true
+        - name: Manageremail
           type: string
-        - name: eventId
           in: query
           required: true
+        - name: MainEventId
           type: integer
           format: int64
-        - name: quantity
           in: query
           required: true
-          type: integer
-          format: int32
       responses:
         '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/EventLog'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/checkInByTicketId/:
-    post:
-      operationId: PrApiCheckInByTicketId
-      parameters:
-        - name: ticketID
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: Quantity
-          in: query
-          required: true
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/EventLog'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getEventList/:
-    get:
-      operationId: PrApiGetEventList
-      parameters:
-        - name: mainEventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/EventCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getHistory/:
-    get:
-      operationId: PrApiGetHistory
-      parameters:
-        - name: maineventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/CollectionResponse_EventLog'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getIAMIN/:
-    get:
-      operationId: PrApiGetIAMIN
-      parameters:
-        - name: iaminId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/IAMIN'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getIAMINers/:
-    get:
-      operationId: PrApiGetIAMINers
-      parameters:
-        - name: mainEventid
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/IAMINCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getIaminByEmail/:
-    get:
-      operationId: PrApiGetIaminByEmail
-      parameters:
-        - name: email
-          in: query
-          required: true
-          type: string
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: cellNo
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/IAMIN'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getPRRepresentative/:
-    get:
-      operationId: PrApiGetPRRepresentative
-      parameters:
-        - name: mainEventid
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/PRRepresentative'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getStats/:
-    get:
-      operationId: PrApiGetStats
-      parameters:
-        - name: mainEventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Stats'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/getTicketById/:
-    get:
-      operationId: PrApiGetTicketById
-      parameters:
-        - name: ticketID
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Ticket'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/giveTicketByEmailAndCell/:
-    post:
-      operationId: PrApiGiveTicketByEmailAndCell
-      parameters:
-        - name: email
-          in: query
-          required: true
-          type: string
-        - name: eventId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: quantity
-          in: query
-          required: true
-          type: integer
-          format: int32
-        - name: cellNo
-          in: query
-          required: true
-          type: string
-        - name: remark
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Ticket'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /prApi/v1/giveTicketbyIaminId/:
-    post:
-      operationId: PrApiGiveTicketbyIaminId
-      parameters:
-        - name: iaminId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: quantity
-          in: query
-          required: true
-          type: integer
-          format: int32
-        - name: remark
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Ticket'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/addMainEvent/:
-    post:
-      operationId: SuperAdminApiAddMainEvent
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/MainEventListing'
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/addManager/:
-    post:
-      operationId: SuperAdminApiAddManager
-      parameters:
-        - in: body
-          name: body
-          required: false
+          description: OK
           schema:
             $ref: '#/definitions/Manager'
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/addPR/:
-    post:
-      operationId: SuperAdminApiAddPR
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/PRRepresentative'
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/deleteMainEvent/:
+            
+  /managerApi/v1/deleteManager:
     delete:
-      operationId: SuperAdminApiDeleteMainEvent
+      summary: Delete Manager
+      operationId: managerDeleteManager
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: MainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: ManagerEmail
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /managerApi/v1/getEventHeads:
+    get:
+      summary: get Event Heads for Event
+      operationId: managerGetEventHeads
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventHead'
+  
+  /managerApi/v1/addEventHead:
+    post:
+      summary: Add Event Head to Event
+      operationId: managerAddEventHead
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: ehEmail
+          type: string
+          in: query
+          required: true
+        - name: eventID
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventHead'
+            
+  /managerApi/v1/deleteEventHead:
+    delete:
+      summary: Delete Event Head
+      operationId: managerDeleteEventHead
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: ehEmail
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+            
+  /managerApi/v1/getStats:
+    get:
+      summary: Delete Main Event Stats
+      operationId: managerGetStats
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
         - name: mainEventId
-          in: query
-          required: true
           type: integer
           format: int64
-        - name: ApiKey
-          in: query
           required: true
-          type: string
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
+          schema:
+            $ref: '#/definitions/MainEventStats'
+  
+  /managerApi/v1/getHistory:
+    get:
+      summary: Get Main Event History
+      operationId: managerGetHistory
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/deleteManager/:
-    delete:
-      operationId: SuperAdminApiDeleteManager
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - name: managerID
-          in: query
-          required: true
+        - name: maineventId
           type: integer
           format: int64
-        - name: ApiKey
-          in: query
           required: true
-          type: string
+          in: query
       responses:
         '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/deleteOffer/:
-    delete:
-      operationId: SuperAdminApiDeleteOffer
-      parameters:
-        - name: offerId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/deletePR/:
-    delete:
-      operationId: SuperAdminApiDeletePR
-      parameters:
-        - name: prID
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/editMainListing/:
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+                  
+  /managerApi/v1/announceAll:
     post:
-      operationId: SuperAdminApiEditMainListing
+      summary: Send Announcements to everyone
+      operationId: managerAnnounceAll
+      security:
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/MainEventListing'
-        - name: ApiKey
-          in: query
+        - name: mainEventID
+          type: integer
+          format: int64
           required: true
+          in: query
+        - name: message
           type: string
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/editOffer/:
+          description: OK
+          
+  /managerApi/v1/announceIAMINers:
     post:
-      operationId: SuperAdminApiEditOffer
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/Offer'
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
+      summary: Send Announcements to iaminer's only
+      operationId: managerAnnounceIAMINers
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/getAllMainEvents/:
-    get:
-      operationId: SuperAdminApiGetAllMainEvents
-      parameters:
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/MainEventListingCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/getAppPopup/:
-    get:
-      operationId: SuperAdminApiGetAppPopup
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/AppPopup'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/getMainEvent/:
-    get:
-      operationId: SuperAdminApiGetMainEvent
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
         - name: mainEventId
-          in: query
-          required: true
           type: integer
           format: int64
-        - name: ApiKey
-          in: query
           required: true
+          in: query
+        - name: message
           type: string
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/MainEventListing'
+          description: OK
+          
+  /managerApi/v1/announceTicketHolders:
+    post:
+      summary: Send Announcements to ticket holders only
+      operationId: managerAnnounceTicketHolders
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/getManagers/:
-    get:
-      operationId: SuperAdminApiGetManagers
+        - GoogleAuth: []
+      tags:
+        - Manager
       parameters:
-        - name: mainEventID
-          in: query
-          required: true
+        - name: mainEventId
           type: integer
           format: int64
-        - name: ApiKey
-          in: query
           required: true
+          in: query
+        - name: message
           type: string
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/ManagerCollection'
+          description: OK
+          
+# PR API  
+  
+  /prApi/v1/giveTicketByEmailAndCell:
+    post:
+      summary: give Ticket
+      operationId: prGiveTicketByEmailAndCell
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/getOffer/:
-    get:
-      operationId: SuperAdminApiGetOffer
-      parameters:
-        - name: offerId
-          in: query
-          required: true
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/Offer'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/getOffers/:
-    get:
-      operationId: SuperAdminApiGetOffers
-      parameters: []
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/OfferCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/getPRS/:
-    get:
-      operationId: SuperAdminApiGetPRS
-      parameters:
-        - name: mainEventID
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/PRRepresentativeCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/revokeTicket/:
-    delete:
-      operationId: SuperAdminApiRevokeTicket
-      parameters:
-        - name: ticketId
-          in: query
-          required: true
-          type: integer
-          format: int64
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/searchTickets/:
-    get:
-      operationId: SuperAdminApiSearchTickets
+        - GoogleAuth: []
+      tags:
+        - PR
       parameters:
         - name: email
-          in: query
-          required: true
           type: string
-        - name: ApiKey
-          in: query
           required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-          schema:
-            $ref: '#/definitions/TicketCollection'
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/sendPush/:
-    post:
-      operationId: SuperAdminApiSendPush
-      parameters:
-        - name: imageUrl
           in: query
-          required: true
-          type: string
-        - name: title
-          in: query
-          required: true
-          type: string
-        - name: message
-          in: query
-          required: true
-          type: string
-        - name: city
-          in: query
-          required: true
-          type: string
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /superAdminApi/v1/updateAppPopup/:
-    post:
-      operationId: SuperAdminApiUpdateAppPopup
-      parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/AppPopup'
-        - name: ApiKey
-          in: query
-          required: true
-          type: string
-      responses:
-        '200':
-          description: A successful response
-      security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  /webApi/v1/exportEvent/:
-    get:
-      operationId: WebApiGiveWebTicket
-      parameters:
         - name: eventId
-          in: query
-          required: true
           type: integer
           format: int64
-        - name: appUserEmail
-          in: query
           required: true
-          type: string
-        - name: gender
           in: query
-          required: true
-          type: boolean
-        - name: name
-          in: query
-          required: true
-          type: string
         - name: quantity
-          in: query
-          required: true
           type: integer
           format: int32
+          required: true
+          in: query
         - name: cellNo
-          in: query
-          required: true
           type: string
-        - name: web_api_key
-          in: query
           required: true
+          in: query
+        - name: remark
           type: string
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
             $ref: '#/definitions/Ticket'
+            
+  /prApi/v1/giveTicketbyIaminId:
+    post:
+      summary: give Ticket
+      operationId: prGiveTicketbyIaminId
       security:
-        - google_id_token: []
-        - google_id_token_https: []
-      
-  '/webApi/v1/hasticket/{eventId}/{appUserEmail}/{web_api_key}':
-    get:
-      operationId: WebApiGetUserTicketStatus
+        - GoogleAuth: []
+      tags:
+        - PR
       parameters:
-        - name: eventId
-          in: path
-          required: true
+        - name: iaminId
           type: integer
           format: int64
-        - name: appUserEmail
-          in: path
           required: true
-          type: string
-        - name: web_api_key
-          in: path
+          in: query
+        - name: quantity
+          type: integer
+          format: int32
           required: true
+          in: query
+        - name: remark
           type: string
+          required: true
+          in: query
       responses:
         '200':
-          description: A successful response
+          description: OK
           schema:
-            $ref: '#/definitions/HasTicket'
+            $ref: '#/definitions/Ticket'
+            
+  /prApi/v1/getTicketById:
+    get:
+      summary: get Ticket
+      operationId: prGetTicketById
       security:
-        - google_id_token: []
-        - google_id_token_https: []
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: ticketID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Ticket'
+            
+  /prApi/v1/checkInByTicketId:
+    post:
+      summary: Check in User
+      operationId: prCheckInByTicketId
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: ticketID
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: Quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventLog'
+            
+  /prApi/v1/checkInByEmail:
+    post:
+      summary: Check in User
+      operationId: prCheckInByEmail
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: email
+          type: string
+          required: true
+          in: query
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: quantity
+          type: integer
+          format: int32
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EventLog'
+          
+  /prApi/v1/getIAMIN:
+    get:
+      summary: get IAMIN
+      operationId: prGetIAMIN
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: iaminId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+  
+  /prApi/v1/getIaminByEmail:
+    get:
+      summary: get IAMIN
+      operationId: prGetIaminByEmail
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: email
+          type: string
+          required: true
+          in: query
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: cellNo
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/IAMIN'
+  
+  /prApi/v1/getEventList:
+    get:
+      summary: get Events
+      operationId: prGetEventList
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Event'
+                  
+  /prApi/v1/getStats:
+    get:
+      summary: get Stats
+      operationId: prGetStats
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MainEventStats'
+                  
+  /prApi/v1/getHistory:
+    get:
+      summary: get History
+      operationId: prGetHistory
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: maineventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+  
+  /prApi/v1/getIAMINers:
+    get:
+      summary: get IAMINers for the main event sharing contacts
+      operationId: prGetIAMINers
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventid
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/IAMIN'
+                  
+  /prApi/v1/getPRRepresentative:
+    get:
+      summary: get Self Profile
+      operationId: prGetPRRepresentative
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: mainEventid
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PRRepresentative'
+            
+  /prApi/v1/UpdateLocation:
+    put:
+      summary: update location shown on the map to buyers
+      operationId: prUpdateLocation
+      security:
+        - GoogleAuth: []
+      tags:
+        - PR
+      parameters:
+        - name: lat
+          type: number
+          format: double
+          required: true
+          in: query
+        - name: lon
+          type: number
+          format: double
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/PRRepresentative'
+                  
+# Event Head Api
+
+  /eventHeadApi/v1/announceAll:
+    post:
+      summary: send anouncement to everyone
+      operationId: ehAnnounceAll
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/announceIAMINers:
+    post:
+      summary: send anouncement to iaminers
+      operationId: ehAnnounceIAMINers
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/announceTicketHolders:
+    post:
+      summary: send anouncement to tickey holders
+      operationId: ehAnnounceTicketHolders
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: message
+          type: string
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/freeUpgradeIAMINER:
+    post:
+      summary: give Ticket to iaminer
+      operationId: ehFreeUpgradeIAMINER
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - $ref: '#/parameters/IAMIN'
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/getIAMINers:
+    get:
+      summary: get IAMINers
+      operationId: ehGetIAMINers
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/IAMIN'
+          
+  /eventHeadApi/v1/getTicketHolders:
+    get:
+      summary: get Ticket holders for this event
+      operationId: ehGetTicketHolders
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Ticket'
+                  
+  /eventHeadApi/v1/editEvent:
+    put:
+      summary: Edit Event
+      operationId: ehEditEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - $ref: '#/parameters/Event'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+                  
+  /eventHeadApi/v1/getEvent:
+    get:
+      summary: get Event
+      operationId: ehGetEvent
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+            
+  /eventHeadApi/v1/getStats:
+    get:
+      summary: get Event
+      operationId: ehGetStats
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/MainEventStats'
+            
+  /eventHeadApi/v1/getHistory:
+    get:
+      summary: get History
+      operationId: ehgetHistory
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/EventLog'
+                  
+  /eventHeadApi/v1/enableVoting:
+    put:
+      summary: Enable Voting
+      operationId: ehEnableVoting
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          
+  /eventHeadApi/v1/disableVoting:
+    put:
+      summary: Disable Voting
+      operationId: ehDisableVoting
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK     
+          
+  /eventHeadApi/v1/getVotingCandidates:
+    get:
+      summary: get Voting Candidates
+      operationId: ehGetVotingCandidates
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventID
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  $ref: '#/definitions/Candidate'
+                  
+  /eventHeadApi/v1/addVotingCandidate:
+    post:
+      summary: Add a voting candidate
+      operationId: ehAddVotingCandidate
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: name
+          type: string
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Candidate'
+            
+  /eventHeadApi/v1/removeVotingCandidate:
+    delete:
+      summary: Remove a voting candidate
+      operationId: ehRemoveVotingCandidate
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+        - name: candidateId
+          type: integer
+          format: int64
+          in: query
+          required: true
+      responses:
+        '200':
+          description: OK
+                  
+  /eventHeadApi/v1/removeAllCandidatesAndResetVoting:
+    delete:
+      summary: Remove a voting candidate
+      operationId: ehRemoveAllCandidatesAndResetVoting
+      security:
+        - GoogleAuth: []
+      tags:
+        - EventHead
+      parameters:
+        - name: eventId
+          type: integer
+          format: int64
+          required: true
+          in: query
+      responses:
+        '200':
+          description: OK
+  
+parameters:
+
+  MainEvent:
+    name: MainEvent
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/MainEvent'
       
-securityDefinitions:
-  google_id_token_https:
-    type: oauth2
-    authorizationUrl: 'https://accounts.google.com'
-    flow: implicit
-    x-google-issuer: 'https://accounts.google.com'
-    x-google-jwks_uri: 'https://www.googleapis.com/oauth2/v1/certs'
-  google_id_token:
-    type: oauth2
-    authorizationUrl: 'https://accounts.google.com'
-    flow: implicit
-    x-google-issuer: 'accounts.google.com'
-    x-google-jwks_uri: 'https://www.googleapis.com/oauth2/v1/certs'
+  Category:
+    name: Category
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Category'
+    
+  Event:
+    name: Event
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/Event'
+      
+  PR:
+    name: PR
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/PRRepresentative'
+      
+  IAMIN:
+    name: IAMIN
+    in: body
+    required: true
+    schema:
+      $ref: '#/definitions/IAMIN'
+      
+  
+            
 definitions:
-  CollectionResponse_Event:
+  
+  MainEvent:
+    title: MainEvent
+    type: object
+    description: Root level Main Event
     properties:
-      items:
+      id:
+        type: integer
+        format: int64
+      positionInList:
+        type: integer
+        format: int32
+      name:
+        type: string
+      description:
+        type: string
+      eventStart:
+        type: integer
+        format: int64
+      eventEnd:
+        type: integer
+        format: int64
+      ManagerEmail:
+        type: string
+      hasSingleCategory:
+        type: boolean
+        description: True if this Main Event has only one Category.
+      hasSingleEvent:
+        type: boolean
+        description: True if this Main Event has only one Leaf Level Event.
+      singleEventId:
+        type: integer
+        format: int64
+      singleCategoryId:
+        type: integer
+        format: int64
+      isPublished:
+        type: boolean
+      lat:
+        type: number
+        format: double
+      lon:
+        type: number
+        format: double
+      hashtag:
+        type: string
+      isTrending:
+        type: boolean
+      city:
+        type: string
+      isPaytmEnabled:
+        type: boolean
+      mainEventType:
+        type: string
+        enum:
+          - COLLEGE
+          - CONCERT
+          - CLUB
+      backdropUrl:
+        type: string
+      iaminsCount:
+        type: integer
+      ticketsCount:
+        type: integer
+ 
+  SortedMainEvents:
+    title: SortedMainEvents
+    type: object
+    properties:
+      trendingEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      collegeEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      clubEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      concertEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+          
+  Category:
+    title: Category
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      parentMainEventId:
+        type: integer
+        format: int64
+      isdefault:
+        type: boolean
+      isHidden:
+        type: boolean
+      backdropUrl:
+        type: string
+      condenseEvents:
+        type: boolean
+
+  Event:
+    title: Event
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      description:
+        type: string
+      entryFee:
+        type: integer
+        format: int32
+      parentMainEventId:
+        type: integer
+        format: int64
+      parentCategoryId:
+        type: integer
+        format: int64
+      multipleTicketsPerUser:
+        type: boolean
+      groupSize:
+        type: integer
+        format: int32
+      registrable:
+        type: boolean
+      startTime:
+        type: integer
+        format: int64
+      isVotingEnabled:
+        type: boolean
+      intrestType:
+        type: string
+      isEventTicketTransferable:
+        type: boolean
+      backdropUrl:
+        type: string
+      currentInvolvement:
+        type: integer
+        format: int32
+      isCurrentUserIAMINED:
+        type: boolean
+      isCurrentUserHavingTicket:
+        type: boolean
+      condensedHead:
+        type: boolean
+      iaminsCount:
+        type: integer
+      ticketsCount:
+        type: integer
+        
+  UserRoles:
+    title: UserRoles
+    type: object
+    properties:
+      isManagerForMainEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      isPrForEvents:
+        type: array
+        items:
+          $ref: '#/definitions/MainEvent'
+      isEventHeadForEvents:
         type: array
         items:
           $ref: '#/definitions/Event'
-      nextPageToken:
-        type: string
-  CollectionResponse_IAMIN:
+      
+  AppUser:
+    title: AppUser
+    type: object
     properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/IAMIN'
-      nextPageToken:
+      email:
         type: string
-  OfferCollection:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Offer'
-          
-  PaytmTransaction:
-    properties:
-      CALLBACK_URL:
+        description: email id of the user
+      contactNo:
         type: string
-      CHANNEL_ID:
+      name:
         type: string
-      CHECKSUM_GENERATOR_URL:
-        type: string
-      CHECKSUM_VERIFY_URL:
-        type: string
-      CUST_ID:
-        type: string
-      EMAIL:
-        type: string
-      GENERATE_TIMESTAMP:
-        type: integer
-        format: int64
-      INDUSTRY_TYPE_ID:
-        type: string
-      MID:
-        type: string
-      MOBILE_NO:
-        type: string
-      ORDER_ID:
-        type: string
-      TXN_AMOUNT:
-        type: number
-        format: double
-      WEBSITE:
-        type: string
-      eventId:
-        type: integer
-        format: int64
-      isTicketIssued:
+      gender:
         type: boolean
-      status:
-        $ref: '#/definitions/STATUS'
-      ticketQuantity:
-        type: integer
-        format: int32
-      CHECKSUMHASH:
+        description: 1 for male 0 for female
+      Institution:
         type: string
-  MainEventListingCollection:
-    properties:
-      items:
+      city:
+        type: string
+      intrests:
         type: array
         items:
-          $ref: '#/definitions/MainEventListing'
-          
-  EventLog:
+          type: string
+      profilePic:
+        type: string
+        description: url to the profile picture
+      regId:
+        type: string
+        description: Google Cloud Messaging Registration ID
+        
+  Manager:
+    title: Manager
+    type: object
     properties:
-      Amount:
-        type: integer
-        format: int32
-      EventId:
+      id:
         type: integer
         format: int64
-      EventName:
+      email:
         type: string
       MainEventListingId:
         type: integer
         format: int64
-      MainEventListingName:
+      appUser:
+        $ref: '#/definitions/AppUser'
+        
+  PRRepresentative:
+    title: PRRepresentative
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      email:
         type: string
-      action:
-        $ref: '#/definitions/ACTION'
+      MainEventListingId:
+        type: integer
+        format: int64
+      AmountCollected:
+        type: integer
+        format: int32
+      lat:
+        type: number
+        format: double
+      lon:
+        type: number
+        format: double
+      locationUpdateTimestamp:
+        type: number
+        format: int64
+      appUser:
+        $ref: '#/definitions/AppUser'
+        
+  EventHead:
+    title: EventHead
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      email:
+        type: string
+      MainEventListingId:
+        type: integer
+        format: int64
+      EventId:
+        type: integer
+        format: int64
+      appUser:
+        $ref: '#/definitions/AppUser'
+        
+  IAMIN:
+    title: IAMIN
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
       appUserEmail:
         type: string
+      eventId:
+        type: integer
+        format: int64
+      timeStamp:
+        type: integer
+        format: int64
+      parentMainEventId:
+        type: integer
+        format: int64
+      contactPreference:
+        type: boolean
+      requestQuantity:
+        type: integer
+        format: int32
+      event:
+        $ref: '#/definitions/Event'
+      bearer:
+        $ref: '#/definitions/AppUser'
+        
+  Ticket:
+    title: Ticket
+    type: object
+    properties:
       id:
+        type: integer
+        format: int64
+      appUserEmail:
+        type: string
+      eventId:
+        type: integer
+        format: int64
+      timeStamp:
+        type: integer
+        format: int64
+      PREmail:
+        type: string
+      activeQuantity:
+        type: integer
+        format: int32
+      checkedInQuantity:
+        type: integer
+        format: int32
+      parentMainEventId:
+        type: integer
+        format: int64
+      event:
+        $ref: '#/definitions/Event'
+      bearer:
+        $ref: '#/definitions/AppUser'
+        
+  EventLog:
+    title: EventLog
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      appUserEmail:
+        type: string
+      staffEmail:
+        type: string
+      MainEventListingId:
+        type: integer
+        format: int64
+      EventId:
+        type: integer
+        format: int64
+      timeStamp:
         type: integer
         format: int64
       paytmOrderId:
@@ -2630,463 +2282,153 @@ definitions:
       quantity:
         type: integer
         format: int32
-      remark:
-        type: string
-      staffEmail:
-        type: string
-      timeStamp:
-        type: integer
-        format: int64
-  TicketCollection:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Ticket'
-  AppUser:
-    properties:
-      Institution:
-        type: string
-      city:
-        type: string
-      contactNo:
-        type: string
-      email:
-        type: string
-      gender:
-        type: boolean
-      intrests:
-        type: array
-        items:
-          type: string
-      name:
-        type: string
-      profilePic:
-        type: string
-      regId:
-        type: string
-  AppPopup:
-    properties:
-      enabled:
-        type: boolean
-      id:
-        type: string
-      picture_url:
-        type: string
-      updateTimestamp:
-        type: integer
-        format: int64
-  Manager:
-    properties:
-      MainEventListingId:
-        type: integer
-        format: int64
-      appUser:
-        $ref: '#/definitions/AppUser'
-      email:
-        type: string
-      id:
-        type: integer
-        format: int64
-  MainEventListing:
-    properties:
-      ManagerEmail:
-        type: string
-      backdropUrl:
-        type: string
-      city:
-        type: string
-      customEventMap:
-        type: string
-      description:
-        type: string
-      eventEnd:
-        type: integer
-        format: int64
-      eventStart:
-        type: integer
-        format: int64
-      hasSingleCategory:
-        type: boolean
-      hasSingleEvent:
-        type: boolean
-      hashtag:
-        type: string
-      iaminsCount:
+      Amount:
         type: integer
         format: int32
+      MainEventListingName:
+        type: string
+      EventName:
+        type: string
+      action:
+        type: string
+        enum:
+          - CHECK_IN
+          - BUY_TICKET
+          - FREE_TICKET
+          - TRANSFER_TICKET
+          - BUY_TICKET_ONLINE
+      remark:
+        type: string
+          
+  Offer:
+    title: Offer
+    type: object
+    properties:
       id:
         type: integer
         format: int64
-      isPaytmEnabled:
-        type: boolean
-      isPublished:
-        type: boolean
-      isTrending:
-        type: boolean
-      lat:
-        type: number
-        format: double
-      lon:
-        type: number
-        format: double
-      mainEventType:
-        $ref: '#/definitions/MainEventType'
+      offerType:
+        type: string
+        enum:
+          - DIRECT_URL_OPEN
+          - CALL_NUMBER
+          - SHOW_CODE
+          - SMS_NUMBER
       name:
         type: string
       positionInList:
         type: integer
-        format: int32
-      singleCategoryId:
-        type: integer
-        format: int64
-      singleEventId:
-        type: integer
-        format: int64
-      ticketsCount:
-        type: integer
-        format: int32
-  OfferType:
-    enum:
-      - DIRECT_URL_OPEN
-      - CALL_NUMBER
-      - SHOW_CODE
-      - SMS_NUMBER
-  CollectionResponse_AppUser:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/AppUser'
-      nextPageToken:
-        type: string
-  AppVersion:
-    properties:
-      id:
-        type: string
-      lastSupportedAppVersion:
-        type: integer
-        format: int32
-      latestAppVersion:
-        type: integer
-        format: int32
-  CollectionResponse_Ticket:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Ticket'
-      nextPageToken:
-        type: string
-  ManagerCollection:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Manager'
-  STATUS:
-    enum:
-      - INITIATED
-      - SUCCESS
-      - FAILED
-  LocationContainer:
-    properties:
-      id:
-        type: integer
-        format: int64
-      mainEventLat:
-        type: number
-        format: double
-      mainEventLon:
-        type: number
-        format: double
-      prLocations:
-        type: array
-        items:
-          $ref: '#/definitions/PRLocation'
-  PRRepresentative:
-    properties:
-      AmountCollected:
-        type: integer
-        format: int32
-      MainEventListingId:
-        type: integer
-        format: int64
-      appUser:
-        $ref: '#/definitions/AppUser'
-      email:
-        type: string
-      id:
-        type: integer
-        format: int64
-      lat:
-        type: number
-        format: double
-      locationUpdateTimestamp:
-        type: integer
-        format: int64
-      lon:
-        type: number
-        format: double
-  PRLocation:
-    properties:
-      appUser:
-        $ref: '#/definitions/AppUser'
-      id:
-        type: integer
-        format: int64
-      lat:
-        type: number
-        format: double
-      lon:
-        type: number
-        format: double
-  Candidate:
-    properties:
-      eventID:
-        type: integer
-        format: int64
-      id:
-        type: integer
-        format: int64
-      name:
-        type: string
-      votesAcquired:
-        type: integer
-        format: int32
-  Ticket:
-    properties:
-      PREmail:
-        type: string
-      activeQuantity:
-        type: integer
-        format: int32
-      appUserEmail:
-        type: string
-      bearer:
-        $ref: '#/definitions/AppUser'
-      checkedInQuantity:
-        type: integer
-        format: int32
-      event:
-        $ref: '#/definitions/Event'
-      eventId:
-        type: integer
-        format: int64
-      id:
-        type: integer
-        format: int64
-      parentMainEventId:
-        type: integer
-        format: int64
-      timeStamp:
-        type: integer
-        format: int64
-  Vote:
-    properties:
-      candidateID:
-        type: integer
-        format: int64
-      casterEmail:
-        type: string
-      eventID:
-        type: integer
-        format: int64
-      id:
-        type: integer
-        format: int64
-  PRRepresentativeCollection:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/PRRepresentative'
-  Comments:
-    properties:
-      eventID:
-        type: integer
-        format: int64
-      id:
-        type: integer
-        format: int64
-      isSenderEventHead:
-        type: boolean
-      isSenderManager:
-        type: boolean
-      message:
-        type: string
-      senderEmail:
-        type: string
-      senderName:
-        type: string
-      senderProfilePic:
-        type: string
-      timeStamp:
-        type: integer
-        format: int64
-  CollectionResponse_EventHead:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/EventHead'
-      nextPageToken:
-        type: string
-  EventCategories:
-    properties:
-      backdropUrl:
-        type: string
-      condenseEvents:
-        type: boolean
-      id:
-        type: integer
-        format: int64
-      isHidden:
-        type: boolean
-      isdefault:
-        type: boolean
-      name:
-        type: string
-      parentMainEventId:
-        type: integer
-        format: int64
-  CollectionResponse_PRRepresentative:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/PRRepresentative'
-      nextPageToken:
-        type: string
-  HasTicket:
-    properties:
-      hasTicketForEvent:
-        type: boolean
-      id:
-        type: integer
-        format: int64
-  CollectionResponse_Comments:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Comments'
-      nextPageToken:
-        type: string
-  IAMINCollection:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/IAMIN'
-  EventHead:
-    properties:
-      EventId:
-        type: integer
-        format: int64
-      MainEventListingId:
-        type: integer
-        format: int64
-      appUser:
-        $ref: '#/definitions/AppUser'
-      email:
-        type: string
-      id:
-        type: integer
-        format: int64
-  CollectionResponse_Manager:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Manager'
-      nextPageToken:
-        type: string
-  ACTION:
-    enum:
-      - CHECK_IN
-      - BUY_TICKET
-      - FREE_TICKET
-      - TRANSFER_TICKET
-      - BUY_TICKET_ONLINE
-  CollectionResponse_EventLog:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/EventLog'
-      nextPageToken:
-        type: string
-  Offer:
-    properties:
-      callNumber:
+      creativeUrl:
         type: string
       callToActionText:
         type: string
+      redeemInstructions:
+        type: string
       coupounCode:
         type: string
-      creativeUrl:
-        type: string
-      id:
-        type: integer
-        format: int64
-      name:
-        type: string
-      offerType:
-        $ref: '#/definitions/OfferType'
-      positionInList:
-        type: integer
-        format: int32
-      redeemInstructions:
+      callNumber:
         type: string
       smsText:
         type: string
       url:
         type: string
-  EventCollection:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Event'
-  UserRole:
+        
+  Comment:
+    title: Comment
+    type: object
     properties:
       id:
         type: integer
         format: int64
-      isEventHeadForEvents:
-        type: array
-        items:
-          $ref: '#/definitions/Event'
-      isManagerForMainEvents:
-        type: array
-        items:
-          $ref: '#/definitions/MainEventListing'
-      isPrForEvents:
-        type: array
-        items:
-          $ref: '#/definitions/MainEventListing'
-  CollectionResponse_Candidate:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/Candidate'
-      nextPageToken:
+      timeStamp:
+        type: integer
+        format: int64
+      eventID:
+        type: integer
+        format: int64
+      senderEmail:
         type: string
-  CollectionResponse_EventCategories:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/EventCategories'
-      nextPageToken:
+      message:
         type: string
-  Stats:
+      senderProfilePic:
+        type: string
+      senderName:
+        type: string
+      isSenderManager:
+        type: boolean
+      isSenderEventHead:
+        type: boolean
+        
+  Candidate:
+    title: Candidate
+    type: object
     properties:
       id:
         type: integer
         format: int64
+      name:
+        type: string
+      eventID:
+        type: integer
+        format: int64
+      votesAcquired:
+        type: integer
+        format: int64
+        
+  PaytmTransaction:
+    title: PaytmTransaction
+    type: object
+    properties:
+      ORDER_ID:
+        type: string
+      GENERATE_TIMESTAMP:
+        type: integer
+        format: int64
+      TXN_AMOUNT:
+        type: integer
+        format: int32
+      MOBILE_NO:
+        type: string
+      EMAIL:
+        type: string
+      ticketQuantity:
+        type: integer
+        format: int32
+      eventId:
+        type: integer
+        format: int32
+      isTicketIssued:
+        type: boolean
+      status:
+        type: string
+        enum:
+          - INITIATED
+          - SUCCESS
+          - FAILED
+      MID:
+        type: string
+      CHANNEL_ID:
+        type: string
+      INDUSTRY_TYPE_ID:
+        type: string
+      WEBSITE:
+        type: string
+      CUST_ID:
+        type: string
+      CALLBACK_URL:
+        type: string
+      CHECKSUM_GENERATOR_URL:
+        type: string
+      CHECKSUM_VERIFY_URL:
+        type: string
+      CHECKSUMHASH:
+        type: string
+      
+        
+  MainEventStats:
+    title: MainEventStats
+    type: object
+    properties:
       totalIamins:
         type: integer
         format: int32
@@ -3096,110 +2438,4 @@ definitions:
       totalTickets:
         type: integer
         format: int32
-  Event:
-    properties:
-      backdropUrl:
-        type: string
-      condensedHead:
-        type: boolean
-      currentInvolvement:
-        type: integer
-        format: int32
-      description:
-        type: string
-      entryFee:
-        type: integer
-        format: int32
-      groupSize:
-        type: integer
-        format: int32
-      iaminsCount:
-        type: integer
-        format: int32
-      id:
-        type: integer
-        format: int64
-      intrestType:
-        type: string
-      isCurrentUserHavingTicket:
-        type: boolean
-      isCurrentUserIAMINED:
-        type: boolean
-      isEventTicketTransferable:
-        type: boolean
-      isVotingEnabled:
-        type: boolean
-      multipleTicketsPerUser:
-        type: boolean
-      name:
-        type: string
-      parentCategoryId:
-        type: integer
-        format: int64
-      parentMainEventId:
-        type: integer
-        format: int64
-      registrable:
-        type: boolean
-      startTime:
-        type: integer
-        format: int64
-      ticketsCount:
-        type: integer
-        format: int32
-  IAMIN:
-    properties:
-      appUserEmail:
-        type: string
-      bearer:
-        $ref: '#/definitions/AppUser'
-      contactPreference:
-        type: boolean
-      event:
-        $ref: '#/definitions/Event'
-      eventId:
-        type: integer
-        format: int64
-      id:
-        type: integer
-        format: int64
-      parentMainEventId:
-        type: integer
-        format: int64
-      requestQuantity:
-        type: integer
-        format: int32
-      timeStamp:
-        type: integer
-        format: int64
-  CollectionResponse_MainEventListing:
-    properties:
-      items:
-        type: array
-        items:
-          $ref: '#/definitions/MainEventListing'
-      nextPageToken:
-        type: string
-  MainEventType:
-    enum:
-      - COLLEGE
-      - CONCERT
-      - CLUB
-  SortedMainListings:
-    properties:
-      clubEvents:
-        type: array
-        items:
-          $ref: '#/definitions/MainEventListing'
-      collegeEvents:
-        type: array
-        items:
-          $ref: '#/definitions/MainEventListing'
-      concertEvents:
-        type: array
-        items:
-          $ref: '#/definitions/MainEventListing'
-      trendingEvents:
-        type: array
-        items:
-          $ref: '#/definitions/MainEventListing'
+        

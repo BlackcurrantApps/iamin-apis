@@ -1,20 +1,17 @@
 #import <Foundation/Foundation.h>
-#import "SWGCategory1.h"
-#import "SWGCategory2.h"
-#import "SWGEvent1.h"
-#import "SWGEvent2.h"
-#import "SWGEventHead1.h"
+#import "SWGCategory.h"
+#import "SWGEvent.h"
+#import "SWGEventHead.h"
 #import "SWGInlineResponse2001.h"
 #import "SWGInlineResponse20010.h"
 #import "SWGInlineResponse2002.h"
 #import "SWGInlineResponse2005.h"
 #import "SWGInlineResponse2008.h"
 #import "SWGInlineResponse2009.h"
-#import "SWGMainEvent1.h"
-#import "SWGMainEvent2.h"
-#import "SWGMainEventStats1.h"
-#import "SWGManager1.h"
-#import "SWGPRRepresentative1.h"
+#import "SWGMainEvent.h"
+#import "SWGMainEventStats.h"
+#import "SWGManager.h"
+#import "SWGPRRepresentative.h"
 #import "SWGApi.h"
 
 /**
@@ -46,10 +43,10 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGEventHead1*
+/// @return SWGEventHead*
 -(NSURLSessionTask*) managerAddEventHeadWithEhEmail: (NSString*) ehEmail
     eventID: (NSNumber*) eventID
-    completionHandler: (void (^)(SWGEventHead1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGEventHead* output, NSError* error)) handler;
 
 
 /// Add Manager to Main Event
@@ -60,10 +57,10 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGManager1*
+/// @return SWGManager*
 -(NSURLSessionTask*) managerAddManagerWithManageremail: (NSString*) manageremail
     mainEventId: (NSNumber*) mainEventId
-    completionHandler: (void (^)(SWGManager1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGManager* output, NSError* error)) handler;
 
 
 /// Add PR Representative to Main Event
@@ -74,10 +71,10 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGPRRepresentative1*
+/// @return SWGPRRepresentative*
 -(NSURLSessionTask*) managerAddPRWithPRemail: (NSString*) pRemail
     mainEventId: (NSNumber*) mainEventId
-    completionHandler: (void (^)(SWGPRRepresentative1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGPRRepresentative* output, NSError* error)) handler;
 
 
 /// Send Announcements to everyone
@@ -88,7 +85,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerAnnounceAllWithMainEventID: (NSNumber*) mainEventID
     message: (NSString*) message
     completionHandler: (void (^)(NSError* error)) handler;
@@ -102,7 +99,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerAnnounceIAMINersWithMainEventId: (NSNumber*) mainEventId
     message: (NSString*) message
     completionHandler: (void (^)(NSError* error)) handler;
@@ -116,7 +113,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerAnnounceTicketHoldersWithMainEventId: (NSNumber*) mainEventId
     message: (NSString*) message
     completionHandler: (void (^)(NSError* error)) handler;
@@ -129,7 +126,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerDeleteCategoryWithCategoryID: (NSNumber*) categoryID
     completionHandler: (void (^)(NSError* error)) handler;
 
@@ -141,7 +138,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerDeleteEventWithEventId: (NSNumber*) eventId
     completionHandler: (void (^)(NSError* error)) handler;
 
@@ -154,7 +151,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerDeleteEventHeadWithEventID: (NSNumber*) eventID
     ehEmail: (NSString*) ehEmail
     completionHandler: (void (^)(NSError* error)) handler;
@@ -168,7 +165,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerDeleteManagerWithMainEventId: (NSNumber*) mainEventId
     managerEmail: (NSString*) managerEmail
     completionHandler: (void (^)(NSError* error)) handler;
@@ -182,7 +179,7 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
+/// @return void
 -(NSURLSessionTask*) managerDeletePRWithMainEventID: (NSNumber*) mainEventID
     prEmail: (NSString*) prEmail
     completionHandler: (void (^)(NSError* error)) handler;
@@ -195,9 +192,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGCategory1*
--(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory2*) category
-    completionHandler: (void (^)(SWGCategory1* output, NSError* error)) handler;
+/// @return SWGCategory*
+-(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory*) category
+    completionHandler: (void (^)(SWGCategory* output, NSError* error)) handler;
 
 
 /// Edit & Add Event
@@ -207,9 +204,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGEvent1*
--(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent2*) event
-    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+/// @return SWGEvent*
+-(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent*) event
+    completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 
 
 /// Edit Main Event
@@ -219,8 +216,8 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return 
--(NSURLSessionTask*) managerEditMainListingWithMainEvent: (SWGMainEvent2*) mainEvent
+/// @return void
+-(NSURLSessionTask*) managerEditMainListingWithMainEvent: (SWGMainEvent*) mainEvent
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -231,9 +228,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGEvent1*
+/// @return SWGEvent*
 -(NSURLSessionTask*) managerGetEventWithEventId: (NSNumber*) eventId
-    completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 
 
 /// get a categories under a main event
@@ -255,9 +252,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGCategory1*
+/// @return SWGCategory*
 -(NSURLSessionTask*) managerGetEventCategoryWithCategoryID: (NSNumber*) categoryID
-    completionHandler: (void (^)(SWGCategory1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGCategory* output, NSError* error)) handler;
 
 
 /// get Event Heads for Event
@@ -303,9 +300,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGMainEvent1*
+/// @return SWGMainEvent*
 -(NSURLSessionTask*) managerGetMainListingWithMainEventId: (NSNumber*) mainEventId
-    completionHandler: (void (^)(SWGMainEvent1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGMainEvent* output, NSError* error)) handler;
 
 
 /// get Managers for main event
@@ -339,9 +336,9 @@ extern NSInteger kSWGManagerApiMissingParamErrorCode;
 /// 
 ///  code:200 message:"OK"
 ///
-/// @return SWGMainEventStats1*
+/// @return SWGMainEventStats*
 -(NSURLSessionTask*) managerGetStatsWithMainEventId: (NSNumber*) mainEventId
-    completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler;
+    completionHandler: (void (^)(SWGMainEventStats* output, NSError* error)) handler;
 
 
 

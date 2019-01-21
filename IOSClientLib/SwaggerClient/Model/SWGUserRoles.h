@@ -14,8 +14,13 @@
 */
 
 
-#import "SWGEvent1.h"
-#import "SWGMainEvent1.h"
+#import "SWGEvent.h"
+#import "SWGMainEvent.h"
+@protocol SWGEvent;
+@class SWGEvent;
+@protocol SWGMainEvent;
+@class SWGMainEvent;
+
 
 
 @protocol SWGUserRoles
@@ -24,10 +29,10 @@
 @interface SWGUserRoles : SWGObject
 
 
-@property(nonatomic) NSArray<SWGMainEvent1>* isManagerForMainEvents;
+@property(nonatomic) NSArray<SWGMainEvent>* isManagerForMainEvents;
 
-@property(nonatomic) NSArray<SWGMainEvent1>* isPrForEvents;
+@property(nonatomic) NSArray<SWGMainEvent>* isPrForEvents;
 
-@property(nonatomic) NSArray<SWGEvent1>* isEventHeadForEvents;
+@property(nonatomic) NSArray<SWGEvent>* isEventHeadForEvents;
 
 @end

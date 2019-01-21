@@ -34,7 +34,7 @@ Method | HTTP request | Description
 ```objc
 -(NSURLSessionTask*) managerAddEventHeadWithEhEmail: (NSString*) ehEmail
     eventID: (NSNumber*) eventID
-        completionHandler: (void (^)(SWGEventHead1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEventHead* output, NSError* error)) handler;
 ```
 
 Add Event Head to Event
@@ -57,7 +57,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 // Add Event Head to Event
 [apiInstance managerAddEventHeadWithEhEmail:ehEmail
               eventID:eventID
-          completionHandler: ^(SWGEventHead1* output, NSError* error) {
+          completionHandler: ^(SWGEventHead* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGEventHead1***](SWGEventHead1.md)
+[**SWGEventHead***](SWGEventHead.md)
 
 ### Authorization
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) managerAddManagerWithManageremail: (NSString*) manageremail
     mainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGManager1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGManager* output, NSError* error)) handler;
 ```
 
 Add Manager to Main Event
@@ -116,7 +116,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 // Add Manager to Main Event
 [apiInstance managerAddManagerWithManageremail:manageremail
               mainEventId:mainEventId
-          completionHandler: ^(SWGManager1* output, NSError* error) {
+          completionHandler: ^(SWGManager* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGManager1***](SWGManager1.md)
+[**SWGManager***](SWGManager.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 ```objc
 -(NSURLSessionTask*) managerAddPRWithPRemail: (NSString*) pRemail
     mainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGPRRepresentative1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGPRRepresentative* output, NSError* error)) handler;
 ```
 
 Add PR Representative to Main Event
@@ -175,7 +175,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 // Add PR Representative to Main Event
 [apiInstance managerAddPRWithPRemail:pRemail
               mainEventId:mainEventId
-          completionHandler: ^(SWGPRRepresentative1* output, NSError* error) {
+          completionHandler: ^(SWGPRRepresentative* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGPRRepresentative1***](SWGPRRepresentative1.md)
+[**SWGPRRepresentative***](SWGPRRepresentative.md)
 
 ### Authorization
 
@@ -649,8 +649,8 @@ void (empty response body)
 
 # **managerEditCategory**
 ```objc
--(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory2*) category
-        completionHandler: (void (^)(SWGCategory1* output, NSError* error)) handler;
+-(NSURLSessionTask*) managerEditCategoryWithCategory: (SWGCategory*) category
+        completionHandler: (void (^)(SWGCategory* output, NSError* error)) handler;
 ```
 
 Edit & Add Event
@@ -665,13 +665,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-SWGCategory2* category = [[SWGCategory2 alloc] init]; // 
+SWGCategory* category = [[SWGCategory alloc] init]; // 
 
 SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // Edit & Add Event
 [apiInstance managerEditCategoryWithCategory:category
-          completionHandler: ^(SWGCategory1* output, NSError* error) {
+          completionHandler: ^(SWGCategory* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -685,11 +685,11 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **category** | [**SWGCategory2***](SWGCategory2.md)|  | 
+ **category** | [**SWGCategory***](SWGCategory.md)|  | 
 
 ### Return type
 
-[**SWGCategory1***](SWGCategory1.md)
+[**SWGCategory***](SWGCategory.md)
 
 ### Authorization
 
@@ -704,8 +704,8 @@ Name | Type | Description  | Notes
 
 # **managerEditEvent**
 ```objc
--(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent2*) event
-        completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+-(NSURLSessionTask*) managerEditEventWithEvent: (SWGEvent*) event
+        completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 ```
 
 Edit & Add Event
@@ -720,13 +720,13 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-SWGEvent2* event = [[SWGEvent2 alloc] init]; // 
+SWGEvent* event = [[SWGEvent alloc] init]; // 
 
 SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // Edit & Add Event
 [apiInstance managerEditEventWithEvent:event
-          completionHandler: ^(SWGEvent1* output, NSError* error) {
+          completionHandler: ^(SWGEvent* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -740,11 +740,11 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **event** | [**SWGEvent2***](SWGEvent2.md)|  | 
+ **event** | [**SWGEvent***](SWGEvent.md)|  | 
 
 ### Return type
 
-[**SWGEvent1***](SWGEvent1.md)
+[**SWGEvent***](SWGEvent.md)
 
 ### Authorization
 
@@ -759,7 +759,7 @@ Name | Type | Description  | Notes
 
 # **managerEditMainListing**
 ```objc
--(NSURLSessionTask*) managerEditMainListingWithMainEvent: (SWGMainEvent2*) mainEvent
+-(NSURLSessionTask*) managerEditMainListingWithMainEvent: (SWGMainEvent*) mainEvent
         completionHandler: (void (^)(NSError* error)) handler;
 ```
 
@@ -775,7 +775,7 @@ SWGDefaultConfiguration *apiConfig = [SWGDefaultConfiguration sharedConfig];
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"Authorization"];
 
 
-SWGMainEvent2* mainEvent = [[SWGMainEvent2 alloc] init]; // 
+SWGMainEvent* mainEvent = [[SWGMainEvent alloc] init]; // 
 
 SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
@@ -792,7 +792,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mainEvent** | [**SWGMainEvent2***](SWGMainEvent2.md)|  | 
+ **mainEvent** | [**SWGMainEvent***](SWGMainEvent.md)|  | 
 
 ### Return type
 
@@ -812,7 +812,7 @@ void (empty response body)
 # **managerGetEvent**
 ```objc
 -(NSURLSessionTask*) managerGetEventWithEventId: (NSNumber*) eventId
-        completionHandler: (void (^)(SWGEvent1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGEvent* output, NSError* error)) handler;
 ```
 
 get a event by event id
@@ -833,7 +833,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get a event by event id
 [apiInstance managerGetEventWithEventId:eventId
-          completionHandler: ^(SWGEvent1* output, NSError* error) {
+          completionHandler: ^(SWGEvent* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -851,7 +851,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGEvent1***](SWGEvent1.md)
+[**SWGEvent***](SWGEvent.md)
 
 ### Authorization
 
@@ -922,7 +922,7 @@ Name | Type | Description  | Notes
 # **managerGetEventCategory**
 ```objc
 -(NSURLSessionTask*) managerGetEventCategoryWithCategoryID: (NSNumber*) categoryID
-        completionHandler: (void (^)(SWGCategory1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGCategory* output, NSError* error)) handler;
 ```
 
 get a category by id
@@ -943,7 +943,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get a category by id
 [apiInstance managerGetEventCategoryWithCategoryID:categoryID
-          completionHandler: ^(SWGCategory1* output, NSError* error) {
+          completionHandler: ^(SWGCategory* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -961,7 +961,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGCategory1***](SWGCategory1.md)
+[**SWGCategory***](SWGCategory.md)
 
 ### Authorization
 
@@ -1142,7 +1142,7 @@ Name | Type | Description  | Notes
 # **managerGetMainListing**
 ```objc
 -(NSURLSessionTask*) managerGetMainListingWithMainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGMainEvent1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGMainEvent* output, NSError* error)) handler;
 ```
 
 get a single Main Event
@@ -1163,7 +1163,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // get a single Main Event
 [apiInstance managerGetMainListingWithMainEventId:mainEventId
-          completionHandler: ^(SWGMainEvent1* output, NSError* error) {
+          completionHandler: ^(SWGMainEvent* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1181,7 +1181,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGMainEvent1***](SWGMainEvent1.md)
+[**SWGMainEvent***](SWGMainEvent.md)
 
 ### Authorization
 
@@ -1307,7 +1307,7 @@ Name | Type | Description  | Notes
 # **managerGetStats**
 ```objc
 -(NSURLSessionTask*) managerGetStatsWithMainEventId: (NSNumber*) mainEventId
-        completionHandler: (void (^)(SWGMainEventStats1* output, NSError* error)) handler;
+        completionHandler: (void (^)(SWGMainEventStats* output, NSError* error)) handler;
 ```
 
 Delete Main Event Stats
@@ -1328,7 +1328,7 @@ SWGManagerApi*apiInstance = [[SWGManagerApi alloc] init];
 
 // Delete Main Event Stats
 [apiInstance managerGetStatsWithMainEventId:mainEventId
-          completionHandler: ^(SWGMainEventStats1* output, NSError* error) {
+          completionHandler: ^(SWGMainEventStats* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
@@ -1346,7 +1346,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SWGMainEventStats1***](SWGMainEventStats1.md)
+[**SWGMainEventStats***](SWGMainEventStats.md)
 
 ### Authorization
 
